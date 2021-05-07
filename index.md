@@ -2,11 +2,9 @@
 
  * Dual citizen from Argentina 🇦🇷 + Italy 🇮🇹
  * Computational biologist studying the metabolism of the human gut microbiome 💩
- * Open source, transparent, and reproducible research + software enthusiast 💻
-
-## Work Experience
-
- * Computational biologist - European Molecular Biology Laboratory, Heidelberg 🇩🇪 2019 - 2020
+ * Open source, transparent, and reproducible research + software enthusiast 💪
+ * Preferred programming languages: bash, R, python, MATLAB 💻
+ * Spoken languages: english, spanish, italian 💬
 
 ## Education
 
@@ -14,9 +12,13 @@
  * M.Sc. Biotechnology - Chalmers University of Technology 🇸🇪 2017 - 2019
  * B.Sc. Biological Systems Engineering - University of California, Davis 🇺🇸 2013 - 2017
 
+## Work Experience
+
+ * Computational biologist - European Molecular Biology Laboratory, Heidelberg 🇩🇪 2019 - 2020
+
 ## Software
 
-* 💎 `metaGEM` Reconstruction & simulation of genome scale metabolic models directly from metagenomic data 
+* 💎 `metaGEM` Snakemake workflow for reconstruction & simulation of genome scale metabolic models directly from metagenomic data 
 [![GitHub](https://img.shields.io/badge/GitHub-metaGEM-blue)](https://github.com/franciscozorrilla/metaGEM)
 
 * 📊 `com-dFBA` MATLAB implementation of community dynamic flux balance analysis (dFBA) for iGEM 2018 
