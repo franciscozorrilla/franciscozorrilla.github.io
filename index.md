@@ -21,4 +21,30 @@
 
 ## Publications
 
+* [![DOI](https://img.shields.io/badge/bioRxiv-10.1101%2F2020.12.31.424982%20-B31B1B)](https://www.biorxiv.org/content/10.1101/2020.12.31.424982v2.full)
+```
+metaGEM: reconstruction of genome scale metabolic models directly from metagenomes
+Francisco Zorrilla, Kiran R. Patil, Aleksej Zelezniak
+bioRxiv 2020.12.31.424982; doi: https://doi.org/10.1101/2020.12.31.424982 
+```
+
+ * [![arxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2020.12.13.422558%20-B31B1B)](https://www.biorxiv.org/content/10.1101/2020.12.13.422558v2.full)
+```
+Plastic-degrading potential across the global microbiome correlates with recent pollution trends
+Jan Zrimec, Mariia Kokina, Sara Jonasson, Francisco Zorrilla, Aleksej Zelezniak
+bioRxiv 2020.12.13.422558; doi: https://doi.org/10.1101/2020.12.13.422558 
+```
+
+ * [![nature](https://img.shields.io/badge/Nature-communications%20biology-darkgreen)](https://www.nature.com/articles/s42003-020-01127-5)
+```
+Robust estimation of bacterial cell count from optical density
+Jacob Beal, Natalie G. Farny, Traci Haddock-Angelli, Vinoo Selvarajah, Geoff S. Baldwin, Russell Buckley-Taylor, Markus Gershater, Daisuke Kiga, John Marken, Vishal Sanchania, Abigail Sison, Christopher T. Workman & iGEM Interlab Study Contributors
+Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s42003-020-01127-5
+
+```
+
 ## Contact
+
+[![Twitter](https://img.shields.io/badge/Twitter-%40metagenomez-lightblue)](https://twitter.com/metagenomez)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-fzorrilla94-blue)](https://www.linkedin.com/in/fzorrilla94/)
+[![email](https://img.shields.io/badge/email-fz274%40cam.ac.uk-%23a6bddb)](fz274@cam.ac.uk)
