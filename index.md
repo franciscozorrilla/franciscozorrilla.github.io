@@ -1,6 +1,3 @@
-![francisco-zorrilla](https://user-images.githubusercontent.com/35606471/117464488-9ce9b480-af48-11eb-9ed7-f3f96313ad9e.jpg)
-
-
 ## About
 
  * Dual citizen from Argentina 🇦🇷 + Italy 🇮🇹
