@@ -16,8 +16,11 @@
 
 ## Software
 
-* `metaGEM` 💎 Reconstruction & simulation of genome scale metabolic models directly from metagenomic data [GitHub](https://github.com/franciscozorrilla/metaGEM)
-* `com-dFBA` 📊 MATLAB implementation of community dynamic flux balance analysis (dFBA) for iGEM 2018 [GitHub](https://github.com/franciscozorrilla/Chalmers-iGEM2018)
+* 💎 `metaGEM` Reconstruction & simulation of genome scale metabolic models directly from metagenomic data 
+[![GitHub](https://img.shields.io/badge/GitHub-metaGEM-blue)](https://github.com/franciscozorrilla/metaGEM)
+
+* 📊 `com-dFBA` MATLAB implementation of community dynamic flux balance analysis (dFBA) for iGEM 2018 
+   [![GitHub](https://img.shields.io/badge/GitHub-com--dFBA-yellowgreen)](https://github.com/franciscozorrilla/Chalmers-iGEM2018)
 
 ## Publications
 
@@ -44,6 +47,7 @@ Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s
 
 ## Contact
 
+[![GitHub](https://img.shields.io/badge/GitHub-franciscozorrilla-informational)](https://github.com/franciscozorrilla)
 [![Twitter](https://img.shields.io/badge/Twitter-%40metagenomez-lightblue)](https://twitter.com/metagenomez)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-fzorrilla94-blue)](https://www.linkedin.com/in/fzorrilla94/)
 [![email](https://img.shields.io/badge/email-fz274%40cam.ac.uk-%23a6bddb)](fz274@cam.ac.uk)
