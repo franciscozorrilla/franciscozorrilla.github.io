@@ -2,7 +2,7 @@
 <img align="right" src="https://user-images.githubusercontent.com/35606471/117464909-08338680-af49-11eb-8b36-b4b7cd30a3a3.jpg" height = 200 width = 160>
 
  * Dual citizen from Argentina 🇦🇷 + Italy 🇮🇹
- * Computational biologist studying the metabolism of the human gut microbiome 💩
+ * Computational biologist studying the metabolism of human gut microbiomes 💩
  * Open source, transparent, and reproducible research + software enthusiast 💪
  * Preferred programming languages: bash, R, python, MATLAB 💻
  * Spoken languages: english, spanish, italian 💬
