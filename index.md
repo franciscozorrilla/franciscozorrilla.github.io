@@ -4,8 +4,8 @@
  * Dual citizen from Argentina 🇦🇷 + Italy 🇮🇹
  * Computational biologist studying the metabolism of human gut microbiomes 💩
  * Open source, transparent, and reproducible research + software enthusiast 💪
- * Preferred programming languages: bash, R, python, MATLAB 💻
- * Spoken languages: english, spanish, italian 💬
+ * Preferred programming languages: Bash, R, Python, MATLAB 💻
+ * Spoken languages: English, Spanish, Italian 💬
 
 ## Education
 
