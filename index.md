@@ -6,7 +6,7 @@
  * Preferred programming languages: Bash, R, Python, MATLAB 💻
  * High performance computer cluster aficionado 🛩️
  * Spoken languages: English, Spanish, Italian 💬
- * Dual citizen from Argentina 🇦🇷 + Italy 🇮🇹
+ * Dual citizen from Argentina 🇦🇷 / Italy 🇮🇹
 
 ## Education
 
