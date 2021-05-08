@@ -1,13 +1,11 @@
 ## About
 
- * Applying metagenomics and machine learning to study metabolism of human gut microbiomes 💩
+ * Applying metagenomics & machine learning to study metabolism in human gut microbiomes 💩
  * Open source, transparent, and reproducible research + software enthusiast 🦾
- * Preferred programming languages: Bash, R, Python, MATLAB 💻
+ * Preferred programming languages: Bash, R, Python, MATLAB 💻 <img align="right" src="https://user-images.githubusercontent.com/35606471/117464909-08338680-af49-11eb-8b36-b4b7cd30a3a3.jpg" height = 200 width = 160>
  * High performance computer cluster aficionado 🛩️
  * Spoken languages: English, Spanish, Italian 💬
  * Dual citizen from Argentina 🇦🇷 / Italy 🇮🇹
-
-<img align="right" src="https://user-images.githubusercontent.com/35606471/117464909-08338680-af49-11eb-8b36-b4b7cd30a3a3.jpg" height = 200 width = 160>
 
 ## Education
 
