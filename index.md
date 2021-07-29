@@ -34,6 +34,13 @@ Francisco Zorrilla, Kiran R. Patil, Aleksej Zelezniak
 bioRxiv 2020.12.31.424982; doi: https://doi.org/10.1101/2020.12.31.424982 
 ```
 
+* [![DOI](https://img.shields.io/badge/bioRxiv-10.1101%2F2020.12.31.424982%20-B31B1B)](https://www.biorxiv.org/content/10.1101/2021.06.18.448943v1.full)
+```
+Reconstruction of genome--scale metabolic model for Hansenula polymorpha using RAVEN toolbox
+Francisco Zorrilla, Eduard J Kerkhoven
+bioRxiv 2021.06.18.448943; doi: https://doi.org/10.1101/2021.06.18.448943 
+```
+
  * [![arxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2020.12.13.422558%20-B31B1B)](https://www.biorxiv.org/content/10.1101/2020.12.13.422558v2.full)
 ```
 Plastic-degrading potential across the global microbiome correlates with recent pollution trends
