@@ -51,6 +51,7 @@ Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s
 
 ## Contact
 
+[![scholar](https://img.shields.io/badge/Google-Scholar-lightblue)](https://scholar.google.com/citations?user=byUq0i4AAAAJ&hl=en)
 [![GitHub](https://img.shields.io/badge/GitHub-franciscozorrilla-9cf)](https://github.com/franciscozorrilla)
 [![Twitter](https://img.shields.io/badge/Twitter-%40metagenomez-lightblue)](https://twitter.com/metagenomez)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-fzorrilla94-blue)](https://www.linkedin.com/in/fzorrilla94/)
