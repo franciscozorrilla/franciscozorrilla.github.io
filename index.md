@@ -48,12 +48,15 @@ Jan Zrimec, Mariia Kokina, Sara Jonasson, Francisco Zorrilla, Aleksej Zelezniak
 bioRxiv 2020.12.13.422558; doi: https://doi.org/10.1101/2020.12.13.422558 
 ```
 
- * [![nature](https://img.shields.io/badge/Nature-communications%20biology-darkgreen)](https://www.nature.com/articles/s42003-020-01127-5) (see `Chalmers-Gothenburg` under the author `iGEM Interlab Study Contributors`)
+ * [![nature](https://img.shields.io/badge/Nature-communications%20biology-darkgreen)](https://www.nature.com/articles/s42003-020-01127-5) 
+     
 ```
 Robust estimation of bacterial cell count from optical density
 Jacob Beal, Natalie G. Farny, Traci Haddock-Angelli, Vinoo Selvarajah, Geoff S. Baldwin, Russell Buckley-Taylor, Markus Gershater, Daisuke Kiga, John Marken, Vishal Sanchania, Abigail Sison, Christopher T. Workman & iGEM Interlab Study Contributors
 Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s42003-020-01127-5
 ``` 
+ \* see `Chalmers-Gothenburg` under the author `iGEM Interlab Study Contributors`
+
 
 ## Contact
 
