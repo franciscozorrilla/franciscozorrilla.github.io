@@ -27,6 +27,23 @@
 
 ## Publications
 
+ * [![Nucleic Acids Research](https://img.shields.io/badge/Nucleic%20Acids%20Research-10.1093%2Fnar%2Fgkab815-critical)](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkab815/6382386)
+```
+metaGEM: reconstruction of genome scale metabolic models directly from metagenomes
+Francisco Zorrilla, Filip Buric, Kiran R Patil, Aleksej Zelezniak
+Nucleic Acids Research, 2021; gkab815, https://doi.org/10.1093/nar/gkab815
+``` 
+
+ * [![nature](https://img.shields.io/badge/Nature-communications%20biology-darkgreen)](https://www.nature.com/articles/s42003-020-01127-5) 
+```
+Robust estimation of bacterial cell count from optical density
+Jacob Beal, Natalie G. Farny, Traci Haddock-Angelli, Vinoo Selvarajah, Geoff S. Baldwin, Russell Buckley-Taylor, Markus Gershater, Daisuke Kiga, John Marken, Vishal Sanchania, Abigail Sison, Christopher T. Workman & iGEM Interlab Study Contributors
+Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s42003-020-01127-5
+``` 
+ \* see `Chalmers-Gothenburg` under the author `iGEM Interlab Study Contributors`
+
+## Preprints
+
 * [![DOI](https://img.shields.io/badge/bioRxiv-10.1101%2F2020.12.31.424982%20-B31B1B)](https://www.biorxiv.org/content/10.1101/2020.12.31.424982v2.full)
 ```
 metaGEM: reconstruction of genome scale metabolic models directly from metagenomes
@@ -47,15 +64,6 @@ Plastic-degrading potential across the global microbiome correlates with recent 
 Jan Zrimec, Mariia Kokina, Sara Jonasson, Francisco Zorrilla, Aleksej Zelezniak
 bioRxiv 2020.12.13.422558; doi: https://doi.org/10.1101/2020.12.13.422558 
 ```
-
- * [![nature](https://img.shields.io/badge/Nature-communications%20biology-darkgreen)](https://www.nature.com/articles/s42003-020-01127-5) 
-```
-Robust estimation of bacterial cell count from optical density
-Jacob Beal, Natalie G. Farny, Traci Haddock-Angelli, Vinoo Selvarajah, Geoff S. Baldwin, Russell Buckley-Taylor, Markus Gershater, Daisuke Kiga, John Marken, Vishal Sanchania, Abigail Sison, Christopher T. Workman & iGEM Interlab Study Contributors
-Nature communications biology s42003-020-01127-5; doi: https://doi.org/10.1038/s42003-020-01127-5
-``` 
- \* see `Chalmers-Gothenburg` under the author `iGEM Interlab Study Contributors`
-
 
 ## Contact
 
