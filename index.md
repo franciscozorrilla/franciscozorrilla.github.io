@@ -4,7 +4,7 @@
  * Open source, transparent, and reproducible research + software enthusiast 🦾
  * Preferred programming languages: Bash, R, Python, MATLAB 💻
  * High performance computer cluster aficionado 🛩️ <img align="right" src="https://user-images.githubusercontent.com/35606471/117464909-08338680-af49-11eb-8b36-b4b7cd30a3a3.jpg" height = 200 width = 160>
- * Spoken languages: English, Spanish, Italian 💬
+ * Fluent languages: English, Spanish 💬
  * Dual citizen from Argentina 🇦🇷 / Italy 🇮🇹
 
 ## Education
