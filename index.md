@@ -3,19 +3,20 @@
  * Omics-driven metabolic modeling & machine learning for microbial communities 💩
  * Open source, transparent, and reproducible research + software 🦾
  * Programming languages: Bash, R, Python, MATLAB 💻
- * High performance computer cluster aficionado 🛩️ <img align="right" src="https://user-images.githubusercontent.com/35606471/117464909-08338680-af49-11eb-8b36-b4b7cd30a3a3.jpg" height = 200 width = 160>
- * Spoken languages: English, Spanish 💬
+ * High performance computer cluster aficionado 🛩️ <img align="right" src="https://github.com/user-attachments/assets/0402b864-d0b2-4f0e-a248-12313818baf8" height = 200 width = 200>
+ * Native speaker: English, Spanish 💬
  * Citizenship: Argentina 🇦🇷 / Italy 🇮🇹
+
+## Work Experience
+
+ * Postdoctoral researcher - ETH Zürich, Zürich 🇨🇭 2024 - Present
+ * Computational biologist - European Molecular Biology Laboratory, Heidelberg 🇩🇪 2019 - 2020
 
 ## Education
 
  * Ph.D. Biology - University of Cambridge 🇬🇧 2020 - 2024
  * M.Sc. Biotechnology - Chalmers University of Technology 🇸🇪 2017 - 2019
  * B.Sc. Biological Systems Engineering - University of California, Davis 🇺🇸 2013 - 2017
-
-## Work Experience
-
- * Computational biologist - European Molecular Biology Laboratory, Heidelberg 🇩🇪 2019 - 2020
 
 ## Software
 
@@ -28,18 +29,6 @@
 * 📊 `com-dFBA` is a MATLAB implementation of community dynamic flux balance analysis (dFBA), developed for iGEM 2018
 
 ## Publications
-
-```
-Robust estimation of bacterial cell count from optical density
-Jacob Beal, Natalie G. Farny, Traci Haddock-Angelli, Vinoo Selvarajah, Geoff S. Baldwin, Russell Buckley-Taylor, Markus Gershater, Daisuke Kiga, John Marken, Vishal Sanchania, Abigail Sison, Christopher T. Workman & iGEM Interlab Study Contributors
-Nature communications biology, 2020; https://doi.org/10.1038/s42003-020-01127-5
-``` 
-
-```
-Comparative analysis of three studies measuring fluorescence from engineered bacterial genetic constructs
-Jacob Beal, Geoff S Baldwin, Natalie G Farny, Markus Gershater, Traci Haddock-Angelli, Russell Buckley-Taylor, Ari Dwijayanti, Daisuke Kiga, Meagan Lizarazo, John Marken, Kim de Mora, Randy Rettberg, Vishal Sanchania, Vinoo Selvarajah, Abigail Sison, Marko Storch, Christopher T Workman, iGEM Interlab Study Contributors
-PloS one, 2021; https://doi.org/10.1371/journal.pone.0252263
-```
 
 ```
 metaGEM: reconstruction of genome scale metabolic models directly from metagenomes
@@ -65,12 +54,14 @@ Francisco Zorrilla, Eduard J Kerkhoven
 Yeast Metabolic Engineering, 2022 ; https://doi.org/10.1101/2021.06.18.448943 
 ```
 
+Please use the Google Scholar link below for a complete list of publications.
+
 ## Contact
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-fzorrilla94-blue)](https://www.linkedin.com/in/fzorrilla94/)
 [![scholar](https://img.shields.io/badge/Google_Scholar-Francisco_Zorrilla-%230492C2)](https://scholar.google.com/citations?user=byUq0i4AAAAJ&hl=en)
 [![GitHub](https://img.shields.io/badge/GitHub-franciscozorrilla-9cf)](https://github.com/franciscozorrilla)
-[![Twitter](https://img.shields.io/badge/Twitter-%40metagenomez-lightblue)](https://twitter.com/metagenomez)
-[![email](https://img.shields.io/badge/email-fz274%40cam.ac.uk-%23a6bddb)](fz274@cam.ac.uk)
+[![BlueSky](https://img.shields.io/badge/BlueSky-%40metagenomez-lightblue)](https://bsky.app/profile/metagenomez.bsky.social)
+[![email](https://img.shields.io/badge/email-fzorrill%40ethz.ch-%23a6bddb)](fzorrill@ethz.ch)
 
-*Last updated 28/02/2023*
+*Last updated 24/05/2025*
