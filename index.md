@@ -1,8 +1,8 @@
 ## Overview
 
  * Omics-driven metabolic modeling & machine learning for microbial communities 💩
- * Open source, transparent, and reproducible research + software 🦾 <img align="right" src="https://github.com/user-attachments/assets/0402b864-d0b2-4f0e-a248-12313818baf8" height = 200 width = 200>
- * Programming languages: Bash, R, Python, MATLAB 💻
+ * Open source, transparent, and reproducible research + software 🦾
+ * Programming languages: Bash, R, Python, MATLAB 💻 <img align="right" src="https://github.com/user-attachments/assets/0402b864-d0b2-4f0e-a248-12313818baf8" height = 200 width = 200>
  * High performance computer cluster aficionado 🛩️ 
  * Native speaker: English, Spanish 💬
  * Citizenship: Argentina 🇦🇷 / Italy 🇮🇹
