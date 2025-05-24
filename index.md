@@ -1,9 +1,9 @@
 ## Overview
 
  * Omics-driven metabolic modeling & machine learning for microbial communities 💩
- * Open source, transparent, and reproducible research + software 🦾
+ * Open source, transparent, and reproducible research + software 🦾 <img align="right" src="https://github.com/user-attachments/assets/0402b864-d0b2-4f0e-a248-12313818baf8" height = 200 width = 200>
  * Programming languages: Bash, R, Python, MATLAB 💻
- * High performance computer cluster aficionado 🛩️ <img align="right" src="https://github.com/user-attachments/assets/0402b864-d0b2-4f0e-a248-12313818baf8" height = 200 width = 200>
+ * High performance computer cluster aficionado 🛩️ 
  * Native speaker: English, Spanish 💬
  * Citizenship: Argentina 🇦🇷 / Italy 🇮🇹
 
@@ -62,6 +62,6 @@ Please use the Google Scholar link below for a complete list of publications.
 [![scholar](https://img.shields.io/badge/Google_Scholar-Francisco_Zorrilla-%230492C2)](https://scholar.google.com/citations?user=byUq0i4AAAAJ&hl=en)
 [![GitHub](https://img.shields.io/badge/GitHub-franciscozorrilla-9cf)](https://github.com/franciscozorrilla)
 [![BlueSky](https://img.shields.io/badge/BlueSky-%40metagenomez-lightblue)](https://bsky.app/profile/metagenomez.bsky.social)
-[![email](https://img.shields.io/badge/email-fzorrill%40ethz.ch-%23a6bddb)](fzorrill@ethz.ch)
+[![email](https://img.shields.io/badge/email-fzorrill%40ethz.ch-%23a6bddb)]()
 
 *Last updated 24/05/2025*
