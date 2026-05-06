@@ -1,0 +1,202 @@
+---
+layout: default
+title: metaGEM
+description: Open-source Snakemake workflow for reconstructing genome-scale metabolic models directly from metagenomes. 260+ stars on GitHub. #3 in the Snakemake workflow catalog. 14,000+ models built.
+---
+
+<section class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="eyebrow">Flagship product · Open source</span>
+      <h1 style="display:flex;align-items:baseline;gap:0.5rem;">
+        <span style="color:var(--accent);font-size:0.85em;" aria-hidden="true">◆</span>
+        metaGEM
+      </h1>
+      <p class="lede">{{ site.data.metagem.oneliner }}</p>
+    </div>
+
+    <div class="cta-bar">
+      <a class="btn btn--primary" href="{{ site.data.metagem.links.github }}" rel="noopener">GitHub {% include icon.html name="external" %}</a>
+      <a class="btn btn--secondary" href="{{ site.data.metagem.links.paper }}" rel="noopener">Paper (NAR 2021) {% include icon.html name="external" %}</a>
+      <a class="btn btn--secondary" href="{{ site.data.metagem.links.docs }}" rel="noopener">Documentation {% include icon.html name="external" %}</a>
+      <a class="btn btn--secondary" href="{{ site.data.metagem.catalog_url }}" rel="noopener">Snakemake catalog {% include icon.html name="external" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="container">
+    <span class="eyebrow" style="margin-bottom:var(--space-4);display:block;">Live stats &middot; as of {{ site.data.metagem.last_updated | date: "%-d %b %Y" }}</span>
+
+    <div class="impact-row">
+      <div class="impact">
+        <div class="impact__value tabular">{{ site.data.metagem.stars }}+</div>
+        <div class="impact__label">GitHub stars</div>
+        <div class="impact__caption">+ {{ site.data.metagem.forks }} forks ({{ site.data.metagem.stars | plus: site.data.metagem.forks }} combined)</div>
+      </div>
+      <div class="impact">
+        <div class="impact__value tabular">#{{ site.data.metagem.catalog_rank }}</div>
+        <div class="impact__label">Snakemake catalog</div>
+        <div class="impact__caption">by stars (workflow rank)</div>
+      </div>
+      <div class="impact">
+        <div class="impact__value tabular">{{ site.data.metagem.gems_built }}</div>
+        <div class="impact__label">metabolic models</div>
+        <div class="impact__caption">reconstructed across studies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <span class="eyebrow">What it does</span>
+        <h2 style="margin-top:var(--space-2);">From metagenomes to community metabolism</h2>
+        <div class="prose mt-5">
+          <p>
+            <strong>metaGEM</strong> turns raw shotgun-metagenomic reads into community-level
+            metabolic predictions, end-to-end and reproducibly. It chains best-in-class tools
+            into a single Snakemake DAG so a researcher can submit one job to a Slurm cluster
+            and pick up genome-scale metabolic models on the other side.
+          </p>
+          <p>
+            The pipeline runs quality control with <code>fastp</code>, assembles reads with
+            <code>MEGAHIT</code> and <code>metaSPAdes</code>, bins with <code>CONCOCT</code>
+            and <code>MetaBAT2</code>, consolidates MAGs with <code>MetaWRAP</code>, assigns
+            taxonomy with <code>GTDB-Tk</code>, reconstructs models with <code>CarveMe</code>,
+            and simulates community metabolism with <code>SMETANA</code>.
+          </p>
+          <p>
+            Built during my PhD at the Patil lab (MRC Toxicology Unit, Cambridge);
+            originally deployed at EMBL Heidelberg. Released under the MIT licence; still
+            actively maintained.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-study__block" aria-label="metaGEM pipeline architecture">
+        <span class="case-study__block-title">Architecture</span>
+<pre style="background:var(--code-bg);padding:var(--space-4);border-radius:var(--radius-md);font-size:0.78rem;line-height:1.55;color:var(--fg-muted);overflow-x:auto;">
+metagenomic
+   reads
+     │
+     ▼
+┌────────┐
+│ fastp  │  quality control
+└───┬────┘
+    │
+    ├──────────────┐
+    ▼              ▼
+┌────────┐   ┌──────────┐
+│MEGAHIT │   │metaSPAdes│  assembly
+└───┬────┘   └─────┬────┘
+    └────────┬─────┘
+             ▼
+       ┌──────────┐
+       │ CONCOCT  │ ┐
+       │ MetaBAT2 │ ├ binning
+       └─────┬────┘ ┘
+             ▼
+       ┌──────────┐
+       │ MetaWRAP │  MAG consolidation
+       └─────┬────┘
+             ▼
+       ┌──────────┐
+       │ GTDB-Tk  │  taxonomy
+       └─────┬────┘
+             ▼
+       ┌──────────┐
+       │ CarveMe  │  GEM reconstruction
+       └─────┬────┘
+             ▼
+       ┌──────────┐
+       │ SMETANA  │  community metabolism
+       └─────┬────┘
+             ▼
+        community-level
+       metabolic models
+</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Quick start</span>
+      <h2>Get metaGEM running</h2>
+    </div>
+
+    <div class="prose">
+{% highlight bash %}
+# clone and enter
+git clone https://github.com/franciscozorrilla/metaGEM.git
+cd metaGEM
+
+# create the environment
+bash env_setup.sh
+
+# dry-run on the bundled toy dataset
+snakemake -n -j 4 -s Snakefile
+
+# real run on a Slurm cluster (set --cluster-config first)
+snakemake -j 100 --cluster-config config/cluster.yaml --cluster sbatch
+{% endhighlight %}
+
+      <p>Full installation, tutorials, and per-step walkthroughs live in <a href="{{ site.data.metagem.links.docs }}" rel="noopener">the wiki</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <span class="eyebrow">Why it matters</span>
+        <h2 style="margin-top:var(--space-2);">Designed for industry-scale workflows</h2>
+        <div class="prose mt-5">
+          <p>
+            Before metaGEM, going from raw metagenomic data to a community metabolic model
+            required gluing together a dozen tools by hand and burning through HPC time on
+            failed runs. metaGEM packages that workflow in a Snakemake DAG with reproducible
+            environments, sensible defaults, and HPC-aware parallelism.
+          </p>
+          <p>
+            It's been used to build <strong>14,000+ genome-scale metabolic models</strong>
+            across published studies on soil, gut, ocean, and clinical microbiomes — at a
+            scale that informs <em>industrial</em> applications like SynCom design, biocatalyst
+            discovery, fermentation optimization, and bioremediation.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow">Cite</span>
+        <h2 style="margin-top:var(--space-2);">BibTeX</h2>
+{% highlight bibtex %}
+{{ site.data.metagem.bibtex }}
+{% endhighlight %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Next</span>
+      <h2>Read the case study</h2>
+    </div>
+
+    <div style="max-width:36rem;">
+      {% assign metagem_work = site.work | where: "slug", "metagem" | first %}
+      {% if metagem_work %}
+        {% include card-work.html work=metagem_work %}
+      {% endif %}
+    </div>
+  </div>
+</section>

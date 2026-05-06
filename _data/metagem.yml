@@ -1,0 +1,35 @@
+name: "metaGEM"
+oneliner: "Reconstruct genome-scale metabolic models directly from metagenomes — at scale."
+description: |
+  metaGEM is an end-to-end Snakemake workflow that turns raw metagenomic reads
+  into community-level metabolic predictions. Quality control (fastp) → assembly
+  (MEGAHIT, metaSPAdes) → binning (CONCOCT, MetaBAT2) → consolidation (MetaWRAP) →
+  taxonomy (GTDB-Tk) → metabolic reconstruction (CarveMe) → community simulation
+  (SMETANA). Used by labs worldwide; >14,000 GEMs reconstructed across published
+  studies.
+
+stars: 260
+forks: 47
+catalog_rank: 3
+catalog_url: "https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html"
+gems_built: "14,000+"
+paper_citations: 125
+
+last_updated: 2026-05-06
+
+links:
+  github: "https://github.com/franciscozorrilla/metaGEM"
+  paper:  "https://doi.org/10.1093/nar/gkab815"
+  docs:   "https://github.com/franciscozorrilla/metaGEM/wiki"
+
+bibtex: |
+  @article{zorrilla2021metagem,
+    title={metaGEM: reconstruction of genome scale metabolic models directly from metagenomes},
+    author={Zorrilla, Francisco and Buric, Filip and Patil, Kiran R and Zelezniak, Aleksej},
+    journal={Nucleic Acids Research},
+    volume={49},
+    number={21},
+    pages={e126},
+    year={2021},
+    doi={10.1093/nar/gkab815}
+  }

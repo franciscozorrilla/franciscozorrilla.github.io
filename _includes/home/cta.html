@@ -1,0 +1,19 @@
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's talk.</h2>
+      <p class="lede">{{ site.data.site.hire_pitch | strip_newlines }}</p>
+    </div>
+
+    <div class="contact-list" style="max-width:32rem;">
+      {% for s in site.data.site.socials %}
+        <a href="{{ s.url }}"{% unless s.url contains 'mailto:' %} rel="noopener"{% endunless %}>
+          {% include icon.html name=s.icon %}
+          <span>{{ s.name }}</span>
+          <span class="contact-list__handle">{{ s.handle }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,99 @@
+---
+layout: default
+---
+<section class="section">
+  <div class="container">
+    <a class="btn--ghost btn btn--sm" href="{{ '/work/' | relative_url }}" style="margin-bottom:var(--space-5);">← all case studies</a>
+
+    <header class="case-study__header">
+      <div class="case-study__meta">
+        <span class="mono">{{ page.year }}</span>
+        <span>·</span>
+        <span>{{ page.venue }}</span>
+        {% if page.role %}<span>·</span><span class="text-accent">{{ page.role }}</span>{% endif %}
+        {% if page.citations and page.citations > 0 %}<span>·</span><span>{{ page.citations }} citations</span>{% endif %}
+        {% if page.status == "preprint" %}<span>·</span><span class="text-accent">preprint</span>{% endif %}
+        {% if page.status == "thesis" %}<span>·</span><span class="text-accent">thesis</span>{% endif %}
+      </div>
+
+      <h1>{{ page.title }}</h1>
+
+      {% if page.authors %}<p class="text-muted text-sm">{{ page.authors }}</p>{% endif %}
+
+      {% if page.oneliner %}<p class="lede">{{ page.oneliner }}</p>{% endif %}
+
+      <div class="cta-bar mt-4">
+        {% for link in page.links %}
+          <a class="btn btn--secondary btn--sm" href="{{ link.url }}" rel="noopener">{{ link.label }} {% include icon.html name="external" %}</a>
+        {% endfor %}
+      </div>
+
+      {% if page.tags %}
+        <div class="tag-row mt-4">
+          {% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+        </div>
+      {% endif %}
+    </header>
+
+    <div class="case-study__grid">
+      {% if page.problem %}
+        <div class="case-study__block">
+          <span class="case-study__block-title">Problem</span>
+          <p class="text-muted">{{ page.problem }}</p>
+        </div>
+      {% endif %}
+      {% if page.approach %}
+        <div class="case-study__block">
+          <span class="case-study__block-title">Approach</span>
+          <p class="text-muted">{{ page.approach }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if page.contribution or page.tools %}
+      <div class="case-study__grid mt-5">
+        {% if page.contribution %}
+          <div class="case-study__block">
+            <span class="case-study__block-title">My contribution</span>
+            <p class="text-muted">{{ page.contribution }}</p>
+          </div>
+        {% endif %}
+        {% if page.tools %}
+          <div class="case-study__block">
+            <span class="case-study__block-title">Tools</span>
+            <div class="tag-row mt-2">
+              {% for tool in page.tools %}<span class="tag">{{ tool }}</span>{% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if page.outcome %}
+      <div class="case-study__block mt-5">
+        <span class="case-study__block-title">Outcome</span>
+        <ul class="case-study__outcomes mt-3">
+          {% for o in page.outcome %}
+            <li>
+              <span class="case-study__outcomes-metric">{{ o.metric }}</span>
+              <span class="case-study__outcomes-desc">{{ o.desc }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    {% if page.industry_relevance %}
+      <div class="case-study__block mt-5">
+        <span class="case-study__block-title">Industry relevance</span>
+        <p class="text-muted">{{ page.industry_relevance }}</p>
+      </div>
+    {% endif %}
+
+    {% if content and content != "" %}
+      <div class="prose mt-7">
+        {{ content }}
+      </div>
+    {% endif %}
+  </div>
+</section>

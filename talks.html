@@ -1,0 +1,85 @@
+---
+layout: default
+title: Talks & teaching
+description: Conferences, courses, mentorship, awards, and open-source teaching repositories.
+---
+
+<section class="section">
+  <div class="container">
+    <header class="section-header">
+      <span class="eyebrow">Talks · Teaching · Mentorship · Awards</span>
+      <h1>Talks &amp; teaching</h1>
+      <p class="lede">
+        50+ international researchers trained across EMBO practical courses, the ETH Block
+        Course, the NCCR Microbiomes Winter School, and the Cambridge Systems Biology
+        course. All teaching materials are open-source.
+      </p>
+    </header>
+
+    <header class="section-header mt-7">
+      <span class="eyebrow">Open-source teaching materials</span>
+      <h2>Teaching repos</h2>
+      <p class="lede">
+        Every course I've taught ships with a public repo so the materials outlive the course.
+      </p>
+    </header>
+
+    <div class="grid-2">
+      {% for r in site.data.teaching_repos %}
+        <a class="card" href="{{ r.url }}" rel="noopener">
+          <div class="card__eyebrow">
+            <span class="mono">{{ r.year }}</span>
+            <span>·</span>
+            <span>{{ r.venue }}</span>
+            {% if r.stars %}<span>·</span><span>{{ r.stars }} ★</span>{% endif %}
+          </div>
+          <h3 class="card__title">{{ r.name }}</h3>
+          <div class="card__role">{{ r.course }}</div>
+          <p class="text-muted text-sm">{{ r.topic }}</p>
+          <span class="card__cta">Open repo {% include icon.html name="external" %}</span>
+        </a>
+      {% endfor %}
+    </div>
+
+    <header class="section-header mt-7">
+      <span class="eyebrow">Conferences · Courses · Mentorship</span>
+      <h2>Activity</h2>
+    </header>
+
+    <table class="table" style="max-width:60rem;">
+      <thead>
+        <tr><th style="width:6rem;">Date</th><th>Title</th><th>Venue</th><th style="width:10rem;">Role</th></tr>
+      </thead>
+      <tbody>
+        {% for t in site.data.talks %}
+          <tr>
+            <td class="mono">{{ t.date }}</td>
+            <td>{{ t.title }}</td>
+            <td class="text-muted">{{ t.venue }}</td>
+            <td><span class="tag">{{ t.role }}</span></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <header class="section-header mt-7">
+      <span class="eyebrow">Awards</span>
+      <h2>Distinctions</h2>
+    </header>
+
+    <table class="table" style="max-width:60rem;">
+      <thead>
+        <tr><th style="width:6rem;">Year</th><th>Title</th><th>Org</th></tr>
+      </thead>
+      <tbody>
+        {% for a in site.data.awards %}
+          <tr>
+            <td class="mono">{{ a.year }}</td>
+            <td>{{ a.title }}</td>
+            <td class="text-muted">{{ a.org }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>

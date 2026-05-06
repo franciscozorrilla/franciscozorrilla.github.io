@@ -1,0 +1,26 @@
+{%- assign w = include.work -%}
+<a class="card" href="{{ w.url | relative_url }}">
+  <div class="card__eyebrow">
+    <span class="mono">{{ w.year }}</span>
+    {% if w.venue_short %}<span>·</span><span>{{ w.venue_short }}</span>{% else %}<span>·</span><span>{{ w.venue }}</span>{% endif %}
+    {% if w.citations and w.citations > 0 %}<span>·</span><span>{{ w.citations }} cites</span>{% endif %}
+    {% if w.status == "preprint" %}<span>·</span><span class="text-accent">preprint</span>{% endif %}
+    {% if w.status == "thesis" %}<span>·</span><span class="text-accent">thesis</span>{% endif %}
+  </div>
+
+  <h3 class="card__title">{{ w.title }}</h3>
+
+  {% if w.role %}<div class="card__role">{{ w.role }}</div>{% endif %}
+
+  {% if w.oneliner %}<p class="text-muted text-sm">{{ w.oneliner }}</p>{% endif %}
+
+  {% if w.tags %}
+    <div class="tag-row">
+      {% for t in w.tags limit:4 %}
+        <span class="tag">{{ t }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <span class="card__cta">Read case study {% include icon.html name="arrow" %}</span>
+</a>

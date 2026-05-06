@@ -1,0 +1,19 @@
+{%- comment -%} Tiny inline-SVG icon library. Usage: {% include icon.html name="github" %} {%- endcomment -%}
+{%- assign n = include.name -%}
+{%- if n == "mail" -%}
+<svg class="contact-list__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+{%- elsif n == "linkedin" -%}
+<svg class="contact-list__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05a4.16 4.16 0 0 1 3.74-2.05c4 0 4.74 2.63 4.74 6.05V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21h-4V9z"/></svg>
+{%- elsif n == "github" -%}
+<svg class="contact-list__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.42c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.7.08-.7 1.18.08 1.8 1.21 1.8 1.21 1.04 1.8 2.74 1.28 3.42.98.1-.76.41-1.28.74-1.58-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.17a10.94 10.94 0 0 1 5.76 0c2.2-1.48 3.16-1.17 3.16-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.7 5.36-5.27 5.65.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+{%- elsif n == "scholar" -%}
+<svg class="contact-list__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9zM5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
+{%- elsif n == "bluesky" -%}
+<svg class="contact-list__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.34 4.27c2.85 2.13 5.91 6.43 7.04 8.74 1.13-2.31 4.19-6.61 7.04-8.74 2.05-1.54 5.38-2.73 5.38 1.06 0 .76-.43 6.36-.69 7.27-.88 3.18-4.13 4-7.04 3.51 5.07.86 6.36 3.7 3.58 6.55-5.28 5.4-7.59-1.36-8.18-3.1-.11-.31-.16-.46-.16-.34 0-.12-.05.03-.16.34-.59 1.74-2.9 8.5-8.18 3.1-2.78-2.85-1.49-5.69 3.58-6.55-2.91.49-6.16-.33-7.04-3.51-.26-.91-.69-6.51-.69-7.27 0-3.79 3.33-2.6 5.38-1.06z"/></svg>
+{%- elsif n == "external" -%}
+<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 5h5v5"/><path d="m19 5-9 9"/><path d="M19 14v5H5V5h5"/></svg>
+{%- elsif n == "arrow" -%}
+<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+{%- elsif n == "download" -%}
+<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+{%- endif -%}

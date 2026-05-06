@@ -1,0 +1,28 @@
+<section class="section-tight">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">By the numbers</span>
+      <h2>What I've shipped</h2>
+    </div>
+
+    <div class="impact-row" aria-label="Product impact metrics">
+      {% for stat in site.data.impact.product %}
+        <div class="impact">
+          <div class="impact__value tabular">{{ stat.value }}</div>
+          <div class="impact__label">{{ stat.label }}</div>
+          <div class="impact__caption">{{ stat.caption }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="impact-row" aria-label="Career impact metrics">
+      {% for stat in site.data.impact.career %}
+        <div class="impact">
+          <div class="impact__value tabular">{{ stat.value }}</div>
+          <div class="impact__label">{{ stat.label }}</div>
+          <div class="impact__caption">{{ stat.caption }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+layout: default
+title: Work
+description: All published case studies — one per Google Scholar entry. Filterable by industry tag.
+---
+
+<section class="section">
+  <div class="container">
+    <header class="section-header">
+      <span class="eyebrow">Case studies · 1:1 with Google Scholar</span>
+      <h1>Work</h1>
+      <p class="lede">
+        Twelve published papers, framed as case studies for industry. Each tile shows the
+        problem, my contribution, the tools, and the outcome. Sorted by year.
+      </p>
+    </header>
+
+    <div class="grid-2">
+      {% assign all_work = site.work | sort: "order" %}
+      {% for w in all_work %}
+        {% include card-work.html work=w %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

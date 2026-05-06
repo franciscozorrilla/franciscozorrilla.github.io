@@ -1,0 +1,20 @@
+tagline: "Computational biologist building production tools for microbiome-scale science."
+status: "Available for industry research roles"
+status_active: true
+location: "Zürich, Switzerland · open to remote-EU"
+target_roles:
+  - agbio
+  - biotech
+  - AI-for-bio
+
+hire_pitch: |
+  I'm exploring industry research roles in agbio, biotech, and AI-for-biology.
+  If you're hiring computational scientists who have shipped real tools to real
+  users, I'd love to hear from you.
+
+socials:
+  - {name: "Email",    handle: "fzorrill@ethz.ch",       url: "mailto:fzorrill@ethz.ch", primary: true, icon: "mail"}
+  - {name: "LinkedIn", handle: "fzorrilla94",            url: "https://www.linkedin.com/in/fzorrilla94/", primary: true, icon: "linkedin"}
+  - {name: "GitHub",   handle: "franciscozorrilla",      url: "https://github.com/franciscozorrilla", primary: true, icon: "github"}
+  - {name: "Scholar",  handle: "Francisco Zorrilla",     url: "https://scholar.google.com/citations?user=byUq0i4AAAAJ&hl=en", icon: "scholar"}
+  - {name: "BlueSky",  handle: "@metagenomez",           url: "https://bsky.app/profile/metagenomez.bsky.social", icon: "bluesky"}
