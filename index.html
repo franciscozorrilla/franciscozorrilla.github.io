@@ -1401,22 +1401,18 @@
           <p style="color: var(--fg-muted);">Click any card to expand for problem, approach, contribution, links, and altmetric attention.</p>
         </div>
 
-        <div class="filters" role="toolbar" aria-label="Filter and sort">
-          <button class="filter-tag active" data-tag="">All</button>
-          <button class="filter-tag" data-tag="modelling">Metabolic modelling</button>
-          <button class="filter-tag" data-tag="genomics">Metagenomic / genomic</button>
-          <button class="filter-tag" data-tag="industry">Industry-translational</button>
-          <span class="filter-divider"></span>
+        <div class="filters" role="toolbar" aria-label="Sort">
           <span class="sort-label">Sort:</span>
           <button class="filter-tag sort-btn active" data-sort="default">Curated</button>
           <button class="filter-tag sort-btn" data-sort="newest">Newest first</button>
           <button class="filter-tag sort-btn" data-sort="oldest">Oldest first</button>
+          <button class="filter-tag sort-btn" data-sort="citations">Most cited</button>
         </div>
 
         <div class="cards-grid" id="cardsContainer">
 
           <!-- 1. metaGEM -->
-          <article class="card" id="work-metagem" data-tags="modelling,industry" data-doi="10.1093/nar/gkab815">
+          <article class="card" id="work-metagem" data-tags="modelling,industry" data-doi="10.1093/nar/gkab815" data-citations="125" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧬</div>
               <div class="card-meta">
@@ -1465,7 +1461,7 @@
           </article>
 
           <!-- 2. Cheese flavor -->
-          <article class="card" id="work-cheese" data-tags="modelling,industry" data-doi="10.1038/s41467-023-44059-4">
+          <article class="card" id="work-cheese" data-tags="modelling,industry" data-doi="10.1038/s41467-023-41059-2" data-citations="95" data-press="5">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧀</div>
               <div class="card-meta">
@@ -1498,12 +1494,20 @@
                 </div>
                 <h4>Attention</h4>
                 <div class="altmetric-row">
-                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41467-023-44059-4"></div>
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41467-023-41059-2"></div>
                   <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://www.chemistryworld.com/news/blessed-are-the-cheesemakers-for-their-bacterial-community-shall-show-its-worth/4018692.article" target="_blank" rel="noopener" title="Researchers uncover microbial interactions behind distinct flavour of Cheddar cheese (Chemistry World · Royal Society of Chemistry · Dec 2023)">Chemistry World</a>
+                  <a href="https://phys.org/news/2023-12-microbial-interactions-cheddar-cheese-flavor.html" target="_blank" rel="noopener" title="Investigating how microbial interactions shape Cheddar cheese's flavor profile (Phys.org · Dec 2023)">Phys.org</a>
+                  <a href="https://www.zmescience.com/science/why-is-cheddar-so-delicious-science-now-has-the-answer-and-its-all-in-the-microbes/" target="_blank" rel="noopener" title="Why is cheddar so delicious? Science now has the answer (ZME Science · Jan 2024)">ZME Science</a>
+                  <a href="https://micro-bites.org/2024/02/23/a-cheesy-story-of-microbial-cooperation/" target="_blank" rel="noopener" title="A cheesy story of microbial cooperation (MicroBites · American Society for Microbiology · Feb 2024)">MicroBites (ASM)</a>
+                  <a href="https://my.raci.org.au/blogs/jenny-pham/2024/04/04/how-microbial-interactions-shape-the-flavour-of-ch" target="_blank" rel="noopener" title="How microbial interactions shape the flavour of cheese (Royal Australian Chemical Institute · Apr 2024)">RACI</a>
                 </div>
                 <h4>Links</h4>
                 <div class="card-links">
-                  <a href="https://doi.org/10.1038/s41467-023-44059-4" target="_blank" rel="noopener">Paper (Nat. Commun.)</a>
+                  <a href="https://doi.org/10.1038/s41467-023-41059-2" target="_blank" rel="noopener">Paper (Nat. Commun.)</a>
                   <a href="https://www.chr-hansen.com/" target="_blank" rel="noopener">Chr. Hansen (industry partner)</a>
                 </div>
               </div>
@@ -1511,7 +1515,7 @@
           </article>
 
           <!-- 3. Plastic degraders -->
-          <article class="card" id="work-plastic" data-tags="genomics,industry" data-doi="10.1128/mBio.02155-21">
+          <article class="card" id="work-plastic" data-tags="genomics,industry" data-doi="10.1128/mBio.02155-21" data-citations="142" data-press="5">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">♻️</div>
               <div class="card-meta">
@@ -1547,6 +1551,16 @@
                   <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1128/mBio.02155-21"></div>
                   <span class="altmetric-note">Live altmetric attention score</span>
                 </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://www.theguardian.com/environment/2021/dec/14/bugs-across-globe-are-evolving-to-eat-plastic-study-finds" target="_blank" rel="noopener" title="Bugs across globe are evolving to eat plastic, study finds (The Guardian · Damian Carrington · Dec 2021)">The Guardian</a>
+                  <a href="https://www.smithsonianmag.com/smart-news/scientists-say-plastic-degrading-enzymes-are-increasing-in-response-to-pollution-180979250/" target="_blank" rel="noopener" title="Plastic-Degrading Enzymes May Be Increasing in Response to Pollution (Smithsonian Magazine · Dec 2021)">Smithsonian Magazine</a>
+                  <a href="https://e360.yale.edu/digest/bugs-are-evolving-to-eat-plastic-study-finds" target="_blank" rel="noopener" title="Bugs Are Evolving to Eat Plastic, Study Finds (Yale Environment 360 · via Climate Desk · Dec 2021)">Yale E360</a>
+                  <a href="https://www.nationalobserver.com/2021/12/17/news/bugs-are-evolving-eat-plastic" target="_blank" rel="noopener" title="Bugs are evolving to eat plastic (Canada's National Observer · Dec 2021)">Canada's National Observer</a>
+                  <a href="https://www.chalmers.se/en/current/news/life-plastic-degrading-enzymes-correlate-with-pollution/" target="_blank" rel="noopener" title="Plastic-degrading enzymes correlate with pollution (Chalmers University · institutional release · Dec 2021)">Chalmers University</a>
+                  <a href="https://www.eurekalert.org/news-releases/937809" target="_blank" rel="noopener" title="Plastic-degrading enzymes increasing in correlation with pollution (EurekAlert · AAAS · Dec 2021)">EurekAlert (AAAS)</a>
+                  <a href="https://phys.org/news/2021-12-plastic-degrading-enzymes-pollution.html" target="_blank" rel="noopener" title="Plastic-degrading enzymes increasing in correlation with pollution (Phys.org · Dec 2021)">Phys.org</a>
+                </div>
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://doi.org/10.1128/mBio.02155-21" target="_blank" rel="noopener">Paper (mBio)</a>
@@ -1556,7 +1570,7 @@
           </article>
 
           <!-- 4. Soil cross-feeding -->
-          <article class="card" id="work-soil" data-tags="modelling,genomics,industry" data-doi="10.1101/2025.01.28.635214">
+          <article class="card" id="work-soil" data-tags="modelling,genomics,industry" data-doi="10.1101/2025.01.29.635426" data-citations="5" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🌱</div>
               <div class="card-meta">
@@ -1589,19 +1603,19 @@
                 </div>
                 <h4>Attention</h4>
                 <div class="altmetric-row">
-                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1101/2025.01.28.635214"></div>
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1101/2025.01.29.635426"></div>
                   <span class="altmetric-note">Preprint · live altmetric attention</span>
                 </div>
                 <h4>Links</h4>
                 <div class="card-links">
-                  <a href="https://www.biorxiv.org/content/10.1101/2025.01.28.635214" target="_blank" rel="noopener">bioRxiv preprint</a>
+                  <a href="https://www.biorxiv.org/content/10.1101/2025.01.29.635426" target="_blank" rel="noopener">bioRxiv preprint</a>
                 </div>
               </div>
             </div>
           </article>
 
           <!-- 5. Bacterial OD count -->
-          <article class="card" id="work-od" data-tags="genomics" data-doi="10.1038/s42003-020-01127-5">
+          <article class="card" id="work-od" data-tags="genomics" data-doi="10.1038/s42003-020-01127-5" data-citations="328" data-press="2">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧫</div>
               <div class="card-meta">
@@ -1637,6 +1651,11 @@
                   <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s42003-020-01127-5"></div>
                   <span class="altmetric-note">Highly cited reference paper</span>
                 </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://blog.igem.org/blog/2020/10/14/the-igem-2018-interlab-study-1400-igemers-250-teams" target="_blank" rel="noopener" title="The iGEM 2018 Interlab Study: 1,400 iGEMers, 250 teams (iGEM Foundation Blog · Oct 2020)">iGEM Blog · launch</a>
+                  <a href="https://blog.igem.org/blog/2022/6/22/tackling-measurement-challenges-in-synthetic-biology" target="_blank" rel="noopener" title="Tackling measurement challenges in synthetic biology (iGEM Foundation Blog · Jun 2022)">iGEM Blog · followup</a>
+                </div>
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://doi.org/10.1038/s42003-020-01127-5" target="_blank" rel="noopener">Paper (Comm. Biol.)</a>
@@ -1646,7 +1665,7 @@
           </article>
 
           <!-- 6. Drug tolerance -->
-          <article class="card" id="work-drug" data-tags="modelling,genomics" data-doi="10.1038/s41564-022-01072-5">
+          <article class="card" id="work-drug" data-tags="modelling,genomics" data-doi="10.1038/s41564-022-01072-5" data-citations="132" data-press="4">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">💊</div>
               <div class="card-meta">
@@ -1680,19 +1699,25 @@
                 <h4>Attention</h4>
                 <div class="altmetric-row">
                   <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41564-022-01072-5"></div>
-                  <span class="altmetric-note">Press coverage on EurekAlert, ScienceDaily, Crick Institute</span>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://www.crick.ac.uk/news/2022-03-21_microbial-communities-where-cells-cooperate-have-increased-drug-tolerance" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (Francis Crick Institute · institutional release · Mar 2022)">Francis Crick Institute</a>
+                  <a href="https://www.charite.de/en/service/press_reports/artikel/detail/fungal_infections_microbial_cooperation_leads_to_drug_tolerance/" target="_blank" rel="noopener" title="Fungal infections: Microbial cooperation leads to drug tolerance (Charité - Universitätsmedizin Berlin · institutional release · Mar 2022)">Charité Berlin</a>
+                  <a href="https://www.sciencedaily.com/releases/2022/03/220321132141.htm" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (ScienceDaily · Mar 2022)">ScienceDaily</a>
+                  <a href="https://phys.org/news/2022-03-microbial-cells-cooperate-drug-tolerance.html" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (Phys.org · Mar 2022)">Phys.org</a>
                 </div>
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://doi.org/10.1038/s41564-022-01072-5" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a>
-                  <a href="https://www.crick.ac.uk/news/2022-03-21_microbial-communities-where-cells-cooperate-have-increased-drug-tolerance" target="_blank" rel="noopener">Crick press release</a>
                 </div>
               </div>
             </div>
           </article>
 
           <!-- 7. Enterobacteriaceae -->
-          <article class="card" id="work-entero" data-tags="genomics" data-doi="10.1038/s41564-024-01912-6">
+          <article class="card" id="work-entero" data-tags="genomics" data-doi="10.1038/s41564-024-01912-6" data-citations="69" data-press="5">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🦠</div>
               <div class="card-meta">
@@ -1728,6 +1753,14 @@
                   <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41564-024-01912-6"></div>
                   <span class="altmetric-note">Live altmetric attention score</span>
                 </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://www.cam.ac.uk/research/news/feeding-your-good-gut-bacteria-through-fibre-in-diet-may-boost-body-against-infections" target="_blank" rel="noopener" title="Feeding your good gut bacteria through fibre in diet may boost body against infections (University of Cambridge · institutional release · Jan 2025)">University of Cambridge</a>
+                  <a href="https://theconversation.com/fibre-may-help-protect-your-gut-from-overgrowth-of-harmful-bugs-new-study-246910" target="_blank" rel="noopener" title="Fibre may help protect your gut from overgrowth of harmful bugs - new study (The Conversation · authored by senior author Alexandre Almeida · Jan 2025)">The Conversation</a>
+                  <a href="https://www.sciencealert.com/eating-fiber-could-protect-you-from-infections-heres-why" target="_blank" rel="noopener" title="Eating Fiber Could Protect You From Infections. Here's Why. (ScienceAlert · Jan 2025)">ScienceAlert</a>
+                  <a href="https://www.salon.com/2025/01/13/fiber-may-help-protect-your-gut-from-overgrowth-of-harmful-bugs-as-per-new-study_partner/" target="_blank" rel="noopener" title="Fiber may help protect your gut from overgrowth of harmful bugs (Salon · Jan 2025)">Salon</a>
+                  <a href="https://scitechdaily.com/probiotics-arent-enough-scientists-recommend-doing-this-instead-to-improve-your-gut-health/" target="_blank" rel="noopener" title="Probiotics Aren't Enough: Scientists Recommend Doing This Instead To Improve Your Gut Health (SciTechDaily · Mar 2025)">SciTechDaily</a>
+                </div>
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://doi.org/10.1038/s41564-024-01912-6" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a>
@@ -1737,7 +1770,7 @@
           </article>
 
           <!-- 8. iGEM fluorescence -->
-          <article class="card" id="work-igem" data-tags="genomics" data-doi="10.1371/journal.pone.0252263">
+          <article class="card" id="work-igem" data-tags="genomics" data-doi="10.1371/journal.pone.0252263" data-citations="16" data-press="1">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">💡</div>
               <div class="card-meta">
@@ -1772,6 +1805,10 @@
                   <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1371/journal.pone.0252263"></div>
                   <span class="altmetric-note">Live altmetric attention score</span>
                 </div>
+                <h4>Press coverage</h4>
+                <div class="card-links card-press">
+                  <a href="https://blog.igem.org/blog/2022/6/22/tackling-measurement-challenges-in-synthetic-biology" target="_blank" rel="noopener" title="Tackling measurement challenges in synthetic biology (iGEM Foundation Blog · Jun 2022)">iGEM Blog</a>
+                </div>
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://doi.org/10.1371/journal.pone.0252263" target="_blank" rel="noopener">Paper (PLoS ONE)</a>
@@ -1781,7 +1818,7 @@
           </article>
 
           <!-- 9. FROG -->
-          <article class="card" id="work-frog" data-tags="modelling" data-doi="10.1101/2024.09.24.614797">
+          <article class="card" id="work-frog" data-tags="modelling" data-doi="10.1101/2024.09.24.614797" data-citations="11" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🐸</div>
               <div class="card-meta">
@@ -1826,7 +1863,7 @@
           </article>
 
           <!-- 10. Hansenula -->
-          <article class="card" id="work-hansenula" data-tags="modelling,industry" data-doi="10.1007/978-1-0716-2399-2_16">
+          <article class="card" id="work-hansenula" data-tags="modelling,industry" data-doi="10.1007/978-1-0716-2399-2_16" data-citations="7" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🍺</div>
               <div class="card-meta">
@@ -1873,7 +1910,7 @@
           </article>
 
           <!-- 11. C. difficile -->
-          <article class="card" id="work-cdiff" data-tags="modelling,genomics" data-doi="10.1101/2024.08.29.610284">
+          <article class="card" id="work-cdiff" data-tags="modelling,genomics" data-doi="10.1101/2024.08.29.610284" data-citations="1" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🏥</div>
               <div class="card-meta">
@@ -1918,7 +1955,7 @@
           </article>
 
           <!-- 12. PhD Thesis -->
-          <article class="card" id="work-thesis" data-tags="modelling,genomics">
+          <article class="card" id="work-thesis" data-tags="modelling,genomics" data-citations="0" data-press="0">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🎓</div>
               <div class="card-meta">
@@ -2362,9 +2399,8 @@
       sections.forEach(s => observer.observe(s));
     })();
 
-    /* ============ TAG FILTERING + SORT ============ */
+    /* ============ SORT ============ */
     (function () {
-      const filterBtns = document.querySelectorAll('.filter-tag:not(.sort-btn)');
       const sortBtns = document.querySelectorAll('.sort-btn');
       const container = document.getElementById('cardsContainer');
       const cards = Array.from(document.querySelectorAll('#cardsContainer .card'));
@@ -2374,6 +2410,9 @@
         const t = card.querySelector('.card-year')?.textContent.trim() || '0';
         return parseInt(t, 10) || 0;
       }
+      function getInt(card, attr) {
+        return parseInt(card.getAttribute(attr) || '0', 10) || 0;
+      }
 
       function applySort(mode) {
         let ordered;
@@ -2381,30 +2420,19 @@
           ordered = cards.slice().sort((a, b) => getYear(b) - getYear(a));
         } else if (mode === 'oldest') {
           ordered = cards.slice().sort((a, b) => getYear(a) - getYear(b));
+        } else if (mode === 'citations') {
+          ordered = cards.slice().sort((a, b) => getInt(b, 'data-citations') - getInt(a, 'data-citations'));
         } else {
           ordered = originalOrder.slice();
         }
+        // Collapse any expanded card on re-sort so the layout settles cleanly
+        cards.forEach(c => {
+          c.classList.remove('expanded');
+          const s = c.querySelector('.card-summary');
+          if (s) s.setAttribute('aria-expanded', 'false');
+        });
         ordered.forEach(c => container.appendChild(c));
       }
-
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', e => {
-          const tag = e.currentTarget.getAttribute('data-tag');
-          filterBtns.forEach(b => b.classList.remove('active'));
-          e.currentTarget.classList.add('active');
-          cards.forEach(card => {
-            card.classList.remove('expanded');
-            const summary = card.querySelector('.card-summary');
-            if (summary) summary.setAttribute('aria-expanded', 'false');
-            if (!tag) {
-              card.classList.remove('hidden');
-            } else {
-              const cardTags = (card.getAttribute('data-tags') || '').split(',');
-              card.classList.toggle('hidden', !cardTags.includes(tag));
-            }
-          });
-        });
-      });
 
       sortBtns.forEach(btn => {
         btn.addEventListener('click', e => {
