@@ -1,0 +1,2703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Francisco Zorrilla · Computational Biologist</title>
+  <meta name="description" content="Computational biologist building production tools for microbiome-scale science. Available October 2026 for industry research roles in the Zurich/Basel corridor or fully remote within Switzerland.">
+
+  <!-- Open Graph / LinkedIn / BlueSky preview -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Francisco Zorrilla · Computational Biologist">
+  <meta property="og:description" content="Building production tools for microbiome-scale science. Available October 2026.">
+  <meta property="og:image" content="assets/img/fz-headshot.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@metagenomez">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+  <style>
+    :root {
+      --bg: #0B0E0C;
+      --surface: #161B17;
+      --border: #2A332D;
+      --fg: #E6EDE7;
+      --fg-muted: #8A968D;
+      --fg-dim: #5C665E;
+      --accent: #7DD3A0;
+      --accent-hover: #A7E5BD;
+      --accent-soft: rgba(125, 211, 160, 0.14);
+      --warn: #F5C26B;
+      --code-bg: #0E1310;
+      --header-h: 70px;
+
+      --space-1: 4px;
+      --space-2: 6px;
+      --space-3: 8px;
+      --space-4: 12px;
+      --space-5: 16px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 48px;
+      --space-9: 64px;
+      --space-10: 96px;
+    }
+
+    [data-theme="light"] {
+      --bg: #FAFAF7;
+      --surface: #F2F3EE;
+      --border: #E0E2DA;
+      --fg: #0E1310;
+      --fg-muted: #4A5350;
+      --fg-dim: #7A847F;
+      --accent: #1F7A4D;
+      --accent-hover: #185E3A;
+      --accent-soft: rgba(31, 122, 77, 0.08);
+      --warn: #B47210;
+      --code-bg: #F0F1EB;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0B0E0C;
+      --surface: #161B17;
+      --border: #2A332D;
+      --fg: #E6EDE7;
+      --fg-muted: #8A968D;
+      --fg-dim: #5C665E;
+      --accent: #7DD3A0;
+      --accent-hover: #A7E5BD;
+      --accent-soft: rgba(125, 211, 160, 0.14);
+      --warn: #F5C26B;
+      --code-bg: #0E1310;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.65;
+      font-size: 16px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent-hover); }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--space-4);
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: var(--space-5); }
+    h3 { font-size: 1.25rem; margin-top: var(--space-6); margin-bottom: var(--space-3); }
+    h4 { font-size: 1rem; margin-top: var(--space-5); margin-bottom: var(--space-2); color: var(--accent); }
+
+    p { margin-bottom: var(--space-4); max-width: 68ch; }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--fg-muted); }
+
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 var(--space-5); }
+
+    .section {
+      padding: var(--space-9) 0;
+      scroll-margin-top: var(--header-h);
+    }
+    .section--surface {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .section-header { margin-bottom: var(--space-7); }
+    .section-header h2 { margin-bottom: var(--space-3); }
+
+    .eyebrow {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--fg-muted);
+      margin-bottom: var(--space-3);
+    }
+    .lede {
+      font-size: 1.125rem;
+      color: var(--fg-muted);
+      margin-bottom: var(--space-5);
+    }
+
+    /* Header */
+    header.site-header {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 14, 12, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    [data-theme="light"] header.site-header { background: rgba(250, 250, 247, 0.92); }
+    .site-header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-5);
+    }
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--fg);
+    }
+    nav.site-nav {
+      display: flex;
+      gap: var(--space-6);
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    nav.site-nav a {
+      color: var(--fg-muted);
+      transition: color 0.2s;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+    }
+    nav.site-nav a:hover, nav.site-nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      width: 38px; height: 38px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      padding: var(--space-9) 0 var(--space-8);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+    @media (min-width: 880px) {
+      .hero { grid-template-columns: 1.1fr 1fr; }
+    }
+
+    .hero-headshot {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+      margin-bottom: var(--space-5);
+      transition: transform 0.25s ease;
+    }
+    .hero-headshot:hover { transform: scale(1.02); }
+    @media (max-width: 640px) {
+      .hero-headshot { width: 140px; height: 140px; }
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-5);
+    }
+    .status-pill::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 var(--accent);
+      animation: statusPulse 2.4s ease-out infinite;
+    }
+    @keyframes statusPulse {
+      0% { box-shadow: 0 0 0 0 rgba(125, 211, 160, 0.55); }
+      80%, 100% { box-shadow: 0 0 0 8px rgba(125, 211, 160, 0); }
+    }
+    [data-theme="light"] .status-pill::before {
+      animation: statusPulseLight 2.4s ease-out infinite;
+    }
+    @keyframes statusPulseLight {
+      0% { box-shadow: 0 0 0 0 rgba(31, 122, 77, 0.45); }
+      80%, 100% { box-shadow: 0 0 0 8px rgba(31, 122, 77, 0); }
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .btn--primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--bg); }
+
+    /* Hero → Overview transition cue */
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-top: var(--space-7);
+      max-width: 56rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border) 40%, var(--border) 60%, transparent);
+    }
+    .hero-divider-cue {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      text-decoration: none;
+      padding: var(--space-2) var(--space-4);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .hero-divider-cue:hover { color: var(--accent); transform: translateY(-2px); }
+    .hero-divider-arrow {
+      font-size: 1.1rem;
+      line-height: 1;
+      animation: scrollCueBounce 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollCueBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(4px); opacity: 1; }
+    }
+
+    /* Vertical contact stack (in Now sidebar) */
+    .contact-stack { display: flex; flex-direction: column; }
+    .contact-stack .contact-item {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      padding: var(--space-3) 0;
+    }
+    .contact-stack .contact-item:hover { border-color: var(--border); border-bottom-color: var(--accent); }
+    .contact-stack .contact-item:last-child { border-bottom: none; }
+    .contact-stack .contact-label {
+      font-size: 0.65rem;
+      margin-bottom: 2px;
+    }
+    .contact-stack .contact-value { font-size: 0.95rem; margin-bottom: 0; }
+    .contact-stack .contact-meta { font-size: 0.7rem; line-height: 1.3; margin-top: 2px; }
+
+    /* Network viz */
+    .network-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 460px;
+      margin: 0 auto;
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      overflow: hidden;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .network-wrap svg { width: 100%; height: 100%; display: block; }
+    .network-caption {
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      margin-top: var(--space-3);
+      letter-spacing: 0.05em;
+    }
+    .network-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-4);
+      margin-top: var(--space-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+    }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .legend-dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .legend-dot--ring { background: transparent; border: 2px solid var(--accent); }
+    .legend-dot--paper { background: var(--accent); }
+    .legend-dot--industry { background: var(--warn); }
+    .network-tooltip {
+      position: absolute;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      color: var(--fg);
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 10;
+      white-space: nowrap;
+    }
+    .network-tooltip.visible { opacity: 1; }
+    .net-node { cursor: grab; transition: opacity 0.2s; }
+    .net-node:active { cursor: grabbing; }
+    .net-link { transition: stroke-opacity 0.2s; }
+    .net-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; pointer-events: none; user-select: none; }
+
+    /* Impact strip — 4 columns on desktop (2 rows of 4), 2 on tablet, 1 on mobile */
+    .impact-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin: var(--space-6) 0;
+    }
+    @media (max-width: 880px) {
+      .impact-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .impact-strip { grid-template-columns: 1fr; }
+    }
+    .impact-item { text-align: center; }
+    .impact-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: var(--space-2);
+      line-height: 1.1;
+    }
+    .impact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+      margin-bottom: var(--space-2);
+    }
+    .impact-caption { font-size: 0.875rem; color: var(--fg-dim); }
+
+    /* About / prose */
+    .prose p { max-width: 68ch; margin-bottom: var(--space-5); }
+    .prose ul { margin-left: var(--space-6); margin-bottom: var(--space-4); max-width: 68ch; }
+    .prose li { margin-bottom: var(--space-2); }
+    .prose strong { color: var(--fg); font-weight: 600; }
+
+    /* CV experience: indent the role meta + bullets under each role heading */
+    #cv .cv-role { padding-left: var(--space-6); border-left: 2px solid var(--border); margin-left: var(--space-3); margin-top: var(--space-4); margin-bottom: var(--space-6); max-width: 72ch; }
+    #cv .cv-role .mono { margin-bottom: var(--space-3); }
+    #cv .cv-role ul.prose { margin-left: var(--space-6); margin-bottom: 0; max-width: 64ch; }
+    #cv .cv-role h4 { margin-top: 0; color: var(--fg); }
+
+    /* CV */
+    .dl-grid {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: var(--space-4) var(--space-6);
+      margin: var(--space-5) 0;
+    }
+    @media (max-width: 640px) {
+      .dl-grid { grid-template-columns: 1fr; gap: var(--space-2) 0; }
+      .dl-grid dt { margin-top: var(--space-4); }
+    }
+    .dl-grid dt {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      font-weight: 500;
+    }
+    .dl-grid dd { color: var(--fg); }
+    .dl-grid dd .role-meta { color: var(--fg-muted); font-size: 0.875rem; display: block; margin-top: 2px; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-6);
+      margin: var(--space-5) 0;
+    }
+    .skills-group h3 { margin-top: 0; margin-bottom: var(--space-4); font-size: 1rem; color: var(--fg); }
+    .skill-tag {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      margin-right: var(--space-2);
+      margin-bottom: var(--space-2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag.highlight {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Awards */
+    .awards-list { margin-top: var(--space-5); }
+    .award-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: var(--space-5);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .award-row:last-child { border-bottom: none; }
+    .award-year { font-family: 'JetBrains Mono', monospace; color: var(--fg-muted); font-size: 0.875rem; }
+    .award-title { font-weight: 500; }
+    .award-org { color: var(--fg-muted); font-size: 0.875rem; display: block; margin-top: 2px; }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin: var(--space-5) 0 var(--space-7);
+      align-items: center;
+    }
+    .filter-tag {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-tag:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-tag.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    .filter-divider {
+      width: 1px;
+      height: 22px;
+      background: var(--border);
+      margin: 0 var(--space-3);
+    }
+    .sort-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+      margin-right: var(--space-2);
+    }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-5);
+      align-items: start;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s, transform 0.2s, background-color 0.25s ease;
+      overflow: hidden;
+      position: relative;
+    }
+    .card.hidden { display: none; }
+    .card:hover:not(.expanded) { border-color: var(--accent); transform: translateY(-2px); }
+    .card.expanded {
+      border-color: var(--accent);
+      grid-column: 1 / -1;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 880px) {
+      .card.expanded { grid-column: span 2; max-width: 100%; }
+    }
+
+    .card-summary {
+      padding: var(--space-5);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      position: relative;
+    }
+    .card-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+    .card-emoji {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      font-size: 1.5rem;
+      line-height: 1;
+      opacity: 0.85;
+      filter: grayscale(0.1);
+    }
+
+    .card-meta {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+    }
+    .card-year { color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; }
+    .card-venue { color: var(--fg-muted); font-style: italic; }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+      padding-right: 32px;
+    }
+
+    .card-desc { color: var(--fg-muted); font-size: 0.9rem; }
+
+    .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+    .tag {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .card-footer .role { color: var(--fg-dim); }
+
+    .card-toggle-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.05em;
+      margin-top: var(--space-2);
+    }
+    .card.expanded .card-toggle-hint::after { content: ' ▴ click to collapse'; }
+    .card:not(.expanded) .card-toggle-hint::after { content: ' ▾ click to expand'; }
+
+    .card-expanded {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      border-top: 0;
+    }
+    .card.expanded .card-expanded {
+      max-height: 1600px;
+      border-top: 1px solid var(--border);
+    }
+    .card-expanded-inner {
+      padding: var(--space-5) var(--space-5) var(--space-6);
+    }
+    .card-expanded h4 { margin-top: var(--space-4); margin-bottom: var(--space-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .card-expanded h4:first-child { margin-top: 0; }
+    .card-expanded p { font-size: 0.9rem; max-width: 64ch; }
+
+    .chip-list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+    }
+    [data-theme="light"] .chip { background: var(--bg); }
+
+    .altmetric-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      margin: var(--space-5) 0;
+      flex-wrap: wrap;
+    }
+    .altmetric-row .altmetric-embed { min-height: 60px; }
+    .altmetric-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-dim);
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    .card-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--fg);
+    }
+    .card-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Generic 2-column section with sticky right sidebar (metaGEM, Overview, CV) */
+    .section-2col {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: var(--space-7);
+      margin: var(--space-6) 0;
+      align-items: start;
+    }
+    .section-2col-body { min-width: 0; }
+    .section-2col-sidebar {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--space-5) var(--space-6);
+      position: sticky;
+      top: calc(var(--header-h) + 16px);
+      max-height: calc(100vh - var(--header-h) - 32px);
+      overflow-y: auto;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    [data-theme="light"] .section-2col-sidebar { background: var(--surface); }
+    .section--surface .section-2col-sidebar { background: var(--bg); }
+    [data-theme="light"] .section--surface .section-2col-sidebar { background: var(--bg); }
+    @media (max-width: 880px) {
+      .section-2col { grid-template-columns: 1fr; }
+      .section-2col-sidebar { position: static; max-height: none; overflow-y: visible; }
+    }
+    .sidebar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+      margin: 0 0 var(--space-4) 0;
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* metaGEM-specific aliases (kept for clarity in HTML) */
+    .metagem-layout { display: grid; grid-template-columns: 1fr 260px; gap: var(--space-7); margin: var(--space-6) 0; align-items: start; }
+    .metagem-prose { min-width: 0; }
+    .metagem-stats-panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--space-5) var(--space-6);
+      position: sticky;
+      top: calc(var(--header-h) + 16px);
+      max-height: calc(100vh - var(--header-h) - 32px);
+      overflow-y: auto;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+    [data-theme="light"] .metagem-stats-panel { background: var(--surface); }
+    .section--surface .metagem-stats-panel { background: var(--bg); }
+    [data-theme="light"] .section--surface .metagem-stats-panel { background: var(--bg); }
+    @media (max-width: 880px) {
+      .metagem-layout { grid-template-columns: 1fr; }
+      .metagem-stats-panel { position: static; max-height: none; overflow-y: visible; }
+    }
+    .stat { text-align: left; padding: var(--space-4) 0; border-bottom: 1px solid var(--border); }
+    .stat:first-child { padding-top: 0; }
+    .stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 2px;
+      line-height: 1.1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'JetBrains Mono', monospace; }
+
+    /* Vertical impact stack (in Overview sidebar) */
+    .impact-stack { display: flex; flex-direction: column; }
+    .impact-stack .impact-item {
+      text-align: left;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .impact-stack .impact-item:last-child { border-bottom: none; }
+    .impact-stack .impact-value { font-size: 1.3rem; margin-bottom: 0; }
+    .impact-stack .impact-label { margin-bottom: 2px; font-size: 0.7rem; }
+    .impact-stack .impact-caption { font-size: 0.7rem; line-height: 1.4; color: var(--fg-dim); }
+    .impact-stack a { color: inherit; }
+    .impact-stack a:hover { color: var(--accent); }
+
+    /* Vertical skills stack (in CV sidebar) */
+    .skills-stack { display: flex; flex-direction: column; gap: var(--space-5); }
+    .skills-stack .skills-group h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--fg-muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0 0 var(--space-2) 0;
+    }
+    .skills-stack .skill-tag {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      margin-right: var(--space-1);
+      margin-bottom: var(--space-1);
+    }
+
+    .code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: var(--space-5);
+      overflow-x: auto;
+      margin: var(--space-5) 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--fg);
+      max-width: 68ch;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Talks table */
+    .talks-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-5) 0;
+      font-size: 0.9rem;
+    }
+    .talks-table th {
+      text-align: left;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 2px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+    }
+    .talks-table td {
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .talks-table tr:hover td { background: var(--accent-soft); }
+    .talks-table .col-date { width: 110px; font-family: 'JetBrains Mono', monospace; color: var(--fg-muted); white-space: nowrap; }
+    .talks-table .col-venue { color: var(--fg-muted); font-style: italic; width: 30%; }
+    .talks-table .col-role { width: 140px; }
+    .talks-table .role-tag {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+    @media (max-width: 720px) {
+      .talks-table .col-venue { display: none; }
+    }
+
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-5) 0;
+    }
+    .teaching-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: var(--space-5);
+      transition: border-color 0.2s;
+    }
+    .teaching-card:hover { border-color: var(--accent); }
+    .teaching-card a { color: var(--fg); font-weight: 600; }
+    .teaching-card a:hover { color: var(--accent); }
+    .teaching-card .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      margin-top: var(--space-2);
+    }
+    .teaching-card .desc {
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+      margin-top: var(--space-3);
+    }
+
+    /* metaGEM Applications cards */
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-5) 0;
+    }
+    .app-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: var(--space-5);
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    [data-theme="light"] .app-card { background: var(--surface); }
+    .app-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .app-card .app-emoji {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .app-card .app-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .app-card .app-title {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin: 2px 0;
+    }
+    .app-card .app-title a { color: var(--fg); }
+    .app-card .app-title a:hover { color: var(--accent); }
+    .app-card .app-desc {
+      color: var(--fg-muted);
+      font-size: 0.825rem;
+      flex-grow: 1;
+    }
+    .app-card .app-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-top: var(--space-2);
+    }
+
+    /* Now */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin: var(--space-5) 0;
+      max-width: 76ch;
+      transition: border-color 0.2s, background-color 0.25s ease;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-card h3 { margin-top: 0; }
+    .project-card p { max-width: 64ch; }
+    .project-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      margin-bottom: var(--space-3);
+      letter-spacing: 0.1em;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-5) 0;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--space-5);
+      transition: border-color 0.2s, background-color 0.25s ease;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--fg-muted);
+      margin-bottom: var(--space-2);
+    }
+    .contact-value { font-size: 1.05rem; margin-bottom: var(--space-2); }
+    .contact-meta { color: var(--fg-muted); font-size: 0.8rem; }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      padding: var(--space-6) 0;
+      color: var(--fg-dim);
+      font-size: 0.875rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+    }
+    .footer-links { display: flex; justify-content: center; gap: var(--space-5); margin-bottom: var(--space-3); flex-wrap: wrap; }
+    .footer-links a { color: var(--fg-dim); }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      :root { --header-h: 60px; }
+      .section { padding: var(--space-8) 0; }
+      .hero { padding: var(--space-7) 0 var(--space-6); }
+      nav.site-nav { gap: var(--space-4); font-size: 0.8rem; }
+      .impact-strip { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+      .impact-value { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .impact-strip { grid-template-columns: 1fr; }
+      .cta-group .btn { flex: 1 1 auto; justify-content: center; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Hide nav on tiny screens, show toggle anchor menu */
+    @media (max-width: 580px) {
+      nav.site-nav { display: none; }
+      .site-header-inner { justify-content: space-between; }
+    }
+
+    /* Print */
+    @media print {
+      header.site-header, footer.site-footer, .network-wrap, .network-caption,
+      #work, #metagem, #talks, #now, #contact, .filters, .theme-toggle,
+      .hero-headshot, .cta-group { display: none; }
+      body { background: white; color: black; font-size: 11pt; }
+      h1, h2, h3, h4 { color: black; }
+      a { color: black; text-decoration: underline; }
+      .section { padding: var(--space-5) 0; }
+      .container { max-width: 100%; padding: 0; }
+      #cv { display: block !important; }
+      #about { display: block !important; }
+    }
+
+    /* Visually hidden */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+
+  <script>
+    // Anti-FOUC theme
+    (function () {
+      try {
+        const stored = localStorage.getItem('fz-theme');
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = stored || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <a href="#top" class="logo" aria-label="Home">fz</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#about">about</a>
+        <a href="#cv">cv</a>
+        <a href="#work">work</a>
+        <a href="#metagem">metagem</a>
+        <a href="#talks">talks</a>
+        <a href="#now">now</a>
+        <a href="#contact">contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀️</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="section">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-content">
+            <img src="assets/img/fz-headshot.jpg" alt="Francisco Zorrilla portrait" class="hero-headshot" width="180" height="180">
+            <span class="status-pill">Available <time datetime="2026-10-01">October 2026</time></span>
+            <h1>Francisco Zorrilla</h1>
+            <p class="lede">Computational biologist building production tools for microbiome-scale science.</p>
+            <p style="color: var(--fg-muted);">Co-leading the <a href="https://nccr-microbiomes.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">NCCR Microbiomes Work Package 5 Flagship Project</a> at ETH Zürich in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">Sunagawa Lab</a>. Built <a href="#metagem" style="color: var(--fg); font-weight: 600;">metaGEM</a>, an open-source bioinformatics workflow used by labs worldwide. 7+ years of expertise spanning metagenomics, metabolic modeling, structural bioinformatics, and ML approaches.</p>
+            <div class="cta-group">
+              <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary">Email →</a>
+              <a href="#metagem" class="btn">metaGEM</a>
+              <a href="/assets/cv.pdf" class="btn">Download CV</a>
+            </div>
+          </div>
+          <div>
+            <div class="network-wrap" id="networkWrap" aria-hidden="true">
+              <svg id="networkSvg" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet"></svg>
+              <div class="network-tooltip" id="networkTooltip"></div>
+            </div>
+            <div class="network-caption">Collaboration map · 12 publications &amp; 14 key co-authors. Hover to inspect, click a paper to expand its case study.</div>
+            <div class="network-legend" aria-label="Graph legend">
+              <span class="legend-item"><span class="legend-dot legend-dot--ring"></span> Co-author</span>
+              <span class="legend-item"><span class="legend-dot legend-dot--paper"></span> Paper</span>
+              <span class="legend-item"><span class="legend-dot legend-dot--industry"></span> Industry collab</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-divider" aria-hidden="true">
+          <span class="hero-divider-line"></span>
+          <a href="#about" class="hero-divider-cue">
+            <span>scroll for more</span>
+            <span class="hero-divider-arrow">↓</span>
+          </a>
+          <span class="hero-divider-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + IMPACT (sidebar) -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-2col">
+          <div class="section-2col-body">
+            <div class="section-header">
+              <span class="eyebrow">About</span>
+              <h2>Overview</h2>
+            </div>
+            <div class="prose">
+          <p>I'm a computational biologist co-leading the <a href="https://nccr-microbiomes.ch/" target="_blank" rel="noopener"><strong>NCCR Microbiomes Work Package 5 Flagship Project</strong></a> at ETH Zürich, in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a>, where my team builds the computational infrastructure for designing microbial communities that survive real-world deployment. I joined the <a href="https://www.mrc-tox.cam.ac.uk/research/research-groups/patil" target="_blank" rel="noopener">Patil Lab</a> as a computational biologist at EMBL Heidelberg, then moved with the group to the MRC Toxicology Unit at the University of Cambridge, where I completed my PhD. Throughout, my research has focused on translating raw metagenomic data into mechanistic, community-level metabolic predictions.</p>
+          <p>My published work has consistently aimed to deliver tools and frameworks that outlive a single paper:</p>
+          <ul>
+            <li><strong><a href="#metagem">metaGEM</a></strong>: open-source Snakemake workflow turning raw metagenomes into community-level metabolic models. Used by labs worldwide.</li>
+            <li><strong>Industrial fermentation</strong>: <strong>Chr. Hansen</strong> collaboration modelling cross-feeding in dairy starter cultures (<a href="#work-cheese">Nature Communications 2023</a>).</li>
+            <li><strong>Translational ecology</strong>: ML screen for novel <a href="#work-plastic"><strong>plastic-degrading enzymes</strong> (mBio 2021)</a>, and a co-first-authored <a href="#work-soil">framework for predicting <strong>obligate cross-feeding in soil</strong> (bioRxiv 2025)</a>, a directly translatable methodology for rational SynCom design in agritech.</li>
+          </ul>
+          <p>Each project shipped with reproducible code, models, and datasets on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">Zenodo</a> (4,100+ downloads to date).</p>
+          <p>I'm now <strong>pivoting from academia to industry</strong> to apply this toolkit (production-quality bioinformatics, large-scale multi-omics, constraint-based modelling, AI for biology) to commercially relevant problems. <strong>Available October 2026</strong> for industry research roles in <strong>agtech, microbial biotech, or AI-for-biology</strong>. Open to roles in the <strong>Zurich/Basel corridor</strong> or <strong>fully remote within Switzerland</strong>.</p>
+            </div>
+          </div>
+
+          <aside class="section-2col-sidebar" aria-label="Impact at a glance">
+            <h3 class="sidebar-title">Impact</h3>
+            <div class="impact-stack">
+              <div class="impact-item">
+                <div class="impact-value">300+</div>
+                <div class="impact-label">GitHub stars</div>
+                <div class="impact-caption">across 13 public repos (<a href="#metagem">metaGEM</a> &amp; teaching)</div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value">#3</div>
+                <div class="impact-label">Snakemake</div>
+                <div class="impact-caption"><a href="#metagem">metaGEM</a> · <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">workflow catalog rank</a></div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value">931+</div>
+                <div class="impact-label">Citations</div>
+                <div class="impact-caption">across 12 publications</div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">h: 8</a></div>
+                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
+                <div class="impact-caption">i10-index also 8 · view profile</div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value">10+</div>
+                <div class="impact-label">Courses taught</div>
+                <div class="impact-caption">EMBO · ETH · Cambridge · NCCR</div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value">50+</div>
+                <div class="impact-label">Trainees</div>
+                <div class="impact-caption">mentored globally</div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value">100+</div>
+                <div class="impact-label">Press mentions</div>
+                <div class="impact-caption"><a href="#work-plastic">plastic</a> · <a href="#work-cheese">cheese</a> · <a href="#work-drug">drug-tolerance</a> · <a href="#work-entero">Enterobacteriaceae</a></div>
+              </div>
+              <div class="impact-item">
+                <div class="impact-value"><a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">4,100+</a></div>
+                <div class="impact-label"><a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">Zenodo downloads</a></div>
+                <div class="impact-caption">open datasets, models &amp; releases</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section class="section section--surface" id="cv">
+      <div class="container">
+        <div class="section-2col">
+          <div class="section-2col-body">
+            <div class="section-header">
+              <span class="eyebrow">Curriculum Vitae</span>
+              <h2>CV</h2>
+              <p style="color: var(--fg-muted); margin-bottom: var(--space-3);">Computational biologist · ETH Zürich · ex-EMBL · PhD Cambridge</p>
+              <button class="btn" onclick="window.print()">Print CV</button>
+              <a href="/assets/cv.pdf" class="btn" download>Download PDF</a>
+            </div>
+
+            <h3>Contact</h3>
+        <dl class="dl-grid">
+          <dt>Email</dt><dd><a href="mailto:fzorrill@ethz.ch">fzorrill@ethz.ch</a></dd>
+          <dt>Location</dt><dd>Zürich, Switzerland · Zurich/Basel corridor or fully remote in CH</dd>
+          <dt>Work authorization</dt><dd>Swiss B permit · Italian citizen · EU work-eligible</dd>
+          <dt>Languages</dt><dd>English (C2/native) · Spanish (C2/native)<br>Italian (B1) · French (A1) · German (A1)</dd>
+        </dl>
+
+        <h3>Experience</h3>
+
+        <div class="cv-role">
+          <h4>Postdoctoral Researcher &amp; NCCR Microbiomes Work Package 5 Flagship Project Lead</h4>
+          <p class="mono">ETH Zürich · October 2024 – Present</p>
+          <ul class="prose">
+            <li><strong>Scientific leadership:</strong> Co-leading the multi-center NCCR Microbiomes Work Package 5 Flagship Project. Designed the 4-year computational roadmap for resilient SynCom design across diverse microbiome types.</li>
+            <li><strong>AI &amp; structural bioinformatics:</strong> Co-designed scalable functional annotation pipelines combining language models and structure search.</li>
+            <li><strong>Data-driven SynCom design:</strong> Constraint-based metabolic modelling, pangenomics, ML to identify trophic interactions across soil, plant, gut, marine, and bee microbiomes.</li>
+          </ul>
+        </div>
+
+        <div class="cv-role">
+          <h4>Doctoral Researcher · Computational Biologist</h4>
+          <p class="mono">University of Cambridge &amp; EMBL Heidelberg · August 2019 – August 2024</p>
+          <ul class="prose">
+            <li><strong>Software product engineering:</strong> Released the <a href="#metagem">metaGEM</a> open-source pipeline. Scaled HPC workflows; reconstructed 14,000+ genome-scale metabolic models.</li>
+            <li><strong>Multi-omics integration:</strong> <a href="#work-plastic">plastic-degrading enzymes (mBio)</a>, <a href="#work-drug">metabolic auxotrophies (Nat. Microbiol.)</a>, <a href="#work-entero">ecological dynamics (Nat. Microbiol.)</a>, <a href="#work-cheese">industrial fermentation (Nat. Commun.)</a>.</li>
+            <li><strong>EMBL projects:</strong> Contributed to DD-DeCaF and ShikiFactory100 EU-funded consortia.</li>
+          </ul>
+        </div>
+
+            <h3>Education</h3>
+            <dl class="dl-grid">
+              <dt>2020–2024</dt>
+              <dd><strong>Ph.D., Biology</strong> · University of Cambridge<span class="role-meta">Cambridge Trust scholarship · MRC Toxicology Unit</span></dd>
+              <dt>2017–2019</dt>
+              <dd><strong>M.Sc., Biotechnology</strong> · Chalmers University of Technology<span class="role-meta">iGEM 2018: gold medal &amp; best graduate modelling nominee</span></dd>
+              <dt>2013–2017</dt>
+              <dd><strong>B.Sc., Biological Systems Engineering</strong> · UC Davis</dd>
+            </dl>
+          </div>
+
+          <aside class="section-2col-sidebar" aria-label="Skills">
+            <h3 class="sidebar-title">Skills</h3>
+            <div class="skills-stack">
+              <div class="skills-group">
+                <h3>Bioinformatics</h3>
+                <div>
+                  <a href="#metagem" class="skill-tag highlight" style="text-decoration: none;">metaGEM</a>
+                  <span class="skill-tag">Snakemake</span>
+                  <span class="skill-tag">fastp</span>
+                  <span class="skill-tag">MEGAHIT</span>
+                  <span class="skill-tag">CONCOCT</span>
+                  <span class="skill-tag">MaxBin2</span>
+                  <span class="skill-tag">MetaBAT2</span>
+                  <span class="skill-tag">metaWRAP</span>
+                  <span class="skill-tag">GTDB-Tk</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <h3>Systems biology</h3>
+                <div>
+                  <span class="skill-tag">CarveMe</span>
+                  <span class="skill-tag">SMETANA</span>
+                  <span class="skill-tag">MEMOTE</span>
+                  <span class="skill-tag">COBRA</span>
+                  <span class="skill-tag">FBA / FVA</span>
+                  <span class="skill-tag">RAVEN</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <h3>AI / Structural</h3>
+                <div>
+                  <span class="skill-tag">ProstT5</span>
+                  <span class="skill-tag">Foldseek</span>
+                  <span class="skill-tag">AlphaFold2</span>
+                  <span class="skill-tag">PyTorch</span>
+                  <span class="skill-tag">TensorFlow</span>
+                </div>
+              </div>
+              <div class="skills-group">
+                <h3>Languages &amp; infrastructure</h3>
+                <div>
+                  <span class="skill-tag">Python</span>
+                  <span class="skill-tag">R</span>
+                  <span class="skill-tag">MATLAB</span>
+                  <span class="skill-tag">Bash</span>
+                  <span class="skill-tag">Slurm HPC</span>
+                  <span class="skill-tag">GPU</span>
+                  <span class="skill-tag">Git/GitHub</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WORK / PUBLICATIONS -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">12 Publications</span>
+          <h2>Work</h2>
+          <p style="color: var(--fg-muted);">Click any card to expand for problem, approach, contribution, links, and altmetric attention.</p>
+        </div>
+
+        <div class="filters" role="toolbar" aria-label="Filter and sort">
+          <button class="filter-tag active" data-tag="">All</button>
+          <button class="filter-tag" data-tag="modelling">Metabolic modelling</button>
+          <button class="filter-tag" data-tag="genomics">Metagenomic / genomic</button>
+          <button class="filter-tag" data-tag="industry">Industry-translational</button>
+          <span class="filter-divider"></span>
+          <span class="sort-label">Sort:</span>
+          <button class="filter-tag sort-btn active" data-sort="default">Curated</button>
+          <button class="filter-tag sort-btn" data-sort="newest">Newest first</button>
+          <button class="filter-tag sort-btn" data-sort="oldest">Oldest first</button>
+        </div>
+
+        <div class="cards-grid" id="cardsContainer">
+
+          <!-- 1. metaGEM -->
+          <article class="card" id="work-metagem" data-tags="modelling,industry" data-doi="10.1093/nar/gkab815">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🧬</div>
+              <div class="card-meta">
+                <span class="card-year">2021</span>
+                <span class="card-venue">Nucleic Acids Res.</span>
+              </div>
+              <h3 class="card-title">metaGEM</h3>
+              <div class="card-desc">Open-source Snakemake workflow that turns raw metagenomes into community-level metabolic models. <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">#3 in Snakemake catalog</a>.</div>
+              <div class="card-tags">
+                <span class="tag">open-source</span>
+                <span class="tag">tool-paper</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">First author</span>
+                <span>125 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Reconstructing genome-scale metabolic models from metagenomes was a multi-week, error-prone process that required deep expertise across a dozen separate tools, putting community-level metabolic insight out of reach for most labs.</p>
+                <h4>Approach</h4>
+                <p>Architected and released metaGEM, a Snakemake-orchestrated end-to-end pipeline that automates QC, assembly, binning, MAG consolidation, taxonomy, GEM reconstruction, and community simulation. Designed for HPC clusters and reproducible execution.</p>
+                <h4>Contribution</h4>
+                <p>Lead developer and corresponding author. Designed the architecture, wrote the pipeline, authored the documentation, and have maintained the project through five major releases.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Snakemake</span><span class="chip">Python</span><span class="chip">CarveMe</span><span class="chip">SMETANA</span><span class="chip">MEGAHIT</span><span class="chip">CONCOCT</span><span class="chip">MaxBin2</span><span class="chip">MetaBAT2</span><span class="chip">metaWRAP</span><span class="chip">GTDB-Tk</span><span class="chip">MEMOTE</span><span class="chip">Slurm HPC</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1093/nar/gkab815"></div>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1093/nar/gkab815" target="_blank" rel="noopener">Paper (NAR)</a>
+                  <a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">GitHub</a>
+                  <a href="https://github.com/franciscozorrilla/metaGEM/wiki" target="_blank" rel="noopener">Docs</a>
+                  <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">Snakemake catalog</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Cheese flavor -->
+          <article class="card" id="work-cheese" data-tags="modelling,industry" data-doi="10.1038/s41467-023-44059-4">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🧀</div>
+              <div class="card-meta">
+                <span class="card-year">2023</span>
+                <span class="card-venue">Nat. Communications</span>
+              </div>
+              <h3 class="card-title">Cheese flavor formation</h3>
+              <div class="card-desc">Mechanistic metabolic modeling of dairy fermentation in collaboration with Chr. Hansen.</div>
+              <div class="card-tags">
+                <span class="tag">fermentation</span>
+                <span class="tag">industry-collab</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Second author</span>
+                <span>95 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Cheese flavor emerges from cross-feeding between microbial species in the starter culture. Empirical optimization is slow and doesn't generalize across products, so industrial fermenters needed a mechanistic predictor.</p>
+                <h4>Approach</h4>
+                <p>The team (led by first author Chrats Melkonian, Wageningen University) built community-level genome-scale metabolic models for the cheese microbiome, integrated metabolomic and transcriptomic data, and simulated cross-feeding to predict which species pairings drive flavor compounds.</p>
+                <h4>My contribution</h4>
+                <p>Second author. I supported the lead by contributing to the metabolic-modelling component: helping curate models for the relevant species and running community simulations. The wet-lab metabolomics, transcriptomics, and the principal modelling design were driven by Melkonian and the rest of the team.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">COBRA Toolbox</span><span class="chip">Python</span><span class="chip">Multi-omics</span><span class="chip">FBA</span><span class="chip">Community simulation</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41467-023-44059-4"></div>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1038/s41467-023-44059-4" target="_blank" rel="noopener">Paper (Nat. Commun.)</a>
+                  <a href="https://www.chr-hansen.com/" target="_blank" rel="noopener">Chr. Hansen (industry partner)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Plastic degraders -->
+          <article class="card" id="work-plastic" data-tags="genomics,industry" data-doi="10.1128/mBio.02155-21">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">♻️</div>
+              <div class="card-meta">
+                <span class="card-year">2021</span>
+                <span class="card-venue">mBio</span>
+              </div>
+              <h3 class="card-title">Plastic degraders</h3>
+              <div class="card-desc">Predictive global screen for novel plastic-degrading enzymes via deep learning on metagenomes.</div>
+              <div class="card-tags">
+                <span class="tag">bioremediation</span>
+                <span class="tag">AI-ML</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>142 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Plastic pollution outpaces our catalog of enzymes that can degrade it. Wet-lab discovery is slow; we needed a way to mine global metagenomic data for novel plastic-degrading enzyme candidates.</p>
+                <h4>Approach</h4>
+                <p>The team (led by first author Jure Zrimec, Chalmers) built a deep-learning HMM classifier for plastic-degrading enzyme potential, applied it across global ocean and soil metagenomes, and correlated predicted enzyme abundance with regional pollution levels.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. My role was the upstream metagenomic analysis: short-read processing through MAGs, contigs, and abundance estimates that the lead authors then used as input for the HMM-based plastic-degrading enzyme screen.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Python</span><span class="chip">Deep learning</span><span class="chip">Metagenomics</span><span class="chip">Statistical modeling</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1128/mBio.02155-21"></div>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1128/mBio.02155-21" target="_blank" rel="noopener">Paper (mBio)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Soil cross-feeding -->
+          <article class="card" id="work-soil" data-tags="modelling,genomics,industry" data-doi="10.1101/2025.01.28.635214">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🌱</div>
+              <div class="card-meta">
+                <span class="card-year">2025</span>
+                <span class="card-venue">bioRxiv</span>
+              </div>
+              <h3 class="card-title">Soil cross-feeding</h3>
+              <div class="card-desc">Framework for identifying metabolic dependencies in soil: a roadmap for rational SynCom design.</div>
+              <div class="card-tags">
+                <span class="tag">agritech</span>
+                <span class="tag">syncom</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-first author</span>
+                <span>5 citations · preprint</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>SynComs for agricultural inoculants and environmental restoration fail unpredictably. A core reason: we don't know which strains are obligately dependent on cross-fed metabolites from their neighbors.</p>
+                <h4>Approach</h4>
+                <p>Built a framework combining genome-scale metabolic modelling, metagenomics, and ecological co-occurrence analysis to flag obligate cross-feeding relationships across soil microbiome datasets.</p>
+                <h4>My contribution</h4>
+                <p>Co-first author. Co-led the metabolic modelling and integration with the metagenomics analysis. The most directly agtech-relevant paper in the portfolio.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">metaGEM</span><span class="chip">Python</span><span class="chip">Constraint-based modeling</span><span class="chip">Pangenomics</span><span class="chip">Statistical inference</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1101/2025.01.28.635214"></div>
+                  <span class="altmetric-note">Preprint · live altmetric attention</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://www.biorxiv.org/content/10.1101/2025.01.28.635214" target="_blank" rel="noopener">bioRxiv preprint</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Bacterial OD count -->
+          <article class="card" id="work-od" data-tags="genomics" data-doi="10.1038/s42003-020-01127-5">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🧫</div>
+              <div class="card-meta">
+                <span class="card-year">2020</span>
+                <span class="card-venue">Comm. Biology</span>
+              </div>
+              <h3 class="card-title">Bacterial OD → cell count</h3>
+              <div class="card-desc">Robust estimation of bacterial cell count from optical density via interlab calibration. 244-lab study.</div>
+              <div class="card-tags">
+                <span class="tag">tool-paper</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>328 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>OD600 is a universal microbiology readout but conversion to absolute cell count varies wildly between labs and instruments. This is a chronic source of irreproducibility in synthetic biology.</p>
+                <h4>Approach</h4>
+                <p>An iGEM-led consortium coordinated 244 laboratories to test three simple, low-cost OD calibration protocols on eight strains of constitutive GFP-expressing E. coli, establishing a community standard.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. I participated as one of the 244 contributing labs (as a member of the Chalmers iGEM 2018 team), running the wet-lab cultures and OD/flow-cytometry measurements that fed into the consortium dataset.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Statistical analysis</span><span class="chip">Wet-lab calibration</span><span class="chip">Multi-lab QC</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s42003-020-01127-5"></div>
+                  <span class="altmetric-note">Highly cited reference paper</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1038/s42003-020-01127-5" target="_blank" rel="noopener">Paper (Comm. Biol.)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Drug tolerance -->
+          <article class="card" id="work-drug" data-tags="modelling,genomics" data-doi="10.1038/s41564-022-01072-5">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">💊</div>
+              <div class="card-meta">
+                <span class="card-year">2022</span>
+                <span class="card-venue">Nat. Microbiology</span>
+              </div>
+              <h3 class="card-title">Drug tolerance via cross-feeding</h3>
+              <div class="card-desc">Microbial communities form rich extracellular metabolomes that buffer against antimicrobial drugs.</div>
+              <div class="card-tags">
+                <span class="tag">clinical</span>
+                <span class="tag">pharma</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>132 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Antimicrobial drug failure in real microbiomes can't be explained by single-strain resistance alone. Why do communities tolerate drugs better than monocultures?</p>
+                <h4>Approach</h4>
+                <p>The Patil &amp; Ralser teams analysed auxotroph distributions across 12,000+ Earth Microbiome Project communities, then built self-establishing metabolically cooperating yeast communities (SeMeCos) and ran wet-lab drug screens to test the mechanism.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. My specific role was the auxotrophy statistical reanalysis at the start of the paper: re-examining auxotroph distributions across the Earth Microbiome Project, and layering Lisa Maier's drug-on-bug screen data through an auxotroph-vs-prototroph lens to test whether auxotrophic state correlated with drug tolerance.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Statistical reanalysis</span><span class="chip">Earth Microbiome Project</span><span class="chip">Auxotroph annotation</span><span class="chip">Multi-omics integration</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41564-022-01072-5"></div>
+                  <span class="altmetric-note">Press coverage on EurekAlert, ScienceDaily, Crick Institute</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1038/s41564-022-01072-5" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a>
+                  <a href="https://www.crick.ac.uk/news/2022-03-21_microbial-communities-where-cells-cooperate-have-increased-drug-tolerance" target="_blank" rel="noopener">Crick press release</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. Enterobacteriaceae -->
+          <article class="card" id="work-entero" data-tags="genomics" data-doi="10.1038/s41564-024-01912-6">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🦠</div>
+              <div class="card-meta">
+                <span class="card-year">2025</span>
+                <span class="card-venue">Nat. Microbiology</span>
+              </div>
+              <h3 class="card-title">Enterobacteriaceae gut dynamics</h3>
+              <div class="card-desc">Ecological dynamics of Enterobacteriaceae across 12,238 gut metagenomes, 45 countries.</div>
+              <div class="card-tags">
+                <span class="tag">clinical</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">SME contributor</span>
+                <span>69 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Enterobacteriaceae bloom in the gut signals dysbiosis and pathogen risk, but the global ecology of which commensal species protect against it was unknown at scale.</p>
+                <h4>Approach</h4>
+                <p>The team re-analysed 12,238 public gut metagenomes spanning 45 countries to identify co-colonisers and co-excluders of Enterobacteriaceae, surfacing a genus-wide colonisation-resistance signal in Faecalibacterium.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. I served as a subject-matter-expert contributor on the metabolic and metagenomic-analysis design, providing guidance during the analysis.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Metagenomics</span><span class="chip">Statistical ecology</span><span class="chip">Co-occurrence analysis</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1038/s41564-024-01912-6"></div>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1038/s41564-024-01912-6" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 8. iGEM fluorescence -->
+          <article class="card" id="work-igem" data-tags="genomics" data-doi="10.1371/journal.pone.0252263">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">💡</div>
+              <div class="card-meta">
+                <span class="card-year">2021</span>
+                <span class="card-venue">PLoS ONE</span>
+              </div>
+              <h3 class="card-title">iGEM fluorescence reproducibility</h3>
+              <div class="card-desc">Comparative analysis of fluorescence expression from engineered bacterial constructs across years and labs.</div>
+              <div class="card-tags">
+                <span class="tag">synthetic-biology</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>16 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>iGEM teams generate mountains of fluorescence data each year. Without consistent calibration, year-over-year results aren't directly comparable.</p>
+                <h4>Approach</h4>
+                <p>The iGEM consortium compared three multi-lab studies measuring fluorescence from identical engineered constructs across years, identifying calibrant preparation as the key driver of inter-year variance.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. As a member of the Chalmers iGEM 2018 team, I contributed wet-lab fluorescence data from our setup; the cross-year analysis and write-up were led by the Beal-coordinated consortium.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Plate readers</span><span class="chip">Flow cytometry</span><span class="chip">Statistical analysis</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1371/journal.pone.0252263"></div>
+                  <span class="altmetric-note">Live altmetric attention score</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1371/journal.pone.0252263" target="_blank" rel="noopener">Paper (PLoS ONE)</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 9. FROG -->
+          <article class="card" id="work-frog" data-tags="modelling" data-doi="10.1101/2024.09.24.614797">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🐸</div>
+              <div class="card-meta">
+                <span class="card-year">2024</span>
+                <span class="card-venue">bioRxiv</span>
+              </div>
+              <h3 class="card-title">FROG: GEM reproducibility</h3>
+              <div class="card-desc">Standardized reproducibility checks for genome-scale metabolic models. Now part of the BioModels curation workflow.</div>
+              <div class="card-tags">
+                <span class="tag">methods</span>
+                <span class="tag">tool-paper</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>11 citations · preprint</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Genome-scale metabolic models published in literature often fail to reproduce: only ~40% in BioModels could be re-run without intervention. The community needed a standard.</p>
+                <h4>Approach</h4>
+                <p>The FROG consortium defined and tooled FROG (Flux variability, Reaction deletion, Objective function, Gene deletion) as a reproducibility checkpoint. BioModels integrated it into their submission workflow.</p>
+                <h4>My contribution</h4>
+                <p>Co-author on the consortium paper. My role was contributing model validation results and tool-integration feedback from the metaGEM side; the FROG specification itself was driven by the broader BioModels community.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">SBML</span><span class="chip">COBRA</span><span class="chip">BioModels</span><span class="chip">FBA / FVA</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1101/2024.09.24.614797"></div>
+                  <span class="altmetric-note">Preprint · live altmetric attention</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://www.biorxiv.org/content/10.1101/2024.09.24.614797v1" target="_blank" rel="noopener">bioRxiv preprint</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10. Hansenula -->
+          <article class="card" id="work-hansenula" data-tags="modelling,industry" data-doi="10.1007/978-1-0716-2399-2_16">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🍺</div>
+              <div class="card-meta">
+                <span class="card-year">2022</span>
+                <span class="card-venue">Methods Mol. Biol.</span>
+              </div>
+              <h3 class="card-title">Hansenula polymorpha GEM</h3>
+              <div class="card-desc">Step-by-step protocol for reconstructing a genome-scale model of an industrially-relevant methylotrophic yeast.</div>
+              <div class="card-tags">
+                <span class="tag">industrial-yeast</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">First author</span>
+                <span>7 citations</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Hansenula polymorpha (Ogataea polymorpha) is an industrially relevant methylotrophic yeast, but new groups working on it lacked a clear protocol for building a usable GEM.</p>
+                <h4>Approach</h4>
+                <p>Wrote a step-by-step protocol chapter using RAVEN (MATLAB-based reconstruction toolbox) with a homology-based approach. Released the resulting hanpo-GEM publicly.</p>
+                <h4>Contribution</h4>
+                <p>First author of the protocol chapter; built the draft hanpo-GEM as the worked example.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">RAVEN</span><span class="chip">MATLAB</span><span class="chip">SBML</span><span class="chip">Homology-based reconstruction</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1007/978-1-0716-2399-2_16"></div>
+                  <span class="altmetric-note">Methods chapter · attention from industrial-yeast community</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://doi.org/10.1007/978-1-0716-2399-2_16" target="_blank" rel="noopener">Chapter (Methods Mol. Biol.)</a>
+                  <a href="https://github.com/SysBioChalmers/hanpo-GEM" target="_blank" rel="noopener">hanpo-GEM repo</a>
+                  <a href="https://www.biorxiv.org/content/10.1101/2021.06.18.448943v1" target="_blank" rel="noopener">bioRxiv preprint</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. C. difficile -->
+          <article class="card" id="work-cdiff" data-tags="modelling,genomics" data-doi="10.1101/2024.08.29.610284">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🏥</div>
+              <div class="card-meta">
+                <span class="card-year">2024</span>
+                <span class="card-venue">bioRxiv</span>
+              </div>
+              <h3 class="card-title">C. difficile invasion resistance</h3>
+              <div class="card-desc">Synthetic 14-strain commensal community uncovers emergent metabolic mechanisms blocking C. difficile invasion.</div>
+              <div class="card-tags">
+                <span class="tag">clinical</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Co-author</span>
+                <span>1 citation · preprint</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Problem</h4>
+                <p>Recurrent C. difficile infection responds to fecal transplant, but the active ingredients of "colonization resistance" are unclear. Which metabolic interactions actually keep the pathogen out?</p>
+                <h4>Approach</h4>
+                <p>The team (Patil Lab, Cambridge) built a synthetic 14-commensal community and probed it against C. difficile invasion to dissect emergent metabolic interactions and their role in colonisation resistance.</p>
+                <h4>My contribution</h4>
+                <p>Co-author. I reconstructed and simulated GEMs from context-specific genomes, ran the metabolomics analysis between suppressive and non-suppressive samples, and identified genomic signatures consistent with the observed metabolomic differences.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">Synthetic communities</span><span class="chip">Constraint-based modeling</span><span class="chip">Metabolomics</span>
+                </div>
+                <h4>Attention</h4>
+                <div class="altmetric-row">
+                  <div class="altmetric-embed" data-badge-type="donut" data-doi="10.1101/2024.08.29.610284"></div>
+                  <span class="altmetric-note">Preprint · live altmetric attention</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://www.biorxiv.org/content/10.1101/2024.08.29.610284v1" target="_blank" rel="noopener">bioRxiv preprint</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12. PhD Thesis -->
+          <article class="card" id="work-thesis" data-tags="modelling,genomics">
+            <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+              <div class="card-emoji" aria-hidden="true">🎓</div>
+              <div class="card-meta">
+                <span class="card-year">2024</span>
+                <span class="card-venue">Cambridge Univ.</span>
+              </div>
+              <h3 class="card-title">PhD Thesis</h3>
+              <div class="card-desc">Omics-driven and constraint-based modelling of microbial community metabolism.</div>
+              <div class="card-tags">
+                <span class="tag">thesis</span>
+                <span class="tag">methods</span>
+              </div>
+              <div class="card-footer">
+                <span class="role">Sole author</span>
+                <span>monograph</span>
+              </div>
+              <div class="card-toggle-hint"></div>
+            </div>
+            <div class="card-expanded">
+              <div class="card-expanded-inner">
+                <h4>Scope</h4>
+                <p>This thesis sits at the intersection of microbial ecology, metagenomics, and metabolic modelling, outlining the development and applications of omics-driven metabolic-modelling approaches to understand microbial community metabolism in diverse ecological contexts.</p>
+                <h4>Methodological backbone</h4>
+                <p>I developed <a href="#metagem">metaGEM</a>, a workflow for reconstructing context-specific genome-scale metabolic models (GEMs) from metagenome-assembled genomes (MAGs) and predicting nutritional dependencies directly from shotgun metagenomes. I applied it across five biomes (synthetic lab cultures, human gut, plant-associated, bulk soil, and ocean metagenomes), reconstructing over 14,000 MAGs and corresponding GEMs.</p>
+                <h4>Three applied case studies</h4>
+                <ul style="margin-left: var(--space-5); margin-top: var(--space-2); font-size: 0.9rem;">
+                  <li><strong>Auxotrophy distributions</strong> across microbiomes: high amino-acid auxotroph frequency, higher in host-associated than free-living samples, with evidence that auxotrophy correlates with drug tolerance. A second collaboration showed that purely genome-based annotations <em>over</em>-estimate auxotrophies while metagenomic models <em>under</em>-estimate them, with insertion-sequence enrichment in auxotrophic genomes hinting at a gene-loss mechanism.</li>
+                  <li><strong>Cheese-flavour formation</strong> (industrial collaboration): metabolic models from fermentation-culture genomes, simulated under varying media, revealed amino-acid auxotrophies in three community members rescued by a fourth, and strain-specific contributions to flavour.</li>
+                  <li><strong>C. difficile invasion resistance</strong>: GEMs from a defined 14-member community, plus metabolomics and genomic-signature analysis, to dissect why some sub-communities suppress the pathogen.</li>
+                </ul>
+                <h4>gutDBX</h4>
+                <p>A separate methodological chapter introduces <em>gutDBX</em>: a metagenomics-driven database of 141,556 non-dereplicated microbial sequences associated with xenobiotic and pharmacologically-relevant metabolism in human and mouse gut, validated against the MetaCardis cohort. Hits correlated with serum cholesterol, Shannon diversity, and total prescribed-drug count.</p>
+                <h4>Outlook</h4>
+                <p>The closing chapter discusses future directions for <a href="#metagem">metaGEM</a>, including global plastic-degrading-potential surveys, long-read sequencing of understudied environments, and paleometagenomics.</p>
+                <h4>Tools</h4>
+                <div class="chip-list">
+                  <span class="chip">metaGEM</span><span class="chip">CarveMe</span><span class="chip">SMETANA</span><span class="chip">FBA / FVA</span><span class="chip">eggNOG / KEGG</span><span class="chip">Multi-omics</span>
+                </div>
+                <h4>Links</h4>
+                <div class="card-links">
+                  <a href="https://www.repository.cam.ac.uk/items/e8039120-7f95-444f-95af-78fe5ce49db6" target="_blank" rel="noopener">Cambridge Apollo · Full thesis</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- METAGEM FLAGSHIP -->
+    <section class="section section--surface" id="metagem">
+      <div class="container">
+        <div class="metagem-layout">
+          <div class="metagem-prose">
+            <div class="section-header" style="margin-bottom: var(--space-5);">
+              <span class="eyebrow">Flagship Product</span>
+              <h2 style="margin-bottom: var(--space-3);"><span aria-hidden="true" style="font-size: 0.85em; vertical-align: 0.05em;">💎</span> metaGEM</h2>
+              <p style="color: var(--fg-muted); font-size: 1.05rem; margin-bottom: 0;">Reconstruct genome-scale metabolic models directly from metagenomes, at scale.</p>
+            </div>
+
+            <div class="cta-group" style="margin-bottom: var(--space-6);">
+              <a href="https://github.com/franciscozorrilla/metaGEM" class="btn btn--primary" target="_blank" rel="noopener">GitHub →</a>
+              <a href="https://doi.org/10.1093/nar/gkab815" class="btn" target="_blank" rel="noopener">Paper (NAR)</a>
+              <a href="https://github.com/franciscozorrilla/metaGEM/wiki" class="btn" target="_blank" rel="noopener">Documentation</a>
+            </div>
+
+            <h3 style="margin-top: var(--space-6);">What it does</h3>
+            <div class="prose">
+              <p>metaGEM is an end-to-end Snakemake workflow that turns raw metagenomic reads into community-level metabolic predictions. Used by labs worldwide for environmental genomics, synthetic ecology, and industrial fermentation research.</p>
+              <p><strong>Pipeline stages:</strong> QC (fastp) → Assembly (MEGAHIT) → Binning (CONCOCT, MaxBin2, MetaBAT2) → MAG consolidation (metaWRAP) → Taxonomy (GTDB-Tk) → Metabolic reconstruction (CarveMe) → Model QC (MEMOTE) → Community simulation (SMETANA).</p>
+              <p>From an industry standpoint, metaGEM demonstrates two engineering capabilities that translate directly to commercial bioinformatics work: shipping a production-quality pipeline that researchers outside the original group can actually run, and sustaining it through real-world user load across multiple years and release cycles.</p>
+            </div>
+
+            <h3>Quick start</h3>
+            <pre class="code-block">mamba create -n metagem -c bioconda metagem</pre>
+            <p style="color: var(--fg-muted); font-size: 0.9rem;">Full setup, tutorials, and HPC profiles at <a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">github.com/franciscozorrilla/metaGEM</a>.</p>
+          </div>
+
+          <aside class="metagem-stats-panel" aria-label="metaGEM at a glance">
+            <div class="stat"><div class="stat-value">260+</div><div class="stat-label">GitHub stars</div></div>
+            <div class="stat"><div class="stat-value">47</div><div class="stat-label">Forks</div></div>
+            <div class="stat"><div class="stat-value"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">#3</a></div><div class="stat-label"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">Snakemake catalog</a></div></div>
+            <div class="stat"><div class="stat-value">125</div><div class="stat-label">Paper citations</div></div>
+            <div class="stat"><div class="stat-value">NAR</div><div class="stat-label">2021 · IF 19.16</div></div>
+            <div class="stat"><div class="stat-value">116</div><div class="stat-label">Discussions &amp; issues closed</div></div>
+          </aside>
+        </div>
+
+        <h3>Applications in the wild</h3>
+        <p style="color: var(--fg-muted);">Selected published work where independent groups ran the metaGEM pipeline as a core part of their analysis (not just cited it). Each entry below has been verified against the published methods section.</p>
+        <div class="applications-grid">
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🦇</div>
+            <div class="app-meta">2022 · Environmental Microbiome</div>
+            <div class="app-title"><a href="https://doi.org/10.1186/s40793-022-00438-w" target="_blank" rel="noopener">Movile Cave: chemoautotrophic ecosystem</a></div>
+            <div class="app-desc">Chiciudean et al. ran metaGEM through assembly, binning, GEM reconstruction (CarveMe) and SMETANA simulation to map cooperation and competition in a sulfidic Romanian cave analogous to deep-sea hydrothermal vents.</div>
+            <div class="app-link">Extreme environments · ecology</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🌍</div>
+            <div class="app-meta">2021 · F1000Research</div>
+            <div class="app-title"><a href="https://doi.org/10.12688/f1000research.51494.2" target="_blank" rel="noopener">NEON soil metagenomes pipeline</a></div>
+            <div class="app-desc">Werbin et al. adopted metaGEM as the backbone pipeline for processing the National Ecological Observatory Network's continental-scale soil metagenome dataset.</div>
+            <div class="app-link">Soil · large-scale ecology</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🌱</div>
+            <div class="app-meta">2026 · Cell Host &amp; Microbe</div>
+            <div class="app-title"><a href="https://doi.org/10.1016/j.chom.2026.01.006" target="_blank" rel="noopener">Soil-protist predation shapes cooperation</a></div>
+            <div class="app-desc">Applied metaGEM end-to-end to show that protist predation shifts soil bacteria from competitive to cooperative metabolic regimes.</div>
+            <div class="app-link">Soil ecology · agritech</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🏭</div>
+            <div class="app-meta">2024 · Communications Biology</div>
+            <div class="app-title"><a href="https://doi.org/10.1038/s42003-024-07353-5" target="_blank" rel="noopener">Industrial phenolic-metabolism microbiome</a></div>
+            <div class="app-desc">Used metaGEM as the binning workflow ("metagenomic reads were binned into MAGs using the metaGEM pipeline workflow") in a domestication study taking a phenolic-metabolism consortium from lab to industrial scale.</div>
+            <div class="app-link">Industrial biotech · domestication</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🌎</div>
+            <div class="app-meta">2025 · bioRxiv (preprint)</div>
+            <div class="app-title"><a href="https://doi.org/10.1101/2025.07.03.663048" target="_blank" rel="noopener">Continental-scale soil metagenomes &amp; carbon decomposition</a></div>
+            <div class="app-desc">828 MAGs across 47 US soil cores; "metagenome construction processes, including quality-control, contig assembly and binning, were performed using a suite of tools available in the MetaGEM pipeline."</div>
+            <div class="app-link">Carbon cycling · climate</div>
+          </div>
+
+        </div>
+        <p style="margin-top: var(--space-4); color: var(--fg-dim); font-size: 0.85rem;">Selected from 125+ works citing metaGEM. Browse the full citation list on <a href="https://www.semanticscholar.org/paper/2bea7f2284702ad48c69d4cc00c4ae7be1b4ebe5" target="_blank" rel="noopener">Semantic Scholar</a> or <a href="https://europepmc.org/article/MED/34614189" target="_blank" rel="noopener">Europe PMC</a>.</p>
+
+        <details style="margin-top: var(--space-7);">
+          <summary style="cursor: pointer; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">BibTeX citation</summary>
+          <pre class="code-block">@article{zorrilla2021metagem,
+  title={metaGEM: reconstruction of genome scale metabolic models directly from metagenomes},
+  author={Zorrilla, Francisco and Buric, Filip and Patil, Kiran R and Zelezniak, Aleksej},
+  journal={Nucleic Acids Research},
+  volume={49}, number={21}, pages={e126},
+  year={2021}, doi={10.1093/nar/gkab815}
+}</pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- TALKS -->
+    <section class="section" id="talks">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Talks · Teaching · Mentorship</span>
+          <h2>Talks &amp; Teaching</h2>
+          <p style="color: var(--fg-muted);">50+ international researchers trained across 7 countries. All teaching materials open-source.</p>
+        </div>
+
+        <h3>Activity</h3>
+        <table class="talks-table">
+          <thead>
+            <tr>
+              <th class="col-date">Date</th>
+              <th>Title</th>
+              <th class="col-venue">Venue</th>
+              <th class="col-role">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-date">2026 · Jan</td>
+              <td><a href="https://nccr-microbiomes.ch/education/january-short-course/" target="_blank" rel="noopener">NCCR Microbiomes Winter School</a></td>
+              <td class="col-venue">Switzerland</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2025 · Fall</td>
+              <td><a href="https://sunagawalab.ethz.ch/share/teaching/home/551-1119-00L_Fall2025/index.html" target="_blank" rel="noopener">Microbial Community Genomics (551-1119-00L) · Sunagawa Lab Block Course</a></td>
+              <td class="col-venue">ETH Zürich</td>
+              <td class="col-role"><span class="role-tag">co-tutor</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2025</td>
+              <td>Master's thesis supervision</td>
+              <td class="col-venue">University of Oxford</td>
+              <td class="col-role"><span class="role-tag">supervisor</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2024 · Oct</td>
+              <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd24-01/" target="_blank" rel="noopener">Metabolite and species dynamics in microbial communities</a></td>
+              <td class="col-venue">EMBO Practical Course, Bangalore</td>
+              <td class="col-role"><span class="role-tag">co-instructor</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2024 · Aug</td>
+              <td><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2024" target="_blank" rel="noopener">Metabolic modelling for microbial ecology</a></td>
+              <td class="col-venue">9th COBRA Conference, San Diego</td>
+              <td class="col-role"><span class="role-tag">poster</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2024 · Jan</td>
+              <td><a href="https://github.com/franciscozorrilla/systems-biology-fba-practical" target="_blank" rel="noopener">Flux balance analysis and metabolic modelling</a></td>
+              <td class="col-venue">Systems Biology Undergrad Course, Cambridge</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2022 · Oct</td>
+              <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd22-01/" target="_blank" rel="noopener">Metabolic modelling of community interactions</a></td>
+              <td class="col-venue">EMBO Micro Com Course (virtual)</td>
+              <td class="col-role"><span class="role-tag">trainer</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2022 · Oct</td>
+              <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/eae22-01/" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
+              <td class="col-venue">EMBO EvoEco Conference, Heidelberg</td>
+              <td class="col-role"><span class="role-tag">poster + flash</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2022 · Sep</td>
+              <td><a href="https://www.aiche.org/imes/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2022/conference-on-constraint-based-reconstruction-and-analysis-technical-program" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
+              <td class="col-venue">8th COBRA Conference, Galway</td>
+              <td class="col-role"><span class="role-tag">selected talk</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2022 · Jun</td>
+              <td><a href="https://s2m2.bio.di.uminho.pt/last_editions/2022/index.html" target="_blank" rel="noopener">Applications of genome scale metabolic models</a></td>
+              <td class="col-venue">Summer School in Metabolic Modeling (virtual)</td>
+              <td class="col-role"><span class="role-tag">invited talk</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2022 · Feb</td>
+              <td><a href="https://www.ebi.ac.uk/training/materials/symbnet-materials/" target="_blank" rel="noopener">From metagenomics to metabolic interactions</a></td>
+              <td class="col-venue">SymbNET 2022 Course (EBI virtual)</td>
+              <td class="col-role"><span class="role-tag">trainer</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2021 · Mar</td>
+              <td><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2021" target="_blank" rel="noopener">metaGEM: reconstruction of genome scale metabolic models directly from metagenomes</a></td>
+              <td class="col-venue">7th COBRA Conference (virtual)</td>
+              <td class="col-role"><span class="role-tag">poster</span></td>
+            </tr>
+            <tr>
+              <td class="col-date">2018 · Oct</td>
+              <td><a href="https://2018.igem.org/Competition/Results" target="_blank" rel="noopener">iGEM 2018 · Gold Medal &amp; Best Graduate Modeling nominee</a></td>
+              <td class="col-venue">iGEM Foundation, Boston</td>
+              <td class="col-role"><span class="role-tag">team member</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Open-source teaching materials</h3>
+        <p style="color: var(--fg-muted);">Every course taught ships with a public repo so materials outlive the course.</p>
+        <div class="teaching-grid">
+          <div class="teaching-card">
+            <a href="https://sunagawalab.ethz.ch/share/teaching/home/551-1119-00L_Fall2025/index.html" target="_blank" rel="noopener">🧬 Microbial Community Genomics (551-1119-00L)</a>
+            <div class="meta">2025 · ETH Zürich · Fall block course</div>
+            <div class="desc">GEMs, community modelling, AI-based annotation. Co-tutor with Sunagawa, Miravet Verde, Sperfeld.</div>
+          </div>
+          <div class="teaching-card">
+            <a href="https://github.com/franciscozorrilla/EMBOMicroCom2" target="_blank" rel="noopener">🇮🇳 EMBOMicroCom2</a>
+            <div class="meta">2024 · EMBO Practical, Bangalore · 4 ★</div>
+            <div class="desc">Metabolic modelling tutorial covering FBA &amp; GEMs.</div>
+          </div>
+          <div class="teaching-card">
+            <a href="https://github.com/franciscozorrilla/systems-biology-fba-practical" target="_blank" rel="noopener">🇬🇧 systems-biology-fba-practical</a>
+            <div class="meta">2024 · Cambridge · 8 ★</div>
+            <div class="desc">Flux balance analysis practical exercises for systems biology undergraduates.</div>
+          </div>
+          <div class="teaching-card">
+            <a href="https://github.com/franciscozorrilla/EMBOMicroCom" target="_blank" rel="noopener">🌍 EMBOMicroCom</a>
+            <div class="meta">2022 · EMBO Practical (virtual) · 13 ★</div>
+            <div class="desc">FBA, GEMs, microbial ecology tutorial.</div>
+          </div>
+          <div class="teaching-card">
+            <a href="https://github.com/franciscozorrilla/SymbNET" target="_blank" rel="noopener">🇪🇺 SymbNET</a>
+            <div class="meta">2022 · EBI virtual · 14 ★</div>
+            <div class="desc">End-to-end metagenomes to community metabolic models walkthrough.</div>
+          </div>
+          <div class="teaching-card">
+            <a href="https://github.com/franciscozorrilla/unseenbio_metaGEM" target="_blank" rel="noopener">🦠 unseenbio_metaGEM</a>
+            <div class="meta">2020 · Public demo</div>
+            <div class="desc">Run-through of metaGEM on the Unseen Bio dataset.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW + CONTACT -->
+    <section class="section section--surface" id="now">
+      <div class="container">
+        <div class="section-2col">
+          <div class="section-2col-body">
+            <div class="section-header">
+              <span class="eyebrow">May 2026</span>
+              <h2>Now</h2>
+              <p style="color: var(--fg-muted);">What I'm working on and what comes next.</p>
+            </div>
+
+            <div class="project-card">
+          <div class="project-meta">NCCR Microbiomes flagship project</div>
+          <h3>Scalable SynCom design across diverse microbiomes</h3>
+          <p>Co-leading the <a href="https://nccr-microbiomes.ch/research/work-package-5/" target="_blank" rel="noopener">NCCR Microbiomes Work Package 5 Flagship Project</a> at ETH Zürich in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a>: scalable functional annotation pipelines and SynCom design across diverse microbiome types including soil, plant, gut, marine, and bee. A multi-center, 4-year effort with WP5 partners across <strong>ETH Zürich, EPFL, UZH, UNIL, and CHUV</strong> (see the <a href="https://nccr-microbiomes.ch/research/overview/" target="_blank" rel="noopener">NCCR research overview</a> for the full consortium structure). Goal: establish mechanistic rules for designing synthetic microbial communities that survive field deployment without loss of critical strains.</p>
+          <p>My team is building the computational infrastructure: constraint-based metabolic models, pangenomics, and machine learning to identify trophic dependencies and niche-filling strains across the diverse microbiome contexts the consortium covers.</p>
+        </div>
+
+        <h3>Looking forward · industry pivot</h3>
+        <div class="prose">
+          <p>The full availability and geography summary is in the <a href="#about">Overview</a>. Specifically, ideal next-step projects:</p>
+          <ul>
+            <li><strong>Agricultural biotechnology:</strong> soil microbiomes, SynCom design, crop resilience.</li>
+            <li><strong>Microbial biotech:</strong> strain engineering, fermentation optimization, bioremediation.</li>
+            <li><strong>AI for biology:</strong> structural prediction, enzyme discovery, systems design.</li>
+          </ul>
+          <p>The academic-to-industry transition is, for me, a natural extension of work I'm already doing: I've maintained <a href="#metagem">metaGEM</a> through five major releases, mentored 50+ trainees, and contributed to commercial partnerships such as <a href="#work-cheese">Chr. Hansen</a>.</p>
+        </div>
+
+            <h3>Side interests</h3>
+            <div class="prose">
+              <ul>
+                <li><strong>Open-source sustainability:</strong> what keeps scientific software tools alive in the wild, and what kills them.</li>
+                <li><strong>Long-distance running:</strong> half-marathons and trail routes around Zürich.</li>
+              </ul>
+            </div>
+
+            <div style="margin-top: var(--space-7); padding: var(--space-6); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; max-width: 64ch;">
+              <h3 style="margin-top: 0;">Want to grab coffee?</h3>
+              <p style="color: var(--fg-muted); margin-bottom: var(--space-5);">Happy to chat about computational biology, open-source tools, or just meet someone new in biotech. Email is fastest.</p>
+              <div class="cta-group" style="margin-top: 0;">
+                <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary">Email me</a>
+                <a href="https://www.linkedin.com/in/fzorrilla94/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="/assets/cv.pdf" class="btn" download>Download CV</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="section-2col-sidebar" id="contact" aria-label="Contact">
+            <h3 class="sidebar-title">Get in touch</h3>
+            <p style="color: var(--fg-muted); font-size: 0.85rem; margin-bottom: var(--space-4);"><strong style="color: var(--fg);">Available October 2026.</strong></p>
+            <div class="contact-stack">
+              <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value"><a href="mailto:fzorrill@ethz.ch">fzorrill@ethz.ch</a></div>
+                <div class="contact-meta">Fastest response time</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value"><a href="https://www.linkedin.com/in/fzorrilla94/" target="_blank" rel="noopener">fzorrilla94</a></div>
+                <div class="contact-meta">Professional profile</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">franciscozorrilla</a></div>
+                <div class="contact-meta">Open-source work</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">Google Scholar</div>
+                <div class="contact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Francisco Zorrilla</a></div>
+                <div class="contact-meta">h-index 8 · 931+ citations</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">BlueSky</div>
+                <div class="contact-value"><a href="https://bsky.app/profile/metagenomez.bsky.social" target="_blank" rel="noopener">@metagenomez</a></div>
+                <div class="contact-meta">Longer-form thoughts</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">Twitter / X</div>
+                <div class="contact-value"><a href="https://x.com/metagenomez" target="_blank" rel="noopener">@metagenomez</a></div>
+                <div class="contact-meta">Quick takes &amp; reposts</div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-label">Location</div>
+                <div class="contact-value">Zürich, Switzerland</div>
+                <div class="contact-meta">Zurich/Basel corridor · or fully remote in CH</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#about">about</a>
+        <a href="#cv">cv</a>
+        <a href="#work">work</a>
+        <a href="#metagem">metagem</a>
+        <a href="#talks">talks</a>
+        <a href="#contact">contact</a>
+        <a href="https://github.com/franciscozorrilla/franciscozorrilla.github.io" target="_blank" rel="noopener">source</a>
+      </div>
+      <p>Built with Jekyll · No trackers · Last updated May 2026</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    /* ============ THEME TOGGLE ============ */
+    (function () {
+      const toggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      function update() {
+        const isDark = html.getAttribute('data-theme') === 'dark';
+        toggle.textContent = isDark ? '☀️' : '🌙';
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      toggle.addEventListener('click', () => {
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        try { localStorage.setItem('fz-theme', next); } catch (e) {}
+        update();
+      });
+      update();
+    })();
+
+    /* ============ ACTIVE NAV (IntersectionObserver) ============ */
+    (function () {
+      const navLinks = document.querySelectorAll('nav.site-nav a');
+      const linkMap = new Map();
+      navLinks.forEach(a => {
+        const id = a.getAttribute('href').replace('#', '');
+        if (id) linkMap.set(id, a);
+      });
+      const sections = ['about', 'cv', 'work', 'metagem', 'talks', 'now', 'contact']
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const link = linkMap.get(entry.target.id);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            navLinks.forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+      sections.forEach(s => observer.observe(s));
+    })();
+
+    /* ============ TAG FILTERING + SORT ============ */
+    (function () {
+      const filterBtns = document.querySelectorAll('.filter-tag:not(.sort-btn)');
+      const sortBtns = document.querySelectorAll('.sort-btn');
+      const container = document.getElementById('cardsContainer');
+      const cards = Array.from(document.querySelectorAll('#cardsContainer .card'));
+      const originalOrder = cards.slice();
+
+      function getYear(card) {
+        const t = card.querySelector('.card-year')?.textContent.trim() || '0';
+        return parseInt(t, 10) || 0;
+      }
+
+      function applySort(mode) {
+        let ordered;
+        if (mode === 'newest') {
+          ordered = cards.slice().sort((a, b) => getYear(b) - getYear(a));
+        } else if (mode === 'oldest') {
+          ordered = cards.slice().sort((a, b) => getYear(a) - getYear(b));
+        } else {
+          ordered = originalOrder.slice();
+        }
+        ordered.forEach(c => container.appendChild(c));
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', e => {
+          const tag = e.currentTarget.getAttribute('data-tag');
+          filterBtns.forEach(b => b.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          cards.forEach(card => {
+            card.classList.remove('expanded');
+            const summary = card.querySelector('.card-summary');
+            if (summary) summary.setAttribute('aria-expanded', 'false');
+            if (!tag) {
+              card.classList.remove('hidden');
+            } else {
+              const cardTags = (card.getAttribute('data-tags') || '').split(',');
+              card.classList.toggle('hidden', !cardTags.includes(tag));
+            }
+          });
+        });
+      });
+
+      sortBtns.forEach(btn => {
+        btn.addEventListener('click', e => {
+          const mode = e.currentTarget.getAttribute('data-sort');
+          sortBtns.forEach(b => b.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          applySort(mode);
+        });
+      });
+    })();
+
+    /* ============ CARD ACCORDION ============ */
+    (function () {
+      const cards = document.querySelectorAll('#cardsContainer .card');
+      cards.forEach(card => {
+        const summary = card.querySelector('.card-summary');
+        if (!summary) return;
+        const toggle = () => {
+          const wasExpanded = card.classList.contains('expanded');
+          // Close all others
+          cards.forEach(c => {
+            c.classList.remove('expanded');
+            const s = c.querySelector('.card-summary');
+            if (s) s.setAttribute('aria-expanded', 'false');
+          });
+          if (!wasExpanded) {
+            card.classList.add('expanded');
+            summary.setAttribute('aria-expanded', 'true');
+            // Smooth-scroll the expanded card into view (offset for sticky header)
+            setTimeout(() => {
+              const rect = card.getBoundingClientRect();
+              const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70;
+              if (rect.top < headerH || rect.top > window.innerHeight - 100) {
+                window.scrollTo({ top: window.scrollY + rect.top - headerH - 16, behavior: 'smooth' });
+              }
+            }, 150);
+          }
+        };
+        summary.addEventListener('click', toggle);
+        summary.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
+
+      /* When a #work-* anchor link is followed (or page loads with one), open the matching card. */
+      function openCardFromHash() {
+        const h = location.hash || '';
+        if (!h.startsWith('#work-')) return;
+        const target = document.querySelector(h);
+        if (!target || !target.classList.contains('card')) return;
+        // Reset filters to All
+        const allBtn = document.querySelector('.filter-tag[data-tag=""]');
+        if (allBtn && !allBtn.classList.contains('active')) allBtn.click();
+        // Expand if not already
+        if (!target.classList.contains('expanded')) {
+          const summary = target.querySelector('.card-summary');
+          if (summary) summary.click();
+        }
+        // Scroll into view (slight delay so expand transition starts)
+        setTimeout(() => {
+          const rect = target.getBoundingClientRect();
+          const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70;
+          window.scrollTo({ top: window.scrollY + rect.top - headerH - 16, behavior: 'smooth' });
+        }, 200);
+      }
+      window.addEventListener('hashchange', openCardFromHash);
+      // Also run on initial page load if hash is present
+      if (location.hash.startsWith('#work-')) {
+        // Wait for layout/paint
+        setTimeout(openCardFromHash, 250);
+      }
+    })();
+
+    /* ============ COLLABORATION GRAPH (D3) ============ */
+    (function () {
+      if (typeof d3 === 'undefined') return;
+      const svgEl = document.getElementById('networkSvg');
+      const tooltip = document.getElementById('networkTooltip');
+      const wrap = document.getElementById('networkWrap');
+      if (!svgEl || !wrap) return;
+
+      const W = 460, H = 460;
+
+      // Key recurring co-authors / collaborators
+      const collaborators = [
+        { id: 'Patil',      type: 'person', full: 'Kiran R. Patil',         affil: 'Cambridge · EMBL',           papers: 7 },
+        { id: 'Ralser',     type: 'person', full: 'Markus Ralser',          affil: 'Crick Institute · Charité Berlin', papers: 1 },
+        { id: 'Blasche',    type: 'person', full: 'Sonja Blasche',          affil: 'Cambridge · ex-Patil Lab',   papers: 2 },
+        { id: 'Basile',     type: 'person', full: 'Arianna Basile',         affil: 'MRC Toxicology Unit · Cambridge', papers: 1 },
+        { id: 'Yousif',     type: 'person', full: 'Ghada Yousif',           affil: 'Cambridge · ex-Patil Lab',   papers: 1 },
+        { id: 'Zelezniak',  type: 'person', full: 'Aleksej Zelezniak',      affil: 'Chalmers Univ.',             papers: 2 },
+        { id: 'Buric',      type: 'person', full: 'Filip Buric',            affil: 'Chalmers Univ.',             papers: 1 },
+        { id: 'Kerkhoven',  type: 'person', full: 'Eduard Kerkhoven',       affil: 'Chalmers · SysBioChalmers',  papers: 1 },
+        { id: 'Nielsen',    type: 'person', full: 'Jens Nielsen',           affil: 'Chalmers · BioInnovation Inst.', papers: 1 },
+        { id: 'Kost',       type: 'person', full: 'Christian Kost',         affil: 'Osnabrück Univ.',            papers: 1 },
+        { id: 'Melkonian',  type: 'person', full: 'Chrats Melkonian',       affil: 'Wageningen Univ.',           papers: 1 },
+        { id: 'Machado',    type: 'person', full: 'Daniel Machado',         affil: 'Univ. Bremen · ex-EMBL',     papers: 1 },
+        { id: 'Zeidan',     type: 'person', full: 'Ahmad A. Zeidan',        affil: 'Chr. Hansen · Industry',     papers: 1 },
+        { id: 'Almeida',    type: 'person', full: 'Alexandre Almeida',      affil: 'EMBL-EBI · Cambridge',       papers: 1 },
+        { id: 'Beal',       type: 'person', full: 'Jacob Beal',             affil: 'iGEM consortium',            papers: 2 }
+      ];
+
+      // Papers, with their cardIndex matching the order of #cardsContainer children
+      const papers = [
+        { id: 'metagem',  type: 'paper', title: 'metaGEM',                 year: 2021, venue: 'NAR',              cit: 125, group: 'tools',     cardIndex: 0 },
+        { id: 'cheese',   type: 'paper', title: 'Cheese flavor',           year: 2023, venue: 'Nat. Commun.',     cit: 95,  group: 'industry',  cardIndex: 1 },
+        { id: 'plastic',  type: 'paper', title: 'Plastic degraders',       year: 2021, venue: 'mBio',             cit: 142, group: 'discovery', cardIndex: 2 },
+        { id: 'soil',     type: 'paper', title: 'Soil cross-feeding',      year: 2025, venue: 'bioRxiv',          cit: 5,   group: 'agritech',  cardIndex: 3 },
+        { id: 'odcount',  type: 'paper', title: 'Bacterial OD count',      year: 2020, venue: 'Comm. Biol.',      cit: 328, group: 'methods',   cardIndex: 4 },
+        { id: 'drug',     type: 'paper', title: 'Drug tolerance',          year: 2022, venue: 'Nat. Microbiol.',  cit: 132, group: 'discovery', cardIndex: 5 },
+        { id: 'entero',   type: 'paper', title: 'Enterobacteriaceae',      year: 2025, venue: 'Nat. Microbiol.',  cit: 69,  group: 'discovery', cardIndex: 6 },
+        { id: 'igem',     type: 'paper', title: 'iGEM fluorescence',       year: 2021, venue: 'PLoS ONE',         cit: 16,  group: 'methods',   cardIndex: 7 },
+        { id: 'frog',     type: 'paper', title: 'FROG GEM',                year: 2024, venue: 'bioRxiv',          cit: 11,  group: 'tools',     cardIndex: 8 },
+        { id: 'hanpo',    type: 'paper', title: 'Hansenula GEM',           year: 2022, venue: 'Methods Mol Biol', cit: 7,   group: 'tools',     cardIndex: 9 },
+        { id: 'cdiff',    type: 'paper', title: 'C. diff resistance',      year: 2024, venue: 'bioRxiv',          cit: 1,   group: 'discovery', cardIndex: 10 },
+        { id: 'thesis',   type: 'paper', title: 'PhD Thesis',              year: 2024, venue: 'Cambridge',        cit: 0,   group: 'tools',     cardIndex: 11 }
+      ];
+
+      const nodes = [...collaborators, ...papers];
+
+      const links = [
+        { source: 'metagem', target: 'Patil' },
+        { source: 'metagem', target: 'Zelezniak' },
+        { source: 'metagem', target: 'Buric' },
+        { source: 'cheese',  target: 'Patil' },
+        { source: 'cheese',  target: 'Melkonian' },
+        { source: 'cheese',  target: 'Machado' },
+        { source: 'cheese',  target: 'Blasche' },
+        { source: 'cheese',  target: 'Zeidan' },
+        { source: 'plastic', target: 'Zelezniak' },
+        { source: 'soil',    target: 'Patil' },
+        { source: 'soil',    target: 'Kost' },
+        { source: 'soil',    target: 'Yousif' },
+        { source: 'odcount', target: 'Beal' },
+        { source: 'igem',    target: 'Beal' },
+        { source: 'drug',    target: 'Patil' },
+        { source: 'drug',    target: 'Ralser' },
+        { source: 'drug',    target: 'Blasche' },
+        { source: 'entero',  target: 'Patil' },
+        { source: 'entero',  target: 'Almeida' },
+        { source: 'cdiff',   target: 'Patil' },
+        { source: 'cdiff',   target: 'Basile' },
+        { source: 'thesis',  target: 'Patil' },
+        { source: 'hanpo',   target: 'Kerkhoven' },
+        { source: 'frog',    target: 'Nielsen' }
+      ];
+
+      const groupColor = {
+        tools:     '#7DD3A0',
+        industry:  '#F5C26B',
+        discovery: '#A7E5BD',
+        agritech:  '#5BC689',
+        methods:   '#9BB8A6'
+      };
+
+      const svg = d3.select(svgEl);
+      svg.selectAll('*').remove();
+
+      const accentColor = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7DD3A0';
+      const dimColor    = () => getComputedStyle(document.documentElement).getPropertyValue('--fg-dim').trim() || '#5C665E';
+      const mutedColor  = () => getComputedStyle(document.documentElement).getPropertyValue('--fg-muted').trim() || '#8A968D';
+      const surfaceCol  = () => getComputedStyle(document.documentElement).getPropertyValue('--surface').trim() || '#161B17';
+
+      const linkGroup = svg.append('g').attr('class', 'links');
+      const nodeGroup = svg.append('g').attr('class', 'nodes');
+
+      const linkSel = linkGroup.selectAll('line')
+        .data(links)
+        .enter().append('line')
+        .attr('class', 'net-link')
+        .attr('stroke', dimColor())
+        .attr('stroke-opacity', 0.4)
+        .attr('stroke-width', 1.1);
+
+      const nodeSel = nodeGroup.selectAll('g')
+        .data(nodes)
+        .enter().append('g')
+        .attr('class', 'net-node')
+        .style('cursor', d => d.type === 'paper' ? 'pointer' : 'grab');
+
+      // Paper nodes: small filled circles, color by group
+      nodeSel.filter(d => d.type === 'paper')
+        .append('circle')
+        .attr('r', d => 4 + Math.sqrt(d.cit) * 0.5)
+        .attr('fill', d => groupColor[d.group] || '#7DD3A0')
+        .attr('fill-opacity', 0.85)
+        .attr('stroke', d => groupColor[d.group] || '#7DD3A0')
+        .attr('stroke-width', 1);
+
+      // Collaborator nodes: hollow rings, sized by paper count
+      nodeSel.filter(d => d.type === 'person')
+        .append('circle')
+        .attr('r', d => 8 + d.papers * 1.4)
+        .attr('fill', accentColor())
+        .attr('fill-opacity', 0.18)
+        .attr('stroke', accentColor())
+        .attr('stroke-width', 2);
+
+      // Collaborator labels (placed BELOW the ring so they can be bigger)
+      nodeSel.filter(d => d.type === 'person')
+        .append('text')
+        .attr('class', 'net-label')
+        .attr('text-anchor', 'middle')
+        .attr('dy', d => 8 + d.papers * 1.4 + 14)
+        .attr('font-size', '13px')
+        .attr('font-weight', 700)
+        .attr('fill', accentColor())
+        .style('paint-order', 'stroke')
+        .style('stroke', surfaceCol())
+        .style('stroke-width', '3px')
+        .style('stroke-linejoin', 'round')
+        .text(d => d.id);
+
+      const sim = d3.forceSimulation(nodes)
+        .force('link', d3.forceLink(links).id(d => d.id).distance(d => d.target.type === 'person' ? 75 : 55).strength(0.65))
+        .force('charge', d3.forceManyBody().strength(d => d.type === 'person' ? -380 : -130))
+        .force('center', d3.forceCenter(W / 2, H / 2))
+        .force('collide', d3.forceCollide().radius(d => d.type === 'person' ? 36 + d.papers * 1.4 : 12))
+        .alphaDecay(0.03);
+
+      sim.on('tick', () => {
+        nodes.forEach(n => {
+          const r = n.type === 'person' ? 26 + n.papers * 1.4 : 8;
+          n.x = Math.max(r, Math.min(W - r, n.x));
+          n.y = Math.max(r, Math.min(H - r - (n.type === 'person' ? 14 : 0), n.y));
+        });
+        linkSel
+          .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+        nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+      });
+
+      // Drag (collaborators only; paper click should expand card)
+      const drag = d3.drag()
+        .on('start', (event, d) => { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on('drag',  (event, d) => { d.fx = event.x; d.fy = event.y; })
+        .on('end',   (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
+      nodeSel.filter(d => d.type === 'person').call(drag);
+
+      // Tooltip helpers — flip-quadrant placement so it never clips off the container
+      function placeTooltip(event) {
+        const rect = wrap.getBoundingClientRect();
+        const tw = tooltip.offsetWidth;
+        const th = tooltip.offsetHeight;
+        const mx = event.clientX - rect.left;
+        const my = event.clientY - rect.top;
+        let x = mx + 12;
+        let y = my + 12;
+        // Flip horizontally if tooltip would overflow right edge
+        if (x + tw > rect.width - 8) x = mx - tw - 12;
+        // Flip vertically if tooltip would overflow bottom edge
+        if (y + th > rect.height - 8) y = my - th - 12;
+        // Final clamp inside container
+        x = Math.max(8, Math.min(rect.width - tw - 8, x));
+        y = Math.max(8, Math.min(rect.height - th - 8, y));
+        tooltip.style.left = x + 'px';
+        tooltip.style.top  = y + 'px';
+      }
+      function showTooltip(event, html) {
+        tooltip.innerHTML = html;
+        // Render once invisible to measure, then position
+        tooltip.style.visibility = 'hidden';
+        tooltip.classList.add('visible');
+        // Force layout so offsetWidth/offsetHeight are correct
+        // eslint-disable-next-line no-unused-expressions
+        tooltip.offsetWidth;
+        placeTooltip(event);
+        tooltip.style.visibility = '';
+      }
+      function hideTooltip() { tooltip.classList.remove('visible'); }
+
+      function highlight(d) {
+        const connected = new Set([d.id]);
+        links.forEach(l => {
+          if (l.source.id === d.id) connected.add(l.target.id);
+          if (l.target.id === d.id) connected.add(l.source.id);
+        });
+        nodeSel.style('opacity', n => connected.has(n.id) ? 1 : 0.25);
+        linkSel.style('stroke-opacity', l => (l.source.id === d.id || l.target.id === d.id) ? 0.95 : 0.08);
+      }
+      function clearHighlight() {
+        nodeSel.style('opacity', 1);
+        linkSel.style('stroke-opacity', 0.4);
+      }
+
+      // Paper hover + click
+      nodeSel.filter(d => d.type === 'paper')
+        .on('mouseenter', (event, d) => {
+          highlight(d);
+          showTooltip(event, `<strong>${d.title}</strong><br>${d.year} · ${d.venue}${d.cit ? ' · ' + d.cit + ' cit' : ''}<br><span style="opacity:0.7;font-size:0.7rem">click to expand case study</span>`);
+        })
+        .on('mousemove', event => {
+          if (tooltip.classList.contains('visible')) placeTooltip(event);
+        })
+        .on('mouseleave', () => { clearHighlight(); hideTooltip(); })
+        .on('click', (event, d) => {
+          // Scroll to work section and expand the matching card
+          const cards = document.querySelectorAll('#cardsContainer .card');
+          if (cards[d.cardIndex]) {
+            const target = cards[d.cardIndex];
+            const summary = target.querySelector('.card-summary');
+            // Reset filters to All to ensure card is visible
+            const allBtn = document.querySelector('.filter-tag[data-tag=""]');
+            if (allBtn && !allBtn.classList.contains('active')) allBtn.click();
+            // Open card (its handler closes others)
+            if (summary && !target.classList.contains('expanded')) summary.click();
+            // Smooth-scroll into view
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+          }
+        });
+
+      // Collaborator hover
+      nodeSel.filter(d => d.type === 'person')
+        .on('mouseenter', (event, d) => {
+          highlight(d);
+          showTooltip(event, `<strong>${d.full}</strong><br>${d.affil}<br><span style="opacity:0.7;font-size:0.7rem">${d.papers} co-authored paper${d.papers === 1 ? '' : 's'}</span>`);
+        })
+        .on('mousemove', event => {
+          if (tooltip.classList.contains('visible')) placeTooltip(event);
+        })
+        .on('mouseleave', () => { clearHighlight(); hideTooltip(); });
+
+      // Mobile: stop simulation after settling
+      if (window.matchMedia('(max-width: 640px)').matches) {
+        setTimeout(() => sim.stop(), 4000);
+      }
+
+      // Re-color on theme change
+      const themeObserver = new MutationObserver(() => {
+        const a = accentColor(); const dim = dimColor(); const surf = surfaceCol();
+        nodeSel.filter(d => d.type === 'person').select('circle').attr('stroke', a).attr('fill', a);
+        nodeSel.filter(d => d.type === 'person').select('text').attr('fill', a).style('stroke', surf);
+        linkSel.attr('stroke', dim);
+      });
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    })();
+
+    /* ============ ALTMETRIC LAZY-LOAD ============ */
+    (function () {
+      const workSection = document.getElementById('work');
+      if (!workSection || !('IntersectionObserver' in window)) {
+        loadAltmetric();
+        return;
+      }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            loadAltmetric();
+            io.disconnect();
+          }
+        });
+      }, { rootMargin: '200px' });
+      io.observe(workSection);
+
+      function loadAltmetric() {
+        if (document.getElementById('altmetric-script')) return;
+        const s = document.createElement('script');
+        s.id = 'altmetric-script';
+        s.src = 'https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Now — Francisco Zorrilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <style>
+    :root {
+      --bg: #0B0E0C;
+      --surface: #161B17;
+      --border: #2A332D;
+      --fg: #E6EDE7;
+      --fg-muted: #8A968D;
+      --fg-dim: #5C665E;
+      --accent: #7DD3A0;
+      --accent-hover: #A7E5BD;
+      --space-1: 4px;
+      --space-3: 8px;
+      --space-4: 12px;
+      --space-5: 16px;
+      --space-6: 24px;
+      --space-8: 48px;
+      --space-9: 64px;
+    }
+
+    [data-theme="light"] {
+      --bg: #FAFAF7;
+      --surface: #F2F3EE;
+      --border: #E0E2DA;
+      --fg: #0E1310;
+      --fg-muted: #4A5350;
+      --fg-dim: #7A847F;
+      --accent: #1F7A4D;
+      --accent-hover: #185E3A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; }
+    h1 { font-size: 2.5rem; margin-bottom: var(--space-4); }
+    h2 { font-size: 1.75rem; margin-top: var(--space-8); margin-bottom: var(--space-4); }
+    h3 { font-size: 1.125rem; }
+
+    .container { max-width: 68rem; margin: 0 auto; padding: 0 var(--space-5); }
+    .section { padding: var(--space-9) 0; }
+
+    header {
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: rgba(11, 14, 12, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    [data-theme="light"] header {
+      background: rgba(250, 250, 247, 0.95);
+    }
+
+    .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+    nav { display: flex; gap: var(--space-6); font-size: 0.9rem; }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .eyebrow { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg-muted); margin-bottom: var(--space-3); }
+
+    .prose p { max-width: 68ch; margin-bottom: var(--space-5); }
+    .prose ul { margin-left: var(--space-5); margin-bottom: var(--space-4); }
+    .prose li { margin-bottom: var(--space-2); }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin: var(--space-6) 0;
+    }
+
+    .project-card h3 { margin-top: 0; }
+
+    .project-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      margin-bottom: var(--space-3);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-5);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: var(--space-6) 0;
+      color: var(--fg-dim);
+      font-size: 0.875rem;
+      font-family: 'JetBrains Mono', monospace;
+      text-align: center;
+    }
+
+    .footer-links { display: flex; justify-content: center; gap: var(--space-5); margin-bottom: var(--space-3); }
+
+    .text-muted { color: var(--fg-muted); }
+    .text-dim { color: var(--fg-dim); }
+
+    strong { font-weight: 600; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      try {
+        const stored = localStorage.getItem('fz-theme');
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = stored || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body data-theme="dark">
+  <header>
+    <div class="logo">fz</div>
+    <nav>
+      <a href="index.html">home</a>
+      <a href="metagem.html">metagem</a>
+      <a href="work.html">work</a>
+      <a href="cv.html">cv</a>
+      <a href="talks.html">talks</a>
+      <a href="contact.html">contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">May 2026</span>
+        <h1>Now</h1>
+        <p class="text-muted">What I'm working on and what comes next.</p>
+
+        <h2>Current Work</h2>
+
+        <div class="project-card">
+          <div class="project-meta">NCCR Microbiomes flagship project</div>
+          <h3>Scalable SynCom design for soil resilience</h3>
+          <p>Co-leading the computational track of a multi-center, 4-year NCCR Microbiomes flagship project across ETH Zürich, University of Bern, and EAWAG. Goal: establish mechanistic rules for designing synthetic microbial communities (SynComs) that survive field deployment without loss of critical strains.</p>
+          <p>My team is building the computational infrastructure: constraint-based metabolic models, pangenomics analysis, and machine learning to identify trophic dependencies and niche-filling strains. The hypothesis is that obligate cross-feeding relationships predict SynCom stability.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-meta">AI & structural bioinformatics</div>
+          <h3>GPU-accelerated protein annotation pipeline</h3>
+          <p><strong>The bottleneck:</strong> AlphaFold2 was cutting into metagenomic workflows. Going from 14,000 MAGs to 3D protein structures took 2+ months on conventional HPC.</p>
+          <p><strong>The fix:</strong> Co-designed a pipeline using <strong>ProstT5 + Foldseek</strong> (rapid structural language model + fast 3Di matching). Result: <strong>100× speedup</strong>. Two-month bottleneck → one week.</p>
+          <p>This is now the standard annotation tool for the lab. It's currently powering functional prediction across soil metagenomes for the NCCR project.</p>
+        </div>
+
+        <h2>Looking Forward</h2>
+
+        <div class="prose">
+          <p>I'm <strong>actively exploring industry roles</strong> in agbio, microbial biotech, and AI-for-biology. The transition makes sense: I've built production tools (metaGEM), maintained them under real user load, and proven I can direct cross-functional teams. What I want next is to keep doing that work, but focused on products that reach customers rather than papers that reach reviewers.</p>
+
+          <p><strong>Ideal next step:</strong> A research scientist or research engineering role at a company working on soil microbiomes, SynCom products, strain engineering, or enzyme discovery. Remote-EU or Zurich-based. Open to full-time or contract arrangements.</p>
+
+          <p><strong>Why now?</strong> The academic-to-industry transition often feels like a culture shift, but for me it's a natural extension. I've already shipped software, maintained it, mentored users, and contributed to commercial partnerships (e.g., cheese fermentation work with Chr. Hansen). I'm ready to commit to that flow full-time.</p>
+        </div>
+
+        <h2>Side Interests</h2>
+
+        <div class="prose">
+          <ul>
+            <li><strong>Open-source sustainability:</strong> How do scientific software tools get maintained in the wild? metaGEM has 260+ stars; I want to understand what keeps tools alive and what kills them.</li>
+            <li><strong>PhD→Product CV reframing:</strong> The transition from academic CV to industry story is non-obvious. I'm documenting how to frame research impact in terms of shipped artifacts.</li>
+            <li><strong>Long-distance running:</strong> Half-marathons, trail routes around Zürich.</li>
+          </ul>
+        </div>
+
+        <h2>How to Reach Me</h2>
+
+        <div class="prose">
+          <p>Email is fastest: <a href="mailto:fzorrill@ethz.ch">fzorrill@ethz.ch</a></p>
+          <p>Or connect on <a href="https://www.linkedin.com/in/fzorrilla94/">LinkedIn</a>, check my <a href="https://github.com/franciscozorrilla">GitHub</a>, or read my work on <a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&hl=en">Google Scholar</a>.</p>
+        </div>
+
+        <div style="margin-top: var(--space-8); padding: var(--space-6); background: var(--surface); border: 1px solid var(--border); border-radius: 8px;">
+          <p style="margin-bottom: var(--space-4);"><strong>Want to chat?</strong></p>
+          <p style="margin-bottom: var(--space-5); color: var(--fg-muted);">I'm happy to discuss computational biology, open-source tools, industry research roles, or anything else on your mind. Always interested in meeting people building things in biotech.</p>
+          <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary">Email me</a>
+        </div>
+
+        <p style="margin-top: var(--space-8); color: var(--fg-dim); font-size: 0.875rem;">Last updated: May 6, 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">home</a>
+        <a href="work.html">work</a>
+        <a href="cv.html">cv</a>
+        <a href="talks.html">talks</a>
+        <a href="contact.html">contact</a>
+        <a href="https://github.com/franciscozorrilla/franciscozorrilla.github.io">source</a>
+      </div>
+      <p>Built with Jekyll, no trackers</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    function updateThemeIcon() {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('fz-theme', newTheme);
+      updateThemeIcon();
+    });
+
+    updateThemeIcon();
+  </script>
+</body>
+</html>
