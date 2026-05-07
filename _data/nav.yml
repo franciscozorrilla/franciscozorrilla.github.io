@@ -1,6 +1,0 @@
-- {label: "metaGEM", url: "/metagem/", match: "/metagem"}
-- {label: "work",    url: "/work/",    match: "/work"}
-- {label: "cv",      url: "/cv/",      match: "/cv"}
-- {label: "talks",   url: "/talks/",   match: "/talks"}
-- {label: "now",     url: "/now/",     match: "/now"}
-- {label: "contact", url: "/contact/", match: "/contact"}
