@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAFAF7">
   <meta name="theme-color" content="#0B0E0C" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
-  <meta name="color-scheme" content="dark light">
+  <meta name="color-scheme" content="light dark">
   <title>Francisco Zorrilla · Computational Biologist</title>
   <meta name="description" content="Computational biologist building production tools for microbiome-scale science. Available October 2026 for industry research roles in the Zurich/Basel corridor or fully remote within Switzerland.">
 
@@ -41,6 +41,11 @@
       --accent-soft: rgba(125, 211, 160, 0.14);
       --warn: #F5C26B;
       --code-bg: #0E1310;
+      --graph-tools: #7DD3A0;
+      --graph-industry: #F5C26B;
+      --graph-discovery: #A7E5BD;
+      --graph-agtech: #5BC689;
+      --graph-methods: #9BB8A6;
       --header-h: 70px;
 
       --space-1: 4px;
@@ -57,16 +62,21 @@
 
     [data-theme="light"] {
       --bg: #FAFAF7;
-      --surface: #F2F3EE;
-      --border: #E0E2DA;
+      --surface: #F1F3F6;
+      --border: #DDE1E7;
       --fg: #0E1310;
-      --fg-muted: #4A5350;
-      --fg-dim: #7A847F;
-      --accent: #1F7A4D;
-      --accent-hover: #185E3A;
-      --accent-soft: rgba(31, 122, 77, 0.08);
+      --fg-muted: #4A5358;
+      --fg-dim: #7A848A;
+      --accent: #1E5FA8;
+      --accent-hover: #154A85;
+      --accent-soft: rgba(30, 95, 168, 0.08);
       --warn: #B47210;
-      --code-bg: #F0F1EB;
+      --code-bg: #EFF1F4;
+      --graph-tools: #1E5FA8;
+      --graph-industry: #B47210;
+      --graph-discovery: #5B8FCF;
+      --graph-agtech: #2E7DBF;
+      --graph-methods: #6C7A8A;
     }
 
     [data-theme="dark"] {
@@ -81,6 +91,11 @@
       --accent-soft: rgba(125, 211, 160, 0.14);
       --warn: #F5C26B;
       --code-bg: #0E1310;
+      --graph-tools: #7DD3A0;
+      --graph-industry: #F5C26B;
+      --graph-discovery: #A7E5BD;
+      --graph-agtech: #5BC689;
+      --graph-methods: #9BB8A6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -119,7 +134,7 @@
       border-radius: 4px;
       font-size: 0.9em;
     }
-    .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--fg-muted); }
+    .mono { font-family: 'Inter', sans-serif; font-style: italic; font-size: 0.9rem; color: var(--fg-muted); }
 
     .container { max-width: 72rem; margin: 0 auto; padding: 0 var(--space-5); }
 
@@ -225,10 +240,10 @@
       height: 220px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--accent);
+      border: 2px solid var(--fg);
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
       margin-bottom: var(--space-5);
-      transition: transform 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
     .hero-headshot:hover { transform: scale(1.02); }
     @media (max-width: 640px) {
@@ -580,6 +595,9 @@
       transition: border-color 0.2s, transform 0.2s, background-color 0.25s ease;
       overflow: hidden;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
     }
     .card.hidden { display: none; }
     .card:hover:not(.expanded) { border-color: var(--accent); transform: translateY(-2px); }
@@ -588,6 +606,7 @@
       grid-column: 1 / -1;
       max-width: 56rem;
       margin: 0 auto;
+      min-height: 0;
     }
     @media (min-width: 880px) {
       .card.expanded { grid-column: span 2; max-width: 100%; }
@@ -600,6 +619,7 @@
       flex-direction: column;
       gap: var(--space-3);
       position: relative;
+      flex: 1;
     }
     .card-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
@@ -630,7 +650,19 @@
       padding-right: 32px;
     }
 
-    .card-desc { color: var(--fg-muted); font-size: 0.9rem; }
+    .card-desc {
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card.expanded .card-desc {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
 
     .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
     .tag {
@@ -659,7 +691,8 @@
       font-size: 0.7rem;
       color: var(--fg-dim);
       letter-spacing: 0.05em;
-      margin-top: var(--space-2);
+      margin-top: auto;
+      padding-top: var(--space-2);
     }
     .card.expanded .card-toggle-hint::after { content: ' ▴ click to collapse'; }
     .card:not(.expanded) .card-toggle-hint::after { content: ' ▾ click to expand'; }
@@ -1035,6 +1068,7 @@
       .section { padding: var(--space-8) 0; }
       .hero { padding: var(--space-7) 0 var(--space-6); }
       nav.site-nav { gap: var(--space-4); font-size: 0.8rem; }
+      .logo { font-size: 1rem; }
       .impact-strip { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
       .impact-value { font-size: 1.5rem; }
       .theme-toggle { width: 44px; height: 44px; font-size: 1.1rem; }
@@ -1077,15 +1111,15 @@
   </style>
 
   <script>
-    // Anti-FOUC theme
+    // Anti-FOUC theme — default to light, opt into dark only via OS preference or stored choice
     (function () {
       try {
         const stored = localStorage.getItem('fz-theme');
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        const theme = stored || (prefersLight ? 'light' : 'dark');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.setAttribute('data-theme', 'light');
       }
     })();
   </script>
@@ -1120,7 +1154,7 @@
 <body>
   <header class="site-header">
     <div class="container site-header-inner">
-      <a href="#top" class="logo" aria-label="Home">fz</a>
+      <a href="#top" class="logo" aria-label="Home">F. Zorrilla</a>
       <nav class="site-nav" aria-label="Primary">
         <a href="#about">about</a>
         <a href="#cv">cv</a>
@@ -2057,7 +2091,7 @@
             <tr>
               <td class="col-date">2026 · Jan</td>
               <td><a href="https://nccr-microbiomes.ch/education/january-short-course/" target="_blank" rel="noopener">NCCR Microbiomes Winter School</a></td>
-              <td class="col-venue">Switzerland</td>
+              <td class="col-venue">UNIL · Lausanne</td>
               <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
@@ -2526,21 +2560,25 @@
         { source: 'frog',    target: 'Nielsen' }
       ];
 
-      const groupColor = {
-        tools:     '#7DD3A0',
-        industry:  '#F5C26B',
-        discovery: '#A7E5BD',
-        agtech:  '#5BC689',
-        methods:   '#9BB8A6'
+      const cssVar = (name, fallback) => getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+      const groupColor = (group) => {
+        const map = {
+          tools:     cssVar('--graph-tools',     '#7DD3A0'),
+          industry:  cssVar('--graph-industry',  '#F5C26B'),
+          discovery: cssVar('--graph-discovery', '#A7E5BD'),
+          agtech:    cssVar('--graph-agtech',    '#5BC689'),
+          methods:   cssVar('--graph-methods',   '#9BB8A6')
+        };
+        return map[group] || cssVar('--accent', '#7DD3A0');
       };
 
       const svg = d3.select(svgEl);
       svg.selectAll('*').remove();
 
-      const accentColor = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#7DD3A0';
-      const dimColor    = () => getComputedStyle(document.documentElement).getPropertyValue('--fg-dim').trim() || '#5C665E';
-      const mutedColor  = () => getComputedStyle(document.documentElement).getPropertyValue('--fg-muted').trim() || '#8A968D';
-      const surfaceCol  = () => getComputedStyle(document.documentElement).getPropertyValue('--surface').trim() || '#161B17';
+      const accentColor = () => cssVar('--accent',   '#7DD3A0');
+      const dimColor    = () => cssVar('--fg-dim',   '#5C665E');
+      const mutedColor  = () => cssVar('--fg-muted', '#8A968D');
+      const surfaceCol  = () => cssVar('--surface',  '#161B17');
 
       const linkGroup = svg.append('g').attr('class', 'links');
       const nodeGroup = svg.append('g').attr('class', 'nodes');
@@ -2563,9 +2601,9 @@
       nodeSel.filter(d => d.type === 'paper')
         .append('circle')
         .attr('r', d => 4 + Math.sqrt(d.cit) * 0.5)
-        .attr('fill', d => groupColor[d.group] || '#7DD3A0')
+        .attr('fill', d => groupColor(d.group))
         .attr('fill-opacity', 0.85)
-        .attr('stroke', d => groupColor[d.group] || '#7DD3A0')
+        .attr('stroke', d => groupColor(d.group))
         .attr('stroke-width', 1);
 
       // Collaborator nodes: hollow rings, sized by paper count
@@ -2706,11 +2744,14 @@
         setTimeout(() => sim.stop(), 4000);
       }
 
-      // Re-color on theme change
+      // Re-color on theme change (people, papers, links, and label halos all rebind to the active palette)
       const themeObserver = new MutationObserver(() => {
         const a = accentColor(); const dim = dimColor(); const surf = surfaceCol();
         nodeSel.filter(d => d.type === 'person').select('circle').attr('stroke', a).attr('fill', a);
         nodeSel.filter(d => d.type === 'person').select('text').attr('fill', a).style('stroke', surf);
+        nodeSel.filter(d => d.type === 'paper').select('circle')
+          .attr('fill', d => groupColor(d.group))
+          .attr('stroke', d => groupColor(d.group));
         linkSel.attr('stroke', dim);
       });
       themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
