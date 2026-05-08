@@ -1,0 +1,210 @@
+{
+  "10.1093/nar/gkab815": {
+    "label": "metaGEM",
+    "tracked": true,
+    "score": null,
+    "press": 2,
+    "social": 77,
+    "by_channel": {
+      "blogs": {
+        "n": 2,
+        "phrase": "blogs"
+      },
+      "twitter": {
+        "n": 77,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1038/s41467-023-41059-2": {
+    "label": "Cheese",
+    "tracked": true,
+    "score": null,
+    "press": 21,
+    "social": 81,
+    "by_channel": {
+      "news": {
+        "n": 17,
+        "phrase": "news outlets"
+      },
+      "blogs": {
+        "n": 4,
+        "phrase": "blogs"
+      },
+      "twitter": {
+        "n": 81,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1128/mBio.02155-21": {
+    "label": "Plastic",
+    "tracked": true,
+    "score": null,
+    "press": 90,
+    "social": 172,
+    "by_channel": {
+      "news": {
+        "n": 76,
+        "phrase": "news outlets"
+      },
+      "blogs": {
+        "n": 14,
+        "phrase": "blogs"
+      },
+      "twitter": {
+        "n": 171,
+        "phrase": "X users"
+      },
+      "patent": {
+        "n": 2,
+        "phrase": "patents"
+      },
+      "facebook": {
+        "n": 1,
+        "phrase": "Facebook page"
+      }
+    }
+  },
+  "10.1101/2025.01.29.635426": {
+    "label": "Soil-cf",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 32,
+    "by_channel": {
+      "twitter": {
+        "n": 32,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1038/s42003-020-01127-5": {
+    "label": "OD",
+    "tracked": true,
+    "score": null,
+    "press": 2,
+    "social": 42,
+    "by_channel": {
+      "news": {
+        "n": 2,
+        "phrase": "news outlets"
+      },
+      "twitter": {
+        "n": 42,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1038/s41564-022-01072-5": {
+    "label": "Drug",
+    "tracked": true,
+    "score": null,
+    "press": 19,
+    "social": 149,
+    "by_channel": {
+      "news": {
+        "n": 17,
+        "phrase": "news outlets"
+      },
+      "blogs": {
+        "n": 2,
+        "phrase": "blogs"
+      },
+      "twitter": {
+        "n": 149,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1038/s41564-024-01912-6": {
+    "label": "Entero",
+    "tracked": true,
+    "score": null,
+    "press": 118,
+    "social": 85,
+    "by_channel": {
+      "news": {
+        "n": 111,
+        "phrase": "news outlets"
+      },
+      "blogs": {
+        "n": 7,
+        "phrase": "blogs"
+      },
+      "twitter": {
+        "n": 85,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1371/journal.pone.0252263": {
+    "label": "iGEM",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 12,
+    "by_channel": {
+      "twitter": {
+        "n": 10,
+        "phrase": "X users"
+      },
+      "reddit": {
+        "n": 2,
+        "phrase": "Redditors"
+      }
+    }
+  },
+  "10.1101/2024.09.24.614797": {
+    "label": "FROG",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 30,
+    "by_channel": {
+      "twitter": {
+        "n": 30,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1101/2021.06.18.448943": {
+    "label": "HansPre",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 4,
+    "by_channel": {
+      "twitter": {
+        "n": 4,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1007/978-1-0716-2399-2_16": {
+    "label": "HansBook",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 4,
+    "by_channel": {
+      "twitter": {
+        "n": 4,
+        "phrase": "X users"
+      }
+    }
+  },
+  "10.1101/2024.08.29.610284": {
+    "label": "Cdiff",
+    "tracked": true,
+    "score": null,
+    "press": 0,
+    "social": 2,
+    "by_channel": {
+      "twitter": {
+        "n": 2,
+        "phrase": "X users"
+      }
+    }
+  }
+}

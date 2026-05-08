@@ -160,6 +160,13 @@
       color: var(--fg-muted);
       margin-bottom: var(--space-3);
     }
+    .cv-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
     .lede {
       font-size: 1.125rem;
       color: var(--fg-muted);
@@ -221,7 +228,7 @@
       font-size: 1rem;
       transition: all 0.2s;
     }
-    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle:hover { border-color: var(--fg); color: var(--fg); }
 
     /* Hero */
     .hero {
@@ -264,6 +271,13 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: var(--space-5);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .status-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent);
     }
     .status-pill::before {
       content: '';
@@ -436,7 +450,7 @@
     .net-link { transition: stroke-opacity 0.2s; }
     .net-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; pointer-events: none; user-select: none; }
 
-    /* Impact strip — 4 columns on desktop (2 rows of 4), 2 on tablet, 1 on mobile */
+    /* Impact strip: 4 columns on desktop (2 rows of 4), 2 on tablet, 1 on mobile */
     .impact-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -518,13 +532,20 @@
       font-size: 0.8rem;
       margin-right: var(--space-2);
       margin-bottom: var(--space-2);
-      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+    }
+    a.skill-tag:hover, a.skill-tag:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
     }
     .skill-tag.highlight {
       background: var(--accent-soft);
       border-color: var(--accent);
       color: var(--accent);
     }
+    .skill-tag.highlight:hover { filter: brightness(1.1); }
 
     /* Awards */
     .awards-list { margin-top: var(--space-5); }
@@ -585,8 +606,20 @@
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-auto-rows: 1fr;
       gap: var(--space-5);
+      align-items: stretch;
+    }
+    /* When a card is expanded, drop the equal-rows constraint so only that card grows.
+       Use grid-auto-flow: dense so following cards backfill the slot vacated by the
+       expanded card, and let the expanded card span every column for a full-width drawer. */
+    .cards-grid.has-expanded {
+      grid-auto-rows: auto;
+      grid-auto-flow: row dense;
       align-items: start;
+    }
+    .cards-grid.has-expanded .card.expanded {
+      grid-column: 1 / -1;
     }
     .card {
       background: var(--surface);
@@ -648,6 +681,8 @@
       font-weight: 600;
       margin: 0;
       padding-right: 32px;
+      min-height: 2.6em;
+      line-height: 1.3;
     }
 
     .card-desc {
@@ -657,6 +692,8 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      min-height: 4.05em;
+      line-height: 1.45;
     }
     .card.expanded .card-desc {
       display: block;
@@ -664,7 +701,7 @@
       overflow: visible;
     }
 
-    .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+    .card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: auto; padding-top: var(--space-2); }
     .tag {
       background: var(--accent-soft);
       border: 1px solid var(--accent);
@@ -685,6 +722,43 @@
       font-family: 'JetBrains Mono', monospace;
     }
     .card-footer .role { color: var(--fg-dim); }
+    .cite-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--border);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cite-link:hover, .cite-link:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .card-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--fg-muted);
+      letter-spacing: 0.02em;
+    }
+    .card-metrics span,
+    .card-metrics .metric-link { white-space: nowrap; }
+    .card-metrics strong { color: var(--fg); font-weight: 600; }
+    .card-metrics .metric-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dotted var(--border);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .card-metrics .metric-link:hover,
+    .card-metrics .metric-link:focus-visible {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .card-metrics .metric-link:hover strong,
+    .card-metrics .metric-link:focus-visible strong { color: var(--accent); }
 
     .card-toggle-hint {
       font-family: 'JetBrains Mono', monospace;
@@ -709,6 +783,27 @@
     }
     .card-expanded-inner {
       padding: var(--space-5) var(--space-5) var(--space-6);
+    }
+    /* When the expanded card is full-width (in-grid drawer), split the inner content
+       into 2 columns to roughly halve vertical scroll. Falls back to single column on
+       narrow viewports. */
+    @media (min-width: 880px) {
+      .cards-grid.has-expanded .card.expanded .card-expanded-inner {
+        column-count: 2;
+        column-gap: var(--space-7);
+      }
+    }
+    .card-expanded-inner h4 {
+      break-after: avoid;
+      -webkit-column-break-after: avoid;
+    }
+    .card-expanded-inner p,
+    .card-expanded-inner .chip-list,
+    .card-expanded-inner .altmetric-row,
+    .card-expanded-inner .card-links,
+    .card-expanded-inner ul {
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
     }
     .card-expanded h4 { margin-top: var(--space-4); margin-bottom: var(--space-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
     .card-expanded h4:first-child { margin-top: 0; }
@@ -800,40 +895,143 @@
     }
 
     /* metaGEM-specific aliases (kept for clarity in HTML) */
-    .metagem-layout { display: grid; grid-template-columns: 1fr 260px; gap: var(--space-7); margin: var(--space-6) 0; align-items: start; }
+    .metagem-layout { display: grid; grid-template-columns: 1fr 340px; gap: var(--space-7); margin: var(--space-6) 0; align-items: start; }
     .metagem-prose { min-width: 0; }
-    .metagem-stats-panel {
+    .metagem-rail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      position: sticky;
+      top: calc(var(--header-h) + 16px);
+    }
+    .metagem-stats-panel,
+    .metagem-zenodo-panel {
       display: flex;
       flex-direction: column;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: var(--space-5) var(--space-6);
-      position: sticky;
-      top: calc(var(--header-h) + 16px);
-      max-height: calc(100vh - var(--header-h) - 32px);
-      overflow-y: auto;
       transition: background-color 0.25s ease, border-color 0.25s ease;
     }
-    [data-theme="light"] .metagem-stats-panel { background: var(--surface); }
-    .section--surface .metagem-stats-panel { background: var(--bg); }
-    [data-theme="light"] .section--surface .metagem-stats-panel { background: var(--bg); }
+    .metagem-zenodo-panel { padding: var(--space-4) var(--space-5); }
+    [data-theme="light"] .metagem-stats-panel,
+    [data-theme="light"] .metagem-zenodo-panel { background: var(--surface); }
+    .section--surface .metagem-stats-panel,
+    .section--surface .metagem-zenodo-panel { background: var(--bg); }
+    [data-theme="light"] .section--surface .metagem-stats-panel,
+    [data-theme="light"] .section--surface .metagem-zenodo-panel { background: var(--bg); }
     @media (max-width: 880px) {
       .metagem-layout { grid-template-columns: 1fr; }
-      .metagem-stats-panel { position: static; max-height: none; overflow-y: visible; }
+      .metagem-rail { position: static; }
     }
-    .stat { text-align: left; padding: var(--space-4) 0; border-bottom: 1px solid var(--border); }
+    .rail-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+    .zenodo-head {
+      display: grid;
+      grid-template-columns: 1fr 50px 56px;
+      column-gap: var(--space-3);
+      font-size: 0.85rem;
+      color: var(--fg-dim);
+      padding: 0 0 4px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .zenodo-head > span:nth-child(2),
+    .zenodo-head > span:nth-child(3) { text-align: right; }
+
+    .zenodo-list { list-style: none; padding: 0; margin: 0; }
+    .zenodo-list li { border-bottom: 1px solid var(--border); }
+    .zenodo-list li:last-child { border-bottom: none; }
+    .zenodo-list a {
+      display: grid;
+      grid-template-columns: 1fr 50px 56px;
+      align-items: baseline;
+      column-gap: var(--space-3);
+      padding: 7px 0;
+      text-decoration: none;
+      color: var(--fg);
+      transition: color 0.2s ease;
+    }
+    .zenodo-list a:hover,
+    .zenodo-list a:focus-visible { color: var(--accent); }
+    .zenodo-list .z-title {
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+    .zenodo-list .z-views,
+    .zenodo-list .z-downloads {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--fg-muted);
+      white-space: nowrap;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .zenodo-list a:hover .z-views,
+    .zenodo-list a:hover .z-downloads,
+    .zenodo-list a:focus-visible .z-views,
+    .zenodo-list a:focus-visible .z-downloads { color: var(--accent); }
+    .zenodo-foot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--fg-dim);
+      margin: var(--space-3) 0 0 0;
+      padding-top: var(--space-3);
+      border-top: 1px dashed var(--border);
+      text-align: center;
+    }
+    .stat {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: var(--space-3);
+      row-gap: 2px;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat:has(.stat-caption) { grid-template-rows: auto auto; }
     .stat:first-child { padding-top: 0; }
     .stat:last-child { border-bottom: none; padding-bottom: 0; }
     .stat-value {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--accent);
-      margin-bottom: 2px;
-      line-height: 1.1;
+      line-height: 1;
+      grid-column: 1;
+      grid-row: 1 / -1;
+      align-self: center;
     }
-    .stat-label { font-size: 0.8rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'JetBrains Mono', monospace; }
+    .stat-label {
+      grid-column: 2;
+      text-align: right;
+      font-size: 0.7rem;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .stat-caption {
+      grid-column: 2;
+      text-align: right;
+      font-size: 0.65rem;
+      color: var(--fg-dim);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
 
     /* Vertical impact stack (in Overview sidebar) */
     .impact-stack { display: flex; flex-direction: column; }
@@ -1111,7 +1309,7 @@
   </style>
 
   <script>
-    // Anti-FOUC theme — default to light, opt into dark only via OS preference or stored choice
+    // Anti-FOUC theme: default to light, opt into dark only via OS preference or stored choice
     (function () {
       try {
         const stored = localStorage.getItem('fz-theme');
@@ -1175,7 +1373,7 @@
         <div class="hero">
           <div class="hero-content">
             <img src="assets/img/fz-headshot.jpg" alt="Francisco Zorrilla portrait" class="hero-headshot" width="220" height="220" loading="eager" decoding="async" fetchpriority="high">
-            <span class="status-pill">Available <time datetime="2026-10-01">October 2026</time></span>
+            <a class="status-pill" href="#about">Available <time datetime="2026-10-01">October 2026</time></a>
             <h1>Francisco Zorrilla</h1>
             <p class="lede">Computational biologist building production tools for microbiome-scale science.</p>
             <p style="color: var(--fg-muted);">Co-leading the <a href="https://nccr-microbiomes.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">NCCR Microbiomes Work Package 5 Flagship Project</a> at ETH Zürich in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">Sunagawa Lab</a>. Built <a href="#metagem" style="color: var(--fg); font-weight: 600;">metaGEM</a>, an open-source bioinformatics workflow used by labs worldwide. 7+ years of expertise spanning metagenomics, metabolic modeling, structural bioinformatics, and ML approaches.</p>
@@ -1221,13 +1419,13 @@
             </div>
             <div class="prose">
           <p>I'm a computational biologist co-leading the <a href="https://nccr-microbiomes.ch/" target="_blank" rel="noopener"><strong>NCCR Microbiomes Work Package 5 Flagship Project</strong></a> at ETH Zürich, in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a>, where my team builds the computational infrastructure for designing microbial communities that survive real-world deployment. I joined the <a href="https://www.mrc-tox.cam.ac.uk/research/research-groups/patil" target="_blank" rel="noopener">Patil Lab</a> as a computational biologist at EMBL Heidelberg, then moved with the group to the MRC Toxicology Unit at the University of Cambridge, where I completed my PhD. Throughout, my research has focused on translating raw metagenomic data into mechanistic, community-level metabolic predictions.</p>
-          <p>My published work has consistently aimed to deliver tools and frameworks that outlive a single paper:</p>
+          <p>Selected high-impact work spanning both the methods I built (tools, models, datasets) and the applied case studies where I used them to generate industry-relevant results, analyses, and insights:</p>
           <ul>
             <li><strong><a href="#metagem">metaGEM</a></strong>: open-source Snakemake workflow turning raw metagenomes into community-level metabolic models. Used by labs worldwide.</li>
-            <li><strong>Industrial fermentation</strong>: <strong>Chr. Hansen</strong> collaboration modelling cross-feeding in dairy starter cultures (<a href="#work-cheese">Nature Communications 2023</a>).</li>
-            <li><strong>Translational ecology</strong>: ML screen for novel <a href="#work-plastic"><strong>plastic-degrading enzymes</strong> (mBio 2021)</a>, and a co-first-authored <a href="#work-soil">framework for predicting <strong>obligate cross-feeding in soil</strong> (bioRxiv 2025)</a>, a directly translatable methodology for rational SynCom design in agtech.</li>
+            <li><strong>Industrial &amp; biomedical case studies</strong>: <strong>Chr. Hansen</strong> collaboration on dairy-starter cross-feeding via mechanistic GEM simulations (<a href="#work-cheese">Nature Communications 2023</a>); 14-strain synthetic-community work integrating GEMs, metabolomics, and genomic-signature analysis to dissect <em>C. difficile</em> colonisation resistance (<a href="#work-cdiff">bioRxiv 2024</a>).</li>
+            <li><strong>Translational ecology</strong>: ML screen for novel <a href="#work-plastic"><strong>plastic-degrading enzymes</strong> (mBio 2021)</a>, and a co-first-authored <strong>framework for predicting</strong> <a href="#work-soil"><strong>obligate cross-feeding in soil</strong> (bioRxiv 2025)</a>, a directly translatable methodology for rational SynCom design in agtech.</li>
           </ul>
-          <p>Each project shipped with reproducible code, models, and datasets on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">Zenodo</a> (4,100+ downloads to date).</p>
+          <p>Each project shipped with reproducible code, models, and datasets on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">Zenodo</a> (4,300+ downloads to date).</p>
           <p>I'm now <strong>pivoting from academia to industry</strong> to apply this toolkit (production-quality bioinformatics, large-scale multi-omics, constraint-based modelling, AI for biology) to commercially relevant problems. <strong>Available October 2026</strong> for industry research roles in <strong>agtech, microbial biotech, or AI-for-biology</strong>. Open to roles in the <strong>Zurich/Basel corridor</strong> or <strong>fully remote within Switzerland</strong>.</p>
             </div>
           </div>
@@ -1236,8 +1434,8 @@
             <h3 class="sidebar-title">Impact</h3>
             <div class="impact-stack">
               <div class="impact-item">
-                <div class="impact-value">300+</div>
-                <div class="impact-label">GitHub stars</div>
+                <div class="impact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">300+</a></div>
+                <div class="impact-label"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">GitHub stars</a></div>
                 <div class="impact-caption">across 13 public repos (<a href="#metagem">metaGEM</a> &amp; teaching)</div>
               </div>
               <div class="impact-item">
@@ -1246,8 +1444,8 @@
                 <div class="impact-caption"><a href="#metagem">metaGEM</a> · <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">workflow catalog rank</a></div>
               </div>
               <div class="impact-item">
-                <div class="impact-value">931+</div>
-                <div class="impact-label">Citations</div>
+                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">931+</a></div>
+                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Citations</a></div>
                 <div class="impact-caption">across 12 publications</div>
               </div>
               <div class="impact-item">
@@ -1256,22 +1454,22 @@
                 <div class="impact-caption">i10-index also 8 · view profile</div>
               </div>
               <div class="impact-item">
-                <div class="impact-value">10+</div>
-                <div class="impact-label">Courses taught</div>
+                <div class="impact-value"><a href="#talks" style="color: inherit; text-decoration: none;">6</a></div>
+                <div class="impact-label"><a href="#talks">Courses taught</a></div>
                 <div class="impact-caption">EMBO · ETH · Cambridge · NCCR</div>
               </div>
               <div class="impact-item">
-                <div class="impact-value">50+</div>
-                <div class="impact-label">Trainees</div>
+                <div class="impact-value"><a href="#talks" style="color: inherit; text-decoration: none;">75+</a></div>
+                <div class="impact-label"><a href="#talks">Trainees</a></div>
                 <div class="impact-caption">mentored globally</div>
               </div>
               <div class="impact-item">
-                <div class="impact-value">100+</div>
-                <div class="impact-label">Press mentions</div>
+                <div class="impact-value"><a href="#work" style="color: inherit; text-decoration: none;">250+</a></div>
+                <div class="impact-label"><a href="#work">Press mentions</a></div>
                 <div class="impact-caption"><a href="#work-plastic">plastic</a> · <a href="#work-cheese">cheese</a> · <a href="#work-drug">drug-tolerance</a> · <a href="#work-entero">Enterobacteriaceae</a></div>
               </div>
               <div class="impact-item">
-                <div class="impact-value"><a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">4,100+</a></div>
+                <div class="impact-value"><a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">4,300+</a></div>
                 <div class="impact-label"><a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22&amp;l=list&amp;p=2&amp;s=10&amp;sort=bestmatch" target="_blank" rel="noopener">Zenodo downloads</a></div>
                 <div class="impact-caption">open datasets, models &amp; releases</div>
               </div>
@@ -1286,12 +1484,15 @@
       <div class="container">
         <div class="section-2col">
           <div class="section-2col-body">
-            <div class="section-header">
+            <div class="section-header" style="margin-bottom: var(--space-6);">
               <span class="eyebrow">Curriculum Vitae</span>
-              <h2>CV</h2>
-              <p style="color: var(--fg-muted); margin-bottom: var(--space-3);">Computational biologist · ETH Zürich · ex-EMBL · PhD Cambridge</p>
-              <button class="btn" onclick="window.print()">Print CV</button>
-              <a href="/assets/cv.pdf" class="btn" download>Download PDF</a>
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: var(--space-5); margin-top: var(--space-2);">
+                <div style="min-width: 0;">
+                  <h2 style="margin-bottom: var(--space-2);">Computational biologist</h2>
+                  <p class="cv-subtitle">ETH Zürich · Cambridge PhD · ex-EMBL</p>
+                </div>
+                <a href="/assets/cv.pdf" class="btn" download style="flex-shrink: 0;">Download PDF</a>
+              </div>
             </div>
 
             <h3>Contact</h3>
@@ -1341,48 +1542,48 @@
               <div class="skills-group">
                 <h3>Bioinformatics</h3>
                 <div>
-                  <a href="#metagem" class="skill-tag highlight" style="text-decoration: none;">metaGEM</a>
-                  <span class="skill-tag">Snakemake</span>
-                  <span class="skill-tag">fastp</span>
-                  <span class="skill-tag">MEGAHIT</span>
-                  <span class="skill-tag">CONCOCT</span>
-                  <span class="skill-tag">MaxBin2</span>
-                  <span class="skill-tag">MetaBAT2</span>
-                  <span class="skill-tag">metaWRAP</span>
-                  <span class="skill-tag">GTDB-Tk</span>
+                  <a href="#metagem" class="skill-tag highlight">metaGEM</a>
+                  <a class="skill-tag" href="https://github.com/snakemake/snakemake" target="_blank" rel="noopener">Snakemake</a>
+                  <a class="skill-tag" href="https://github.com/OpenGene/fastp" target="_blank" rel="noopener">fastp</a>
+                  <a class="skill-tag" href="https://github.com/voutcn/megahit" target="_blank" rel="noopener">MEGAHIT</a>
+                  <a class="skill-tag" href="https://github.com/BinPro/CONCOCT" target="_blank" rel="noopener">CONCOCT</a>
+                  <a class="skill-tag" href="https://sourceforge.net/projects/maxbin2/" target="_blank" rel="noopener">MaxBin2</a>
+                  <a class="skill-tag" href="https://bitbucket.org/berkeleylab/metabat" target="_blank" rel="noopener">MetaBAT2</a>
+                  <a class="skill-tag" href="https://github.com/bxlab/metaWRAP" target="_blank" rel="noopener">metaWRAP</a>
+                  <a class="skill-tag" href="https://github.com/Ecogenomics/GTDBTk" target="_blank" rel="noopener">GTDB-Tk</a>
                 </div>
               </div>
               <div class="skills-group">
                 <h3>Systems biology</h3>
                 <div>
-                  <span class="skill-tag">CarveMe</span>
-                  <span class="skill-tag">SMETANA</span>
-                  <span class="skill-tag">MEMOTE</span>
-                  <span class="skill-tag">COBRA</span>
+                  <a class="skill-tag" href="https://github.com/cdanielmachado/carveme" target="_blank" rel="noopener">CarveMe</a>
+                  <a class="skill-tag" href="https://github.com/cdanielmachado/smetana" target="_blank" rel="noopener">SMETANA</a>
+                  <a class="skill-tag" href="https://github.com/opencobra/memote" target="_blank" rel="noopener">MEMOTE</a>
+                  <a class="skill-tag" href="https://github.com/opencobra/cobrapy" target="_blank" rel="noopener">COBRA</a>
                   <span class="skill-tag">FBA / FVA</span>
-                  <span class="skill-tag">RAVEN</span>
+                  <a class="skill-tag" href="https://github.com/SysBioChalmers/RAVEN" target="_blank" rel="noopener">RAVEN</a>
                 </div>
               </div>
               <div class="skills-group">
                 <h3>AI / Structural</h3>
                 <div>
-                  <span class="skill-tag">ProstT5</span>
-                  <span class="skill-tag">Foldseek</span>
-                  <span class="skill-tag">AlphaFold2</span>
-                  <span class="skill-tag">PyTorch</span>
-                  <span class="skill-tag">TensorFlow</span>
+                  <a class="skill-tag" href="https://github.com/mheinzinger/ProstT5" target="_blank" rel="noopener">ProstT5</a>
+                  <a class="skill-tag" href="https://github.com/steineggerlab/foldseek" target="_blank" rel="noopener">Foldseek</a>
+                  <a class="skill-tag" href="https://github.com/google-deepmind/alphafold" target="_blank" rel="noopener">AlphaFold2</a>
+                  <a class="skill-tag" href="https://github.com/pytorch/pytorch" target="_blank" rel="noopener">PyTorch</a>
+                  <a class="skill-tag" href="https://github.com/tensorflow/tensorflow" target="_blank" rel="noopener">TensorFlow</a>
                 </div>
               </div>
               <div class="skills-group">
                 <h3>Languages &amp; infrastructure</h3>
                 <div>
-                  <span class="skill-tag">Python</span>
+                  <a class="skill-tag" href="https://github.com/python/cpython" target="_blank" rel="noopener">Python</a>
                   <span class="skill-tag">R</span>
                   <span class="skill-tag">MATLAB</span>
                   <span class="skill-tag">Bash</span>
-                  <span class="skill-tag">Slurm HPC</span>
+                  <a class="skill-tag" href="https://github.com/SchedMD/slurm" target="_blank" rel="noopener">Slurm HPC</a>
                   <span class="skill-tag">GPU</span>
-                  <span class="skill-tag">Git/GitHub</span>
+                  <a class="skill-tag" href="https://github.com/git/git" target="_blank" rel="noopener">Git/GitHub</a>
                 </div>
               </div>
             </div>
@@ -1398,21 +1599,23 @@
         <div class="section-header">
           <span class="eyebrow">12 Publications</span>
           <h2>Work</h2>
-          <p style="color: var(--fg-muted);">Click any card to expand for problem, approach, contribution, links, and altmetric attention.</p>
+          <p style="color: var(--fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Click any card for problem, approach, contribution, tools, links, and altmetric attention.</p>
         </div>
 
         <div class="filters" role="toolbar" aria-label="Sort">
           <span class="sort-label">Sort:</span>
           <button class="filter-tag sort-btn active" data-sort="default">Curated</button>
-          <button class="filter-tag sort-btn" data-sort="newest">Newest first</button>
-          <button class="filter-tag sort-btn" data-sort="oldest">Oldest first</button>
-          <button class="filter-tag sort-btn" data-sort="citations">Most cited</button>
+          <button class="filter-tag sort-btn" data-sort="citations">Citations</button>
+          <button class="filter-tag sort-btn" data-sort="press">Press</button>
+          <button class="filter-tag sort-btn" data-sort="social">Social</button>
+          <button class="filter-tag sort-btn" data-sort="newest">Newest</button>
+          <button class="filter-tag sort-btn" data-sort="oldest">Oldest</button>
         </div>
 
         <div class="cards-grid" id="cardsContainer">
 
           <!-- 1. metaGEM -->
-          <article class="card" id="work-metagem" data-tags="modelling,industry" data-doi="10.1093/nar/gkab815" data-citations="125" data-press="0">
+          <article class="card" id="work-metagem" data-tags="modelling,industry" data-doi="10.1093/nar/gkab815" data-citations="125" data-press="2" data-social="77">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧬</div>
               <div class="card-meta">
@@ -1428,8 +1631,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">First author</span>
-                <span>125 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1093/nar/gkab815" target="_blank" rel="noopener" title="View citing papers on Google Scholar">125 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/114636859/blogs" target="_blank" rel="noopener" title="See blog mentions on Altmetric">📰 <strong>2</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/114636859/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>77</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1461,7 +1666,7 @@
           </article>
 
           <!-- 2. Cheese flavor -->
-          <article class="card" id="work-cheese" data-tags="modelling,industry" data-doi="10.1038/s41467-023-41059-2" data-citations="95" data-press="5">
+          <article class="card" id="work-cheese" data-tags="modelling,industry" data-doi="10.1038/s41467-023-41059-2" data-citations="95" data-press="21" data-social="81">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧀</div>
               <div class="card-meta">
@@ -1476,8 +1681,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Second author</span>
-                <span>95 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1038/s41467-023-41059-2" target="_blank" rel="noopener" title="View citing papers on Google Scholar">95 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/157691147/news" target="_blank" rel="noopener" title="See news coverage on Altmetric">📰 <strong>21</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/157691147/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>81</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1515,7 +1722,7 @@
           </article>
 
           <!-- 3. Plastic degraders -->
-          <article class="card" id="work-plastic" data-tags="genomics,industry" data-doi="10.1128/mBio.02155-21" data-citations="142" data-press="5">
+          <article class="card" id="work-plastic" data-tags="genomics,industry" data-doi="10.1128/mBio.02155-21" data-citations="142" data-press="90" data-social="172">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">♻️</div>
               <div class="card-meta">
@@ -1530,8 +1737,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>142 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1128/mBio.02155-21" target="_blank" rel="noopener" title="View citing papers on Google Scholar">142 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/115785443/news" target="_blank" rel="noopener" title="See news coverage on Altmetric">📰 <strong>90</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/115785443/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>172</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1570,7 +1779,7 @@
           </article>
 
           <!-- 4. Soil cross-feeding -->
-          <article class="card" id="work-soil" data-tags="modelling,genomics,industry" data-doi="10.1101/2025.01.29.635426" data-citations="5" data-press="0">
+          <article class="card" id="work-soil" data-tags="modelling,genomics,industry" data-doi="10.1101/2025.01.29.635426" data-citations="5" data-press="0" data-social="32">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🌱</div>
               <div class="card-meta">
@@ -1585,8 +1794,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-first author</span>
-                <span>5 citations · preprint</span>
+                <span><a class="cite-link" href="https://scholar.google.com/scholar?q=10.1101/2025.01.29.635426" target="_blank" rel="noopener" title="View citing papers on Google Scholar">5 citations</a> · preprint</span>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/173623756/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>32</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1615,14 +1826,14 @@
           </article>
 
           <!-- 5. Bacterial OD count -->
-          <article class="card" id="work-od" data-tags="genomics" data-doi="10.1038/s42003-020-01127-5" data-citations="328" data-press="2">
+          <article class="card" id="work-od" data-tags="genomics" data-doi="10.1038/s42003-020-01127-5" data-citations="328" data-press="2" data-social="42">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🧫</div>
               <div class="card-meta">
                 <span class="card-year">2020</span>
                 <span class="card-venue">Comm. Biology</span>
               </div>
-              <h3 class="card-title">Bacterial OD → cell count</h3>
+              <h3 class="card-title">iGEM: Bacterial OD → cell count</h3>
               <div class="card-desc">Robust estimation of bacterial cell count from optical density via interlab calibration. 244-lab study.</div>
               <div class="card-tags">
                 <span class="tag">tool-paper</span>
@@ -1630,8 +1841,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>328 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1038/s42003-020-01127-5" target="_blank" rel="noopener" title="View citing papers on Google Scholar">328 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/90482252/news" target="_blank" rel="noopener" title="See news coverage on Altmetric">📰 <strong>2</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/90482252/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>42</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1665,7 +1878,7 @@
           </article>
 
           <!-- 6. Drug tolerance -->
-          <article class="card" id="work-drug" data-tags="modelling,genomics" data-doi="10.1038/s41564-022-01072-5" data-citations="132" data-press="4">
+          <article class="card" id="work-drug" data-tags="modelling,genomics" data-doi="10.1038/s41564-022-01072-5" data-citations="132" data-press="19" data-social="149">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">💊</div>
               <div class="card-meta">
@@ -1680,8 +1893,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>132 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1038/s41564-022-01072-5" target="_blank" rel="noopener" title="View citing papers on Google Scholar">132 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/125072555/news" target="_blank" rel="noopener" title="See news coverage on Altmetric">📰 <strong>19</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/125072555/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>149</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1717,7 +1932,7 @@
           </article>
 
           <!-- 7. Enterobacteriaceae -->
-          <article class="card" id="work-entero" data-tags="genomics" data-doi="10.1038/s41564-024-01912-6" data-citations="69" data-press="5">
+          <article class="card" id="work-entero" data-tags="genomics" data-doi="10.1038/s41564-024-01912-6" data-citations="69" data-press="118" data-social="85">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🦠</div>
               <div class="card-meta">
@@ -1732,8 +1947,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">SME contributor</span>
-                <span>69 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1038/s41564-024-01912-6" target="_blank" rel="noopener" title="View citing papers on Google Scholar">69 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/172905207/news" target="_blank" rel="noopener" title="See news coverage on Altmetric">📰 <strong>118</strong> press</a><a class="metric-link" href="https://www.altmetric.com/details/172905207/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>85</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1770,7 +1987,7 @@
           </article>
 
           <!-- 8. iGEM fluorescence -->
-          <article class="card" id="work-igem" data-tags="genomics" data-doi="10.1371/journal.pone.0252263" data-citations="16" data-press="1">
+          <article class="card" id="work-igem" data-tags="genomics" data-doi="10.1371/journal.pone.0252263" data-citations="16" data-press="0" data-social="12">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">💡</div>
               <div class="card-meta">
@@ -1784,8 +2001,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>16 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1371/journal.pone.0252263" target="_blank" rel="noopener" title="View citing papers on Google Scholar">16 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/107250276/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>12</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1818,7 +2037,7 @@
           </article>
 
           <!-- 9. FROG -->
-          <article class="card" id="work-frog" data-tags="modelling" data-doi="10.1101/2024.09.24.614797" data-citations="11" data-press="0">
+          <article class="card" id="work-frog" data-tags="modelling" data-doi="10.1101/2024.09.24.614797" data-citations="11" data-press="0" data-social="30">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🐸</div>
               <div class="card-meta">
@@ -1833,8 +2052,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>11 citations · preprint</span>
+                <span><a class="cite-link" href="https://scholar.google.com/scholar?q=10.1101/2024.09.24.614797" target="_blank" rel="noopener" title="View citing papers on Google Scholar">11 citations</a> · preprint</span>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/168568000/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>30</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1863,7 +2084,7 @@
           </article>
 
           <!-- 10. Hansenula -->
-          <article class="card" id="work-hansenula" data-tags="modelling,industry" data-doi="10.1007/978-1-0716-2399-2_16" data-citations="7" data-press="0">
+          <article class="card" id="work-hansenula" data-tags="modelling,industry" data-doi="10.1007/978-1-0716-2399-2_16" data-citations="7" data-press="0" data-social="4">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🍺</div>
               <div class="card-meta">
@@ -1878,8 +2099,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">First author</span>
-                <span>7 citations</span>
+                <a class="cite-link" href="https://scholar.google.com/scholar?q=10.1007/978-1-0716-2399-2_16" target="_blank" rel="noopener" title="View citing papers on Google Scholar">7 citations</a>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/144929021/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>4</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1910,7 +2133,7 @@
           </article>
 
           <!-- 11. C. difficile -->
-          <article class="card" id="work-cdiff" data-tags="modelling,genomics" data-doi="10.1101/2024.08.29.610284" data-citations="1" data-press="0">
+          <article class="card" id="work-cdiff" data-tags="modelling,genomics" data-doi="10.1101/2024.08.29.610284" data-citations="1" data-press="0" data-social="2">
             <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
               <div class="card-emoji" aria-hidden="true">🏥</div>
               <div class="card-meta">
@@ -1925,8 +2148,10 @@
               </div>
               <div class="card-footer">
                 <span class="role">Co-author</span>
-                <span>1 citation · preprint</span>
+                <span><a class="cite-link" href="https://scholar.google.com/scholar?q=10.1101/2024.08.29.610284" target="_blank" rel="noopener" title="View citing papers on Google Scholar">1 citation</a> · preprint</span>
               </div>
+
+              <div class="card-metrics" aria-label="Altmetric attention"><a class="metric-link" href="https://www.altmetric.com/details/166822231/twitter" target="_blank" rel="noopener" title="See X (Twitter) mentions on Altmetric">💬 <strong>2</strong> social</a></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -1972,6 +2197,7 @@
                 <span class="role">Sole author</span>
                 <span>monograph</span>
               </div>
+              <div class="card-metrics" aria-hidden="true" style="visibility: hidden;"><span>📰 placeholder</span></div>
               <div class="card-toggle-hint"></div>
             </div>
             <div class="card-expanded">
@@ -2035,25 +2261,76 @@
             <p style="color: var(--fg-muted); font-size: 0.9rem;">Full setup, tutorials, and HPC profiles at <a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">github.com/franciscozorrilla/metaGEM</a>.</p>
           </div>
 
-          <aside class="metagem-stats-panel" aria-label="metaGEM at a glance">
-            <div class="stat"><div class="stat-value">260+</div><div class="stat-label">GitHub stars</div></div>
-            <div class="stat"><div class="stat-value">47</div><div class="stat-label">Forks</div></div>
-            <div class="stat"><div class="stat-value"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">#3</a></div><div class="stat-label"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">Snakemake catalog</a></div></div>
-            <div class="stat"><div class="stat-value">125</div><div class="stat-label">Paper citations</div></div>
-            <div class="stat"><div class="stat-value">NAR</div><div class="stat-label">2021 · IF 19.16</div></div>
-            <div class="stat"><div class="stat-value">116</div><div class="stat-label">Discussions &amp; issues closed</div></div>
-          </aside>
+          <div class="metagem-rail">
+            <aside class="metagem-stats-panel" aria-label="metaGEM highlights">
+              <span class="rail-eyebrow">Highlights</span>
+              <div class="stat"><div class="stat-value"><a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">260+</a></div><div class="stat-label"><a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">GitHub stars</a></div></div>
+              <div class="stat"><div class="stat-value">47</div><div class="stat-label">GitHub forks</div></div>
+              <div class="stat"><div class="stat-value"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">#3</a></div><div class="stat-label"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">Ranking by stars in Snakemake workflow catalog</a></div></div>
+              <div class="stat"><div class="stat-value"><a href="https://scholar.google.com/scholar?q=10.1093/nar/gkab815" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">125</a></div><div class="stat-label"><a href="https://scholar.google.com/scholar?q=10.1093/nar/gkab815" target="_blank" rel="noopener">Citations on Google Scholar</a></div></div>
+              <div class="stat"><div class="stat-value"><a href="https://doi.org/10.1093/nar/gkab815" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">NAR</a></div><div class="stat-label"><a href="https://doi.org/10.1093/nar/gkab815" target="_blank" rel="noopener">2021 · Impact factor 19.16</a></div></div>
+              <div class="stat"><div class="stat-value"><a href="https://github.com/franciscozorrilla/metaGEM/issues" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">100+</a></div><div class="stat-label"><a href="https://github.com/franciscozorrilla/metaGEM/issues" target="_blank" rel="noopener">Community engagements</a></div><div class="stat-caption">discussions · questions · issues</div></div>
+            </aside>
+
+            <!-- Zenodo result deposits: unique view/download counts (Zenodo UI numbers) sorted by downloads -->
+            <aside class="metagem-zenodo-panel" aria-label="Reusable Zenodo deposits">
+              <span class="rail-eyebrow">Zenodo · reusable results</span>
+              <div class="zenodo-head" aria-hidden="true">
+                <span></span>
+                <span>👀</span>
+                <span>⬇</span>
+              </div>
+              <ul class="zenodo-list">
+                <li><a href="https://zenodo.org/records/3534949" target="_blank" rel="noopener">
+                  <span class="z-title">Toy dataset (Gut v1)</span>
+                  <span class="z-views">654</span>
+                  <span class="z-downloads">1,358</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/5593111" target="_blank" rel="noopener">
+                  <span class="z-title">Lab culture</span>
+                  <span class="z-views">263</span>
+                  <span class="z-downloads">500</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/5597227" target="_blank" rel="noopener">
+                  <span class="z-title">TARA Oceans</span>
+                  <span class="z-views">227</span>
+                  <span class="z-downloads">464</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/5593224" target="_blank" rel="noopener">
+                  <span class="z-title">Human gut</span>
+                  <span class="z-views">330</span>
+                  <span class="z-downloads">451</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/5596948" target="_blank" rel="noopener">
+                  <span class="z-title">Plant-associated soil</span>
+                  <span class="z-views">200</span>
+                  <span class="z-downloads">336</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/7414438" target="_blank" rel="noopener">
+                  <span class="z-title">Paleofeces re-analysis</span>
+                  <span class="z-views">733</span>
+                  <span class="z-downloads">332</span>
+                </a></li>
+                <li><a href="https://zenodo.org/records/5596972" target="_blank" rel="noopener">
+                  <span class="z-title">Bulk soil</span>
+                  <span class="z-views">186</span>
+                  <span class="z-downloads">303</span>
+                </a></li>
+              </ul>
+              <p class="zenodo-foot">2,593 views · 3,744 downloads</p>
+            </aside>
+          </div>
         </div>
 
         <h3>Applications in the wild</h3>
-        <p style="color: var(--fg-muted);">Selected published work where independent groups ran the metaGEM pipeline as a core part of their analysis (not just cited it). Each entry below has been verified against the published methods section.</p>
+        <p style="color: var(--fg-muted);">Selected published work where independent groups built on metaGEM as a core part of their analysis. Open infrastructure that has enabled labs across many environments and continents to run their own research. Each entry below has been verified against the published methods section.</p>
         <div class="applications-grid">
 
           <div class="app-card">
             <div class="app-emoji" aria-hidden="true">🦇</div>
             <div class="app-meta">2022 · Environmental Microbiome</div>
             <div class="app-title"><a href="https://doi.org/10.1186/s40793-022-00438-w" target="_blank" rel="noopener">Movile Cave: chemoautotrophic ecosystem</a></div>
-            <div class="app-desc">Chiciudean et al. ran metaGEM through assembly, binning, GEM reconstruction (CarveMe) and SMETANA simulation to map cooperation and competition in a sulfidic Romanian cave analogous to deep-sea hydrothermal vents.</div>
+            <div class="app-desc">Chiciudean et al. plugged their own MAGs from a sulfidic Romanian cave into metaGEM's modelling stack (CarveMe + SMETANA), demonstrating the pipeline's modular plug-in design for external upstream workflows.</div>
             <div class="app-link">Extreme environments · ecology</div>
           </div>
 
@@ -2089,6 +2366,38 @@
             <div class="app-link">Carbon cycling · climate</div>
           </div>
 
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🛢️</div>
+            <div class="app-meta">2025 · Environmental Microbiology Reports</div>
+            <div class="app-title"><a href="https://doi.org/10.1111/1758-2229.70076" target="_blank" rel="noopener">Subsurface H₂ storage microbiology</a></div>
+            <div class="app-desc">Tinker et al. (NETL Pittsburgh + PNNL) ran metaGEM end-to-end on produced water from a deep saline aquifer to characterise microbial impacts of underground hydrogen storage.</div>
+            <div class="app-link">Energy transition · DOE national labs</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🧪</div>
+            <div class="app-meta">2026 · Journal of Environmental Sciences</div>
+            <div class="app-title"><a href="https://doi.org/10.1016/j.jes.2025.09.016" target="_blank" rel="noopener">DEHP-degrading microbial consortium</a></div>
+            <div class="app-desc">Guo et al. used metaGEM's FBA modelling protocol to predict amino-acid cross-feeding in a DEHP-degrading microbial consortium, validated experimentally.</div>
+            <div class="app-link">Environmental biotech · pollutant degradation</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">💊</div>
+            <div class="app-meta">2024 · Gut Microbes</div>
+            <div class="app-title"><a href="https://doi.org/10.1080/19490976.2024.2420771" target="_blank" rel="noopener">Symbiotic probiotic communities for obesity</a></div>
+            <div class="app-desc">Guo et al. used the metaGEM CarveMe + SMETANA modelling stack to identify symbiotic probiotic communities for anti-obesity activity, validated in HFD-fed mice.</div>
+            <div class="app-link">Biomedical · probiotics · clinical translation</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji" aria-hidden="true">🏆</div>
+            <div class="app-meta">2025 · NAR Genomics &amp; Bioinformatics</div>
+            <div class="app-title"><a href="https://doi.org/10.1093/nargab/lqaf093" target="_blank" rel="noopener">Canonical metagenomics workflows benchmark</a></div>
+            <div class="app-desc">Henke et al. (Bielefeld) benchmarked metaGEM as one of five canonical metagenomics workflows alongside MetaWRAP, MUFFIN, SqueezeMeta, and nf-core/MAG.</div>
+            <div class="app-link">Workflow benchmark · peer recognition</div>
+          </div>
+
         </div>
         <p style="margin-top: var(--space-4); color: var(--fg-dim); font-size: 0.85rem;">Selected from 125+ works citing metaGEM. Browse the full citation list on <a href="https://www.semanticscholar.org/paper/2bea7f2284702ad48c69d4cc00c4ae7be1b4ebe5" target="_blank" rel="noopener">Semantic Scholar</a> or <a href="https://europepmc.org/article/MED/34614189" target="_blank" rel="noopener">Europe PMC</a>.</p>
 
@@ -2111,7 +2420,7 @@
         <div class="section-header">
           <span class="eyebrow">Talks · Teaching · Mentorship</span>
           <h2>Talks &amp; Teaching</h2>
-          <p style="color: var(--fg-muted);">50+ international researchers trained across 7 countries. All teaching materials open-source.</p>
+          <p style="color: var(--fg-muted);">Presented original research and trained 75+ international researchers across 7 countries. All teaching materials open-source.</p>
         </div>
 
         <h3>Activity</h3>
@@ -2128,79 +2437,79 @@
             <tr>
               <td class="col-date">2026 · Jan</td>
               <td><a href="https://nccr-microbiomes.ch/education/january-short-course/" target="_blank" rel="noopener">NCCR Microbiomes Winter School</a></td>
-              <td class="col-venue">UNIL · Lausanne</td>
+              <td class="col-venue">🇨🇭 UNIL · Lausanne</td>
               <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2025 · Fall</td>
               <td><a href="https://sunagawalab.ethz.ch/share/teaching/home/551-1119-00L_Fall2025/index.html" target="_blank" rel="noopener">Microbial Community Genomics (551-1119-00L) · Sunagawa Lab Block Course</a></td>
-              <td class="col-venue">ETH Zürich</td>
-              <td class="col-role"><span class="role-tag">co-tutor</span></td>
+              <td class="col-venue">🇨🇭 ETH Zürich</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2025</td>
-              <td>Master's thesis supervision</td>
-              <td class="col-venue">University of Oxford</td>
+              <td><a href="https://github.com/LucaKristinas/msc-thesis-metabolism-to-ecology" target="_blank" rel="noopener">Master's thesis supervision</a></td>
+              <td class="col-venue">🇬🇧 University of Oxford</td>
               <td class="col-role"><span class="role-tag">supervisor</span></td>
             </tr>
             <tr>
               <td class="col-date">2024 · Oct</td>
               <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd24-01/" target="_blank" rel="noopener">Metabolite and species dynamics in microbial communities</a></td>
-              <td class="col-venue">EMBO Practical Course, Bangalore</td>
-              <td class="col-role"><span class="role-tag">co-instructor</span></td>
+              <td class="col-venue">🇮🇳 EMBO Practical Course, Bangalore</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2024 · Aug</td>
               <td><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2024" target="_blank" rel="noopener">Metabolic modelling for microbial ecology</a></td>
-              <td class="col-venue">9th COBRA Conference, San Diego</td>
+              <td class="col-venue">🇺🇸 9th COBRA Conference, San Diego</td>
               <td class="col-role"><span class="role-tag">poster</span></td>
             </tr>
             <tr>
               <td class="col-date">2024 · Jan</td>
               <td><a href="https://github.com/franciscozorrilla/systems-biology-fba-practical" target="_blank" rel="noopener">Flux balance analysis and metabolic modelling</a></td>
-              <td class="col-venue">Systems Biology Undergrad Course, Cambridge</td>
+              <td class="col-venue">🇬🇧 Systems Biology Undergrad Course, Cambridge</td>
               <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2022 · Oct</td>
               <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd22-01/" target="_blank" rel="noopener">Metabolic modelling of community interactions</a></td>
-              <td class="col-venue">EMBO Micro Com Course (virtual)</td>
-              <td class="col-role"><span class="role-tag">trainer</span></td>
+              <td class="col-venue">🇩🇪 EMBO Micro Com Course (virtual)</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2022 · Oct</td>
               <td><a href="https://www.embl.org/about/info/course-and-conference-office/events/eae22-01/" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
-              <td class="col-venue">EMBO EvoEco Conference, Heidelberg</td>
+              <td class="col-venue">🇩🇪 EMBO EvoEco Conference, Heidelberg</td>
               <td class="col-role"><span class="role-tag">poster + flash</span></td>
             </tr>
             <tr>
               <td class="col-date">2022 · Sep</td>
               <td><a href="https://www.aiche.org/imes/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2022/conference-on-constraint-based-reconstruction-and-analysis-technical-program" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
-              <td class="col-venue">8th COBRA Conference, Galway</td>
+              <td class="col-venue">🇮🇪 8th COBRA Conference, Galway</td>
               <td class="col-role"><span class="role-tag">selected talk</span></td>
             </tr>
             <tr>
               <td class="col-date">2022 · Jun</td>
               <td><a href="https://s2m2.bio.di.uminho.pt/last_editions/2022/index.html" target="_blank" rel="noopener">Applications of genome scale metabolic models</a></td>
-              <td class="col-venue">Summer School in Metabolic Modeling (virtual)</td>
+              <td class="col-venue">🇵🇹 Summer School in Metabolic Modeling (virtual)</td>
               <td class="col-role"><span class="role-tag">invited talk</span></td>
             </tr>
             <tr>
               <td class="col-date">2022 · Feb</td>
               <td><a href="https://www.ebi.ac.uk/training/materials/symbnet-materials/" target="_blank" rel="noopener">From metagenomics to metabolic interactions</a></td>
-              <td class="col-venue">SymbNET 2022 Course (EBI virtual)</td>
-              <td class="col-role"><span class="role-tag">trainer</span></td>
+              <td class="col-venue">🇬🇧 SymbNET 2022 Course (EBI virtual)</td>
+              <td class="col-role"><span class="role-tag">instructor</span></td>
             </tr>
             <tr>
               <td class="col-date">2021 · Mar</td>
               <td><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2021" target="_blank" rel="noopener">metaGEM: reconstruction of genome scale metabolic models directly from metagenomes</a></td>
-              <td class="col-venue">7th COBRA Conference (virtual)</td>
+              <td class="col-venue">🌐 7th COBRA Conference (virtual)</td>
               <td class="col-role"><span class="role-tag">poster</span></td>
             </tr>
             <tr>
               <td class="col-date">2018 · Oct</td>
               <td><a href="https://2018.igem.org/Competition/Results" target="_blank" rel="noopener">iGEM 2018 · Gold Medal &amp; Best Graduate Modeling nominee</a></td>
-              <td class="col-venue">iGEM Foundation, Boston</td>
+              <td class="col-venue">🇺🇸 iGEM Foundation, Boston</td>
               <td class="col-role"><span class="role-tag">team member</span></td>
             </tr>
           </tbody>
@@ -2422,15 +2731,21 @@
           ordered = cards.slice().sort((a, b) => getYear(a) - getYear(b));
         } else if (mode === 'citations') {
           ordered = cards.slice().sort((a, b) => getInt(b, 'data-citations') - getInt(a, 'data-citations'));
+        } else if (mode === 'press') {
+          ordered = cards.slice().sort((a, b) => getInt(b, 'data-press') - getInt(a, 'data-press'));
+        } else if (mode === 'social') {
+          ordered = cards.slice().sort((a, b) => getInt(b, 'data-social') - getInt(a, 'data-social'));
         } else {
           ordered = originalOrder.slice();
         }
         // Collapse any expanded card on re-sort so the layout settles cleanly
         cards.forEach(c => {
           c.classList.remove('expanded');
+          c.style.minHeight = '';
           const s = c.querySelector('.card-summary');
           if (s) s.setAttribute('aria-expanded', 'false');
         });
+        container.classList.remove('has-expanded');
         ordered.forEach(c => container.appendChild(c));
       }
 
@@ -2447,10 +2762,33 @@
     /* ============ CARD ACCORDION ============ */
     (function () {
       const cards = document.querySelectorAll('#cardsContainer .card');
+      const grid = document.getElementById('cardsContainer');
+      const cardsArr = Array.from(cards);
+      // Cache the natural collapsed-state height (set when grid-auto-rows: 1fr makes all cards equal).
+      // Recomputed on resize so it stays correct across layout changes.
+      let lockedHeight = 0;
+      function recordLockedHeight() {
+        if (grid.classList.contains('has-expanded')) return;
+        cardsArr.forEach(c => { c.style.minHeight = ''; });
+        // Force reflow
+        void grid.offsetHeight;
+        lockedHeight = cardsArr.reduce((m, c) => Math.max(m, c.offsetHeight), 0);
+      }
+      requestAnimationFrame(recordLockedHeight);
+      let resizeT;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(recordLockedHeight, 200);
+      });
+      function unlockHeights() {
+        cardsArr.forEach(c => { c.style.minHeight = ''; });
+      }
       cards.forEach(card => {
         const summary = card.querySelector('.card-summary');
         if (!summary) return;
-        const toggle = () => {
+        const toggle = (e) => {
+          // Ignore clicks/keys on links inside the summary so they navigate normally
+          if (e && e.target && e.target.closest('a')) return;
           const wasExpanded = card.classList.contains('expanded');
           // Close all others
           cards.forEach(c => {
@@ -2458,7 +2796,13 @@
             const s = c.querySelector('.card-summary');
             if (s) s.setAttribute('aria-expanded', 'false');
           });
+          unlockHeights();
           if (!wasExpanded) {
+            // Lock other cards to the cached natural height so only this card grows
+            if (lockedHeight > 0) {
+              cardsArr.filter(c => c !== card).forEach(c => { c.style.minHeight = lockedHeight + 'px'; });
+            }
+            grid.classList.add('has-expanded');
             card.classList.add('expanded');
             summary.setAttribute('aria-expanded', 'true');
             // Smooth-scroll the expanded card into view (offset for sticky header)
@@ -2469,13 +2813,16 @@
                 window.scrollTo({ top: window.scrollY + rect.top - headerH - 16, behavior: 'smooth' });
               }
             }, 150);
+          } else {
+            grid.classList.remove('has-expanded');
           }
         };
         summary.addEventListener('click', toggle);
         summary.addEventListener('keydown', e => {
           if (e.key === 'Enter' || e.key === ' ') {
+            if (e.target.closest('a')) return;
             e.preventDefault();
-            toggle();
+            toggle(e);
           }
         });
       });
@@ -2684,7 +3031,7 @@
         .on('end',   (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; });
       nodeSel.filter(d => d.type === 'person').call(drag);
 
-      // Tooltip helpers — flip-quadrant placement so it never clips off the container
+      // Tooltip helpers: flip-quadrant placement so it never clips off the container
       function placeTooltip(event) {
         const rect = wrap.getBoundingClientRect();
         const tw = tooltip.offsetWidth;

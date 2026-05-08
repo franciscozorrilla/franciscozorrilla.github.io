@@ -1,9 +1,3 @@
-_site/
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
-vendor/
-.bundle/
-Gemfile.lock
 .DS_Store
-node_modules/
+.claude/worktrees/
+scripts/__pycache__/
