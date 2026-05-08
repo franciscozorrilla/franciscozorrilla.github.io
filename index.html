@@ -1168,7 +1168,21 @@
       text-transform: uppercase;
     }
     @media (max-width: 720px) {
-      .talks-table .col-venue { display: none; }
+      .talks-table thead { display: none; }
+      .talks-table, .talks-table tbody, .talks-table tr, .talks-table td {
+        display: block;
+        width: auto;
+      }
+      .talks-table tr {
+        border-bottom: 1px solid var(--border);
+        padding: var(--space-3) 0;
+      }
+      .talks-table tr:last-child { border-bottom: none; }
+      .talks-table tr:hover td { background: transparent; }
+      .talks-table td { border: none; padding: 2px 0; }
+      .talks-table .col-date { font-size: 0.75rem; color: var(--fg-muted); width: auto; }
+      .talks-table .col-venue { font-size: 0.85rem; width: auto; margin-top: 2px; }
+      .talks-table .col-role { width: auto; margin-top: 4px; }
     }
 
     .teaching-grid {
