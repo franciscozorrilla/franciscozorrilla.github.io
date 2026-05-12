@@ -1324,6 +1324,12 @@
     .footer-links { display: flex; justify-content: center; gap: var(--space-5); margin-bottom: var(--space-3); flex-wrap: wrap; }
     .footer-links a { color: var(--fg-dim); }
     .footer-links a:hover { color: var(--accent); }
+    footer.site-footer p { max-width: none; }
+    footer.site-footer p a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+    footer.site-footer p a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    @media (max-width: 480px) {
+      footer.site-footer p { font-size: 0.8rem; line-height: 1.55; }
+    }
 
     /* Mobile */
     @media (max-width: 768px) {
@@ -1387,6 +1393,9 @@
     })();
   </script>
 
+  <script data-goatcounter="https://metagenomez.goatcounter.com/count"
+          src="//gc.zgo.at/count.js" defer></script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1443,9 +1452,9 @@
             <p class="lede">Computational biologist building production tools for microbiome-scale science.</p>
             <p style="color: var(--fg-muted);">Co-leading the <a href="https://nccr-microbiomes.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">NCCR Microbiomes Work Package 5 Flagship Project</a> at ETH Zürich in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent);">Sunagawa Lab</a>. Built <a href="#metagem" style="color: var(--fg); font-weight: 600;">metaGEM</a>, an open-source bioinformatics workflow used by labs worldwide. 7+ years of expertise spanning metagenomics, metabolic modeling, structural bioinformatics, and ML approaches.</p>
             <div class="cta-group">
-              <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary">Email →</a>
+              <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary" data-goatcounter-click="email-click">Email →</a>
               <a href="#metagem" class="btn">metaGEM</a>
-              <a href="/assets/cv.pdf" class="btn">Download CV</a>
+              <a href="/assets/cv.pdf" class="btn" data-goatcounter-click="cv-download">Download CV</a>
             </div>
           </div>
           <div>
@@ -1499,8 +1508,8 @@
             <h3 class="sidebar-title">Impact</h3>
             <div class="impact-stack">
               <div class="impact-item">
-                <div class="impact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">300+</a></div>
-                <div class="impact-label"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">GitHub stars</a></div>
+                <div class="impact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;" data-goatcounter-click="contact-github">300+</a></div>
+                <div class="impact-label"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener" data-goatcounter-click="contact-github">GitHub stars</a></div>
                 <div class="impact-caption">across 13 public repos (<a href="#metagem">metaGEM</a> &amp; teaching)</div>
               </div>
               <div class="impact-item">
@@ -1509,13 +1518,13 @@
                 <div class="impact-caption"><a href="#metagem">metaGEM</a> · <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">workflow catalog rank</a></div>
               </div>
               <div class="impact-item">
-                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">931+</a></div>
-                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Citations</a></div>
+                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;" data-goatcounter-click="contact-scholar">931+</a></div>
+                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" data-goatcounter-click="contact-scholar">Citations</a></div>
                 <div class="impact-caption">across 12 publications</div>
               </div>
               <div class="impact-item">
-                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">h: 8</a></div>
-                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></div>
+                <div class="impact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" data-goatcounter-click="contact-scholar">h: 8</a></div>
+                <div class="impact-label"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" data-goatcounter-click="contact-scholar">Google Scholar</a></div>
                 <div class="impact-caption">i10-index also 8 · view profile</div>
               </div>
               <div class="impact-item">
@@ -1556,13 +1565,13 @@
                   <h2 style="margin-bottom: var(--space-2);">Computational biologist</h2>
                   <p class="cv-subtitle">ETH Zürich · Cambridge PhD · ex-EMBL</p>
                 </div>
-                <a href="/assets/cv.pdf" class="btn" download style="flex-shrink: 0;">Download PDF</a>
+                <a href="/assets/cv.pdf" class="btn" download style="flex-shrink: 0;" data-goatcounter-click="cv-download">Download PDF</a>
               </div>
             </div>
 
             <h3>Contact</h3>
         <dl class="dl-grid">
-          <dt>Email</dt><dd><a href="mailto:fzorrill@ethz.ch">fzorrill@ethz.ch</a></dd>
+          <dt>Email</dt><dd><a href="mailto:fzorrill@ethz.ch" data-goatcounter-click="email-click">fzorrill@ethz.ch</a></dd>
           <dt>Location</dt><dd>Zürich, Switzerland · Zurich/Basel corridor or fully remote in CH</dd>
           <dt>Work authorization</dt><dd>Swiss B permit · Italian citizen · EU work-eligible</dd>
           <dt>Languages</dt><dd>English (C2/native) · Spanish (C2/native)<br>Italian (B1) · French (A1) · German (A1)</dd>
@@ -2664,9 +2673,9 @@
               <h3 style="margin-top: 0;">Want to grab coffee?</h3>
               <p style="color: var(--fg-muted); margin-bottom: var(--space-5);">Happy to chat about computational biology, open-source tools, or just meet someone new in biotech. Email is fastest.</p>
               <div class="cta-group" style="margin-top: 0;">
-                <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary">Email me</a>
-                <a href="https://www.linkedin.com/in/fzorrilla94/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="/assets/cv.pdf" class="btn" download>Download CV</a>
+                <a href="mailto:fzorrill@ethz.ch" class="btn btn--primary" data-goatcounter-click="email-click">Email me</a>
+                <a href="https://www.linkedin.com/in/fzorrilla94/" class="btn" target="_blank" rel="noopener" data-goatcounter-click="contact-linkedin">LinkedIn</a>
+                <a href="/assets/cv.pdf" class="btn" download data-goatcounter-click="cv-download">Download CV</a>
               </div>
             </div>
           </div>
@@ -2677,32 +2686,32 @@
             <div class="contact-stack">
               <div class="contact-item">
                 <div class="contact-label">Email</div>
-                <div class="contact-value"><a href="mailto:fzorrill@ethz.ch">fzorrill@ethz.ch</a></div>
+                <div class="contact-value"><a href="mailto:fzorrill@ethz.ch" data-goatcounter-click="email-click">fzorrill@ethz.ch</a></div>
                 <div class="contact-meta">Fastest response time</div>
               </div>
               <div class="contact-item">
                 <div class="contact-label">LinkedIn</div>
-                <div class="contact-value"><a href="https://www.linkedin.com/in/fzorrilla94/" target="_blank" rel="noopener">fzorrilla94</a></div>
+                <div class="contact-value"><a href="https://www.linkedin.com/in/fzorrilla94/" target="_blank" rel="noopener" data-goatcounter-click="contact-linkedin">fzorrilla94</a></div>
                 <div class="contact-meta">Professional profile</div>
               </div>
               <div class="contact-item">
                 <div class="contact-label">GitHub</div>
-                <div class="contact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">franciscozorrilla</a></div>
+                <div class="contact-value"><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener" data-goatcounter-click="contact-github">franciscozorrilla</a></div>
                 <div class="contact-meta">Open-source work</div>
               </div>
               <div class="contact-item">
                 <div class="contact-label">Google Scholar</div>
-                <div class="contact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Francisco Zorrilla</a></div>
+                <div class="contact-value"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener" data-goatcounter-click="contact-scholar">Francisco Zorrilla</a></div>
                 <div class="contact-meta">h-index 8 · 931+ citations</div>
               </div>
               <div class="contact-item">
                 <div class="contact-label">BlueSky</div>
-                <div class="contact-value"><a href="https://bsky.app/profile/metagenomez.bsky.social" target="_blank" rel="noopener">@metagenomez</a></div>
+                <div class="contact-value"><a href="https://bsky.app/profile/metagenomez.bsky.social" target="_blank" rel="noopener" data-goatcounter-click="contact-bluesky">@metagenomez</a></div>
                 <div class="contact-meta">Longer-form thoughts</div>
               </div>
               <div class="contact-item">
                 <div class="contact-label">Twitter / X</div>
-                <div class="contact-value"><a href="https://x.com/metagenomez" target="_blank" rel="noopener">@metagenomez</a></div>
+                <div class="contact-value"><a href="https://x.com/metagenomez" target="_blank" rel="noopener" data-goatcounter-click="contact-x">@metagenomez</a></div>
                 <div class="contact-meta">Quick takes &amp; reposts</div>
               </div>
               <div class="contact-item">
@@ -2728,7 +2737,7 @@
         <a href="#contact">contact</a>
         <a href="https://github.com/franciscozorrilla/franciscozorrilla.github.io" target="_blank" rel="noopener">source</a>
       </div>
-      <p>Built with Jekyll · No trackers · Last updated May 2026</p>
+      <p>Static HTML · privacy-friendly analytics via <a href="https://www.goatcounter.com" target="_blank" rel="nofollow noopener">GoatCounter</a> (no cookies, no personal data) · Last updated May 2026</p>
     </div>
   </footer>
 
@@ -2843,6 +2852,10 @@
       function showDetailFor(card) {
         const expanded = card.querySelector('.card-expanded-inner');
         if (!expanded) return;
+        if (window.__gcSeenCards && !window.__gcSeenCards.has(card.id)) {
+          window.__gcSeenCards.add(card.id);
+          window.goatcounter?.count?.({ path: 'expand-' + card.id, event: true });
+        }
         const year = card.querySelector('.card-year')?.textContent.trim() || '';
         const venue = card.querySelector('.card-venue')?.textContent.trim() || '';
         const title = card.querySelector('.card-title')?.textContent.trim() || '';
@@ -3223,6 +3236,81 @@
         s.async = true;
         document.body.appendChild(s);
       }
+    })();
+
+    // ──────────────────────────────────────────────────────────────────
+    // GoatCounter analytics — engagement events & outbound bucketing
+    // Page views + Layer 2 (data-goatcounter-click) handled by count.js
+    // ──────────────────────────────────────────────────────────────────
+    (function () {
+      // Hostname guard — production only (allows bare + www. variants)
+      if (!/(^|\.)franciscozorrilla\.github\.io$/i.test(location.hostname)) return;
+
+      const gc = (opts) => window.goatcounter?.count?.(opts);
+
+      // (a) contact-intent composite — once per session.
+      // sessionStorage can throw under Brave shields / iOS lockdown / Firefox-with-storage-off;
+      // fall through and fire anyway — duplicates within a session are cheaper than missing signal.
+      const QV = 'gc-contact-intent';
+      function maybeFireContactIntent() {
+        try {
+          if (sessionStorage.getItem(QV)) return;
+          sessionStorage.setItem(QV, '1');
+        } catch (e) { /* storage blocked — fall through */ }
+        gc({ path: 'contact-intent', event: true });
+      }
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-goatcounter-click]');
+        if (!a) return;
+        const evt = a.dataset.goatcounterClick;
+        if (evt === 'cv-download' || evt === 'email-click' || evt === 'contact-linkedin') {
+          maybeFireContactIntent();
+        }
+      }, true);
+
+      // (b) Work-card expansion — Set initialized here; the hook itself lives
+      // inside showDetailFor (above), positioned after the `if (!expanded) return;` early-exit.
+      window.__gcSeenCards = window.__gcSeenCards || new Set();
+
+      // (c) Section visibility — separate observer from the nav-active one
+      const targets = [
+        { sel: '#work',    name: 'view-work' },
+        { sel: '#contact', name: 'view-contact' },
+        { sel: 'footer.site-footer p:last-child', name: 'reached-footer' },
+      ];
+      const visObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const t = targets.find((x) => entry.target.matches(x.sel));
+          if (t) gc({ path: t.name, event: true });
+          visObs.unobserve(entry.target);
+        });
+      }, { threshold: 0.25 });
+      targets.forEach((t) => {
+        const el = document.querySelector(t.sel);
+        if (el) visObs.observe(el);
+      });
+
+      // (d) Outbound link bucketing — anchored hostname regexes
+      const BUCKETS = [
+        { name: 'out-paper', re: /(?:^|\.)(doi\.org|biorxiv\.org|ncbi\.nlm\.nih\.gov|nature\.com|science\.org|cell\.com|springer\.com|pnas\.org|plos\.org|asm\.org|semanticscholar\.org|europepmc\.org|repository\.cam\.ac\.uk)$/ },
+        { name: 'out-data',  re: /(?:^|\.)(zenodo\.org|figshare\.com)$/ },
+        { name: 'out-repo',  re: /(?:^|\.)github\.com$/ },
+        { name: 'out-news',  re: /(?:^|\.)(yale\.edu|phys\.org|theguardian\.com|salon\.com|sciencealert\.com|sciencedaily\.com|smithsonianmag\.com|chalmers\.se|charite\.de|theconversation\.com|chemistryworld\.com|scitechdaily\.com|nationalobserver\.com|zmescience\.com|eurekalert\.org|aiche\.org)$/ },
+      ];
+      const OWN_REPO = /^https?:\/\/github\.com\/franciscozorrilla\/franciscozorrilla\.github\.io(\/|$)/;
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="http"]');
+        if (!a) return;
+        if (a.dataset.goatcounterClick) return;       // explicit tag wins
+        let host;
+        try { host = new URL(a.href).hostname; } catch (err) { return; }
+        if (host === location.hostname) return;        // not outbound
+        if (OWN_REPO.test(a.href)) return;             // own repo
+        const match = BUCKETS.find((b) => b.re.test(host));
+        const bucket = match ? match.name : 'out-other';
+        gc({ path: bucket, title: host, event: true });
+      });
     })();
   </script>
 </body>
