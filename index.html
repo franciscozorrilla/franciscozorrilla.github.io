@@ -833,14 +833,20 @@
       color: var(--fg-muted);
       font-family: 'JetBrains Mono', monospace;
     }
-    .card-detail-content h4:first-child { margin-top: 0; }
+    /* First-h4 hugs the top of the panel. First selector covers no-JS fallback;
+       second covers the normal path after wrapDetailBlocks runs. Direct-child
+       combinators are critical — without `>` the rule over-matches every wrapped
+       h4 (since each is :first-child of its .detail-block) and kills inter-section gaps. */
+    .card-detail-content > h4:first-child,
+    .card-detail-content > .detail-block:first-child > h4:first-child { margin-top: 0; }
     .card-detail-content p {
       font-size: 0.95rem;
       line-height: 1.6;
       max-width: 70ch;
       margin: 0;
     }
-    .card-detail-content > p + p { margin-top: var(--space-3); }
+    .card-detail-content > p + p,
+    .card-detail-content .detail-block > p + p { margin-top: var(--space-3); }
     @media (min-width: 880px) {
       .card-detail-content {
         column-count: 2;
@@ -852,6 +858,11 @@
       .card-detail-content .altmetric-row,
       .card-detail-content .card-links,
       .card-detail-content ul { break-inside: avoid; -webkit-column-break-inside: avoid; }
+      .card-detail-content .detail-block {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
     /* Active card highlight */
     .card.card-active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
@@ -930,6 +941,7 @@
     [data-theme="light"] .section-2col-sidebar { background: var(--surface); }
     .section--surface .section-2col-sidebar { background: var(--bg); }
     [data-theme="light"] .section--surface .section-2col-sidebar { background: var(--bg); }
+    aside[id="contact"] { scroll-margin-top: var(--header-h); }
     @media (max-width: 880px) {
       .section-2col { grid-template-columns: 1fr; }
       .section-2col-sidebar { position: static; max-height: none; overflow-y: visible; }
@@ -1907,7 +1919,7 @@
                 <span class="card-year">2020</span>
                 <span class="card-venue">Comm. Biology</span>
               </div>
-              <h3 class="card-title">iGEM: Bacterial OD → cell count</h3>
+              <h3 class="card-title">iGEM: bacterial OD → cell count</h3>
               <div class="card-desc">Robust estimation of bacterial cell count from optical density via interlab calibration. 244-lab study.</div>
               <div class="card-tags">
                 <span class="tag">tool-paper</span>
@@ -2068,7 +2080,7 @@
                 <span class="card-year">2021</span>
                 <span class="card-venue">PLoS ONE</span>
               </div>
-              <h3 class="card-title">iGEM fluorescence reproducibility</h3>
+              <h3 class="card-title">iGEM: fluorescence reproducibility</h3>
               <div class="card-desc">Comparative analysis of fluorescence expression from engineered bacterial constructs across years and labs.</div>
               <div class="card-tags">
                 <span class="tag">synthetic-biology</span>
@@ -2297,6 +2309,7 @@
                 <h4>Links</h4>
                 <div class="card-links">
                   <a href="https://www.repository.cam.ac.uk/items/e8039120-7f95-444f-95af-78fe5ce49db6" target="_blank" rel="noopener">Cambridge Apollo · Full thesis</a>
+                  <a href="https://github.com/franciscozorrilla/thesis" target="_blank" rel="noopener">GitHub</a>
                 </div>
               </div>
             </div>
@@ -2762,7 +2775,7 @@
       update();
     })();
 
-    /* ============ ACTIVE NAV (IntersectionObserver) ============ */
+    /* ============ ACTIVE NAV (IntersectionObserver + scroll-aware) ============ */
     (function () {
       const navLinks = document.querySelectorAll('nav.site-nav a');
       const linkMap = new Map();
@@ -2774,18 +2787,123 @@
         .map(id => document.getElementById(id))
         .filter(Boolean);
 
+      const intersecting = new Set();
+      // Click-suppress: short window during which observer can't override.
+      let suppressUntil = 0;
+      // Click target: when a nav link is clicked, that section stays active.
+      // - Within 1.5s grace period after click: honored unconditionally (allows
+      //   smooth-scroll to complete before observer takes back over).
+      // - After grace: honored only while target section is still in the active
+      //   band (cleared automatically when user scrolls away).
+      // Solves "click contact → observer reverts to now during smooth-scroll".
+      let clickedTarget = null;
+      let clickedAt = 0;
+      // rAF-throttle re-evaluations.
+      let rafScheduled = false;
+
+      function setActive(id) {
+        const link = linkMap.get(id);
+        if (!link) return;
+        navLinks.forEach(a => {
+          a.classList.remove('active');
+          a.removeAttribute('aria-current');
+        });
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'location');
+      }
+
+      function pickActive() {
+        if (intersecting.size === 0) return;
+
+        // Honor click target. Within 1.5s grace period, unconditional (lets
+        // smooth-scroll complete). After grace, only while target is in view.
+        if (clickedTarget) {
+          if (Date.now() - clickedAt < 1500) {
+            setActive(clickedTarget);
+            return;
+          }
+          const targetEl = document.getElementById(clickedTarget);
+          if (targetEl && intersecting.has(targetEl)) {
+            setActive(clickedTarget);
+            return;
+          }
+          clickedTarget = null;
+        }
+
+        const nowEl = document.getElementById('now');
+        const contactEl = document.getElementById('contact');
+
+        // Special case: #now and #contact both intersect because the contact
+        // aside is the right column of #now's 2-col grid (always visually
+        // overlapping). Use section-progress as the heuristic: when the user
+        // has scrolled past ~40% of the #now section, they've read most of
+        // the Now narrative and are looking at the contact aside — switch.
+        // (A scroll-position approach is more reliable than nowBody.bottom-vs-band
+        //  because the page often can't scroll far enough for nowBody.bottom to
+        //  rise above the active band.)
+        if (nowEl && contactEl && intersecting.has(nowEl) && intersecting.has(contactEl)) {
+          const nowRect = nowEl.getBoundingClientRect();
+          // passedRatio = how much of the section has scrolled above the viewport top
+          const passedRatio = nowRect.top < 0 ? Math.min(1, -nowRect.top / Math.max(1, nowRect.height)) : 0;
+          if (passedRatio > 0.40) {
+            setActive('contact');
+          } else {
+            setActive('now');
+          }
+          return;
+        }
+
+        // General case: prefer the outermost (ancestor) intersecting section.
+        // "no other intersecting element contains this one" — order-independent.
+        const arr = Array.from(intersecting);
+        const winner = arr.find(el => !arr.some(other => other !== el && other.contains(el))) || arr[0];
+        setActive(winner.id);
+      }
+
+      function schedulePickActive() {
+        if (rafScheduled) return;
+        rafScheduled = true;
+        requestAnimationFrame(() => {
+          rafScheduled = false;
+          if (Date.now() < suppressUntil) return;
+          pickActive();
+        });
+      }
+
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          const link = linkMap.get(entry.target.id);
-          if (!link) return;
-          if (entry.isIntersecting) {
-            navLinks.forEach(a => a.classList.remove('active'));
-            link.classList.add('active');
-          }
+          if (entry.isIntersecting) intersecting.add(entry.target);
+          else intersecting.delete(entry.target);
         });
+        schedulePickActive();
       }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
 
       sections.forEach(s => observer.observe(s));
+
+      // Scroll listener — the now/contact special case depends on scroll
+      // POSITION (nowBody.bottom), not just on intersection-state changes.
+      window.addEventListener('scroll', schedulePickActive, { passive: true });
+
+      // Click handlers: immediate active feedback + set click target + suppress.
+      navLinks.forEach(a => {
+        a.addEventListener('click', () => {
+          const id = a.getAttribute('href').replace('#', '');
+          if (!id || !linkMap.has(id)) return;
+          setActive(id);
+          suppressUntil = Date.now() + 700;
+          clickedTarget = id;
+          clickedAt = Date.now();
+        });
+      });
+
+      // Initial-load deep-link handling: if URL has a hash matching a nav
+      // target, pin it as if user clicked.
+      const initialHash = location.hash.replace('#', '');
+      if (initialHash && linkMap.has(initialHash)) {
+        setActive(initialHash);
+        clickedTarget = initialHash;
+        clickedAt = Date.now();
+      }
     })();
 
     /* ============ SORT ============ */
@@ -2866,6 +2984,40 @@
           '</div>' +
           '<h3>' + title + '</h3>';
         detailContent.innerHTML = expanded.innerHTML;
+        // ─── Wrap each h4 + its following siblings (until the next h4) into a
+        // <div class="detail-block">, so the CSS multicolumn layout treats the
+        // group as one atomic unit (via break-inside: avoid). Prevents headings
+        // from being orphaned at the bottom of column 1 with their content
+        // flowing to column 2. Runs on the cloned content only — the original
+        // .card-expanded-inner in each card stays flat and untouched.
+        (function wrapDetailBlocks() {
+          const root = detailContent;
+          // Idempotency guard: if content has already been wrapped, skip.
+          if (root.firstElementChild && root.firstElementChild.classList.contains('detail-block')) return;
+          const children = Array.from(root.children);
+          if (children.length === 0) return;
+          const groups = [];
+          // Defensive: handle any content that appears BEFORE the first <h4>
+          // by giving it its own leading .detail-block (no card currently has
+          // this, but future content drift should not crash the wrapper).
+          let current = [];
+          children.forEach(node => {
+            if (node.tagName === 'H4') {
+              if (current.length) groups.push(current);
+              current = [node];
+            } else {
+              current.push(node);
+            }
+          });
+          if (current.length) groups.push(current);
+          root.innerHTML = '';
+          groups.forEach(nodes => {
+            const block = document.createElement('div');
+            block.className = 'detail-block';
+            nodes.forEach(n => block.appendChild(n));
+            root.appendChild(block);
+          });
+        })();
         detail.hidden = false;
         // Highlight the active card
         if (activeCard) activeCard.classList.remove('card-active');
