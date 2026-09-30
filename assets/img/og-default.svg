@@ -32,15 +32,15 @@
   <text x="80" y="400"
         font-family="Inter, system-ui, sans-serif"
         font-size="32" font-weight="400"
-        fill="#8A968D">Computational biologist building production tools</text>
+        fill="#8A968D">Open-source modelling tools for microbial communities,</text>
   <text x="80" y="442"
         font-family="Inter, system-ui, sans-serif"
         font-size="32" font-weight="400"
-        fill="#8A968D">for microbiome-scale science.</text>
+        fill="#8A968D">applied to food, health and the environment.</text>
 
   <!-- mono footer -->
   <text x="80" y="560"
         font-family="JetBrains Mono, monospace"
         font-size="22" font-weight="500"
-        fill="#7DD3A0">metaGEM · NCCR Microbiomes · ETH Zürich</text>
+        fill="#7DD3A0">metaGEM · Open to industry roles in Switzerland from Dec 2026</text>
 </svg>
