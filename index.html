@@ -371,17 +371,15 @@
         justify-content: center;
         align-items: start;
       }
+      /* Sticky side panel. If it is taller than the window, it scrolls with the page until its
+         end is visible and then stays put (the script sets --profile-top), so nothing is cut off. */
       .profile {
         position: sticky;
-        top: calc(var(--nav-h) + 20px);
-        max-height: calc(100vh - var(--nav-h) - 36px);
-        overflow-y: auto;
-        scrollbar-width: none;
+        top: var(--profile-top, calc(var(--nav-h) + 20px));
         padding-bottom: 8px;
       }
-      .profile::-webkit-scrollbar { display: none; }
-      /* Contact details are always in the side panel here, so the menu does not need a contact item */
-      .nav a[href="#contact"], .footer-links a[href="#contact"] { display: none; }
+      /* Contact details are always in the side panel here, so no separate contact section or menu item */
+      .nav a[href="#contact"], .footer-links a[href="#contact"], #contact { display: none; }
       .mobile-only { display: none !important; }
     }
     @media (min-width: 1180px) {
@@ -1652,6 +1650,22 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script>
+    /* Side panel: stick at the top when it fits the window, otherwise stick once its end is visible */
+    (function () {
+      var p = document.querySelector('.profile');
+      if (!p) return;
+      function place() {
+        var bar = document.querySelector('.topbar');
+        var nav = bar ? bar.offsetHeight : 52;
+        var top = Math.min(nav + 20, window.innerHeight - p.offsetHeight - 20);
+        p.style.setProperty('--profile-top', top + 'px');
+      }
+      window.addEventListener('resize', place);
+      window.addEventListener('load', place);
+      if (window.ResizeObserver) new ResizeObserver(place).observe(p);
+      place();
+    })();
+
     /* Shared helpers */
     function fzNavHeight() {
       var bar = document.querySelector('.topbar');
