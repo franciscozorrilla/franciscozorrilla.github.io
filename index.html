@@ -640,6 +640,21 @@
     .pub p { margin-bottom: 6px; max-width: 68ch; }
     .pub p:last-child { margin-bottom: 0; }
     .pub-links { font-size: 0.875rem; color: var(--muted); }
+    /* Two columns when the main column is wide enough */
+    @container sheet (min-width: 640px) {
+      .pubs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+    }
+
+    /* "Show more" toggles */
+    details.more { margin-top: 12px; }
+    details.more > summary { cursor: pointer; color: var(--accent); font-weight: 500; list-style: none; padding: 6px 0; }
+    details.more > summary::-webkit-details-marker { display: none; }
+    details.more > summary::before { content: '+ '; }
+    details.more[open] > summary::before { content: '\2212 '; }
+    details.more > .apps, details.more > .teach { margin-top: 8px; }
+    details.other-research { margin-top: 28px; }
+    details.other-research > summary { font-size: 1.05rem; }
+    details.other-research > .pubs { margin-top: 8px; }
 
     /* ============ METAGEM ============ */
     .mg-lead { font-size: 1.0625rem; margin-bottom: 14px; }
@@ -935,7 +950,7 @@
               <dt>Skills</dt><dd>Metagenomics and microbial genome analysis · genome-scale metabolic modelling · reproducible pipelines (Snakemake, Conda, Slurm) · Python and R · protein language models and structure search (ProstT5, Foldseek)</dd>
             </dl>
             <div class="otw-body">
-              <p><strong>What I bring:</strong> an open-source workflow I built and support (<a href="#metagem">metaGEM</a>); metabolic models built with wet-lab partners and checked against their measurements (co-first author, <a href="#work-soil">Nature Microbiology 2026</a>, with the Kost lab) or used alongside their experiments (<a href="#work-cheese">Nature Communications 2023</a>, with Chr. Hansen); experience planning a multi-institution research project (the NCCR Microbiomes flagship); and teaching <a href="#talks">five courses</a>.</p>
+              <p><strong>What I bring:</strong> an open-source workflow I built and support (<a href="#metagem">metaGEM</a>); metabolic models built with wet-lab partners and checked against their measurements (co-first author, <a href="#work-soil">Nature Microbiology 2026</a>, with the Kost lab) or used alongside their experiments (<a href="#work-cheese">Nature Communications 2023</a>, with Chr. Hansen); and teaching <a href="#talks">five courses</a>.</p>
               <h4>How I could help an R&amp;D team</h4>
               <ul>
                 <li>Predict from genomes which nutrients the strains in a collection cannot make, and check those predictions against growth data, including where they fail (<a href="#work-soil">Nature Microbiology 2026</a>).</li>
@@ -950,15 +965,7 @@
 
           <h3>Overview</h3>
           <div class="prose">
-            <p>At ETH Zürich (<a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a>) I designed the computational roadmap for the <a href="https://nccr-microbiomes.ch/research/work-package-5/" target="_blank" rel="noopener">NCCR Microbiomes Work Package 5 Flagship Project</a> and co-led two of its modules. Before that I built <a href="#metagem">metaGEM</a>, an open-source bioinformatics workflow cited 150+ times that other groups have used in their own published studies. 7+ years in metagenomics and metabolic modelling, and since 2024 also protein language models and structure search for gene annotation.</p>
-            <p>I joined the <a href="https://www.mrc-tox.cam.ac.uk/research/research-groups/patil-group" target="_blank" rel="noopener">Patil Lab</a> at EMBL Heidelberg in 2019 and moved with the group to the MRC Toxicology Unit, University of Cambridge, where I did my PhD. From 2024 to 2026 I was a postdoc in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a> at ETH Zürich. My work turns raw metagenomic data into predictions of what each microbe in a community eats and makes, and I check those predictions against experimental data from partner labs: the Kost lab (Osnabrück) on soil isolates, Joy Scaria's lab on <em>C. difficile</em> bioreactors, and Chr. Hansen on cheese starter cultures.</p>
-            <p>Selected work, from the tools I built to the questions I used them on:</p>
-            <ul>
-              <li><strong><a href="#metagem">metaGEM</a></strong>: open-source Snakemake workflow turning raw metagenomes into community-level metabolic models (Nucleic Acids Research 2021).</li>
-              <li><strong>NCCR Microbiomes flagship</strong>: a 4-year project (2024 to 2028) across ETH Zürich, EPFL, UZH, UNIL and CHUV to learn how to design synthetic microbial communities for soil, plant, gut, marine and bee microbiomes. I designed its computational roadmap and co-led two of its modules (<a href="https://nccr-microbiomes.ch/research/work-package-5/" target="_blank" rel="noopener">Work Package 5 Flagship Project</a>; details in the <a href="#cv">CV</a>).</li>
-              <li><strong>Food and health</strong>: metabolic modelling in a Chr. Hansen study of how starter-culture strains shape Cheddar flavour (<a href="#work-cheese">Nature Communications 2023</a>); metabolic models and metabolomics for a 14-strain gut community that resists <em>C. difficile</em> (<a href="#work-cdiff">bioRxiv 2024</a>).</li>
-              <li><strong>Environment and agriculture</strong>: a global search of ocean and soil metagenomes for <a href="#work-plastic"><strong>plastic-degrading enzymes</strong> (mBio 2021)</a>, and a co-first-authored study finding that up to half the bacteria in soil communities could not grow without added amino acids, vitamins or nucleobases, which points to dependence on neighbours (<a href="#work-soil"><strong>Nature Microbiology 2026</strong></a>).</li>
-            </ul>
+            <p>I have worked in metagenomics and metabolic modelling for 7+ years, and since 2024 also with protein language models and structure search for gene annotation. I joined the <a href="https://www.mrc-tox.cam.ac.uk/research/research-groups/patil-group" target="_blank" rel="noopener">Patil Lab</a> at EMBL Heidelberg in 2019 and moved with the group to the MRC Toxicology Unit, University of Cambridge, where I did my PhD. From 2024 to 2026 I was a postdoc in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a> at ETH Zürich, where I was co-lead of the NCCR Microbiomes Work Package 5 flagship project (details in the <a href="#cv">CV</a>). My work turns raw metagenomic data into predictions of what each microbe in a community eats and makes, and I check those predictions against experimental data from partner labs: the Kost lab (Osnabrück) on soil isolates, Joy Scaria's lab on <em>C. difficile</em> bioreactors, and Chr. Hansen on cheese starter cultures.</p>
             <p>Code, models and data from metaGEM, the soil and cheese papers and my PhD thesis are public on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22%20OR%20metadata.creators.person_or_org.name%3A%22Zorrilla%2C%20Francisco%22&amp;l=list&amp;p=1&amp;s=20&amp;sort=mostdownloaded" target="_blank" rel="noopener">Zenodo</a>.</p>
           </div>
         </section>
@@ -1211,43 +1218,36 @@
             <div class="card-detail-content"></div>
           </div>
 
-          <h3>Other research</h3>
-          <ul class="pubs">
+          <details class="more other-research" id="otherResearch">
+            <summary>Other research (5 papers)</summary>
+                    <ul class="pubs">
             <li class="pub" id="work-drug">
               <h4>Drug tolerance via cross-feeding</h4>
-              <p class="pub-meta">Nat. Microbiol. 2022 · Third author · <a href="https://scholar.google.com/scholar?cites=5691438272753806031" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">144 citations</a></p>
-              <p>Third author (of 19). I did the analysis that opens the paper: how common amino-acid auxotrophs are across more than 12,000 Earth Microbiome Project communities, and whether auxotrophs grow better under drugs.</p>
-              <p class="pub-links"><a href="https://doi.org/10.1038/s41564-022-01072-5" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a> · <a href="https://www.altmetric.com/details/125072555" target="_blank" rel="noopener" title="See the attention summary on Altmetric">19 news and blogs</a> · <a href="https://www.altmetric.com/details/125072555" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">146 social</a></p>
-              <p class="pub-links">Press coverage: <a href="https://www.crick.ac.uk/news/2022-03-21_microbial-communities-where-cells-cooperate-have-increased-drug-tolerance" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (Francis Crick Institute · institutional release · Mar 2022)">Francis Crick Institute</a> · <a href="https://www.charite.de/en/service/press_reports/artikel/detail/fungal_infections_microbial_cooperation_leads_to_drug_tolerance/" target="_blank" rel="noopener" title="Fungal infections: Microbial cooperation leads to drug tolerance (Charité - Universitätsmedizin Berlin · institutional release · Mar 2022)">Charité Berlin</a> · <a href="https://www.sciencedaily.com/releases/2022/03/220321132141.htm" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (ScienceDaily · Mar 2022)">ScienceDaily</a> · <a href="https://phys.org/news/2022-03-microbial-cells-cooperate-drug-tolerance.html" target="_blank" rel="noopener" title="Microbial communities where cells cooperate have increased drug tolerance (Phys.org · Mar 2022)">Phys.org</a></p>
+              <p class="pub-meta">Nat. Microbiol. 2022 · Third author of 19 · <a href="https://scholar.google.com/scholar?cites=5691438272753806031" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">144 citations</a> · <a href="https://doi.org/10.1038/s41564-022-01072-5" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a></p>
+              <p>I did the analysis that opens the paper: how common amino-acid auxotrophs are across more than 12,000 Earth Microbiome Project communities, and whether auxotrophs grow better under drugs.</p>
             </li>
             <li class="pub" id="work-entero">
               <h4>Enterobacteriaceae gut dynamics</h4>
-              <p class="pub-meta">Nat. Microbiol. 2025 · Third author · <a href="https://scholar.google.com/scholar?cites=2594009189748728865,277259357539113109" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">97 citations</a></p>
-              <p>Third author. I gave the authors a session on flux balance analysis and genome-scale metabolic models, then reviewed the finished paper and helped interpret the metabolic scores.</p>
-              <p class="pub-links"><a href="https://doi.org/10.1038/s41564-024-01912-6" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a> · <a href="https://www.altmetric.com/details/172905207" target="_blank" rel="noopener" title="See the attention summary on Altmetric">118 news and blogs</a> · <a href="https://www.altmetric.com/details/172905207" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">175 social</a></p>
-              <p class="pub-links">Press coverage: <a href="https://www.cam.ac.uk/research/news/feeding-your-good-gut-bacteria-through-fibre-in-diet-may-boost-body-against-infections" target="_blank" rel="noopener" title="Feeding your good gut bacteria through fibre in diet may boost body against infections (University of Cambridge · institutional release · Jan 2025)">University of Cambridge press release (also on SciTechDaily)</a> · <a href="https://theconversation.com/fibre-may-help-protect-your-gut-from-overgrowth-of-harmful-bugs-new-study-246910" target="_blank" rel="noopener" title="Fibre may help protect your gut from overgrowth of harmful bugs - new study (The Conversation · authored by senior author Alexandre Almeida · Jan 2025)">The Conversation, by senior author Alexandre Almeida (reprinted by ScienceAlert and Salon)</a></p>
+              <p class="pub-meta">Nat. Microbiol. 2025 · Third author · <a href="https://scholar.google.com/scholar?cites=2594009189748728865,277259357539113109" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">97 citations</a> · <a href="https://doi.org/10.1038/s41564-024-01912-6" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a></p>
+              <p>I gave the authors a session on flux balance analysis and genome-scale metabolic models, then reviewed the finished paper and helped interpret the metabolic scores.</p>
             </li>
             <li class="pub" id="work-frog">
               <h4>FROG: GEM reproducibility</h4>
-              <p class="pub-meta">bioRxiv 2024 · Co-author · <a href="https://scholar.google.com/scholar?cites=11472448746820764255" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">15 citations</a></p>
+              <p class="pub-meta">bioRxiv 2024 · Co-author · <a href="https://scholar.google.com/scholar?cites=11472448746820764255" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">15 citations</a> · <a href="https://www.biorxiv.org/content/10.1101/2024.09.24.614797v1" target="_blank" rel="noopener">bioRxiv preprint</a></p>
               <p>As a community contribution, I submitted a genome-scale model from one of our lab's published studies to BioModels as a test case.</p>
-              <p class="pub-links"><a href="https://www.biorxiv.org/content/10.1101/2024.09.24.614797v1" target="_blank" rel="noopener">bioRxiv preprint</a> · <a href="https://www.altmetric.com/details/168568000" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">32 social</a></p>
             </li>
             <li class="pub" id="work-igem"><span id="work-od"></span>
               <h4>iGEM interlab measurement studies</h4>
-              <p class="pub-meta">Commun. Biol. 2020 and PLOS ONE 2021 · Consortium author · <a href="https://scholar.google.com/scholar?cites=4779602569618155826" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">381</a> and <a href="https://scholar.google.com/scholar?cites=10654746401281222222" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">16</a> citations</p>
+              <p class="pub-meta">Commun. Biol. 2020 and PLOS ONE 2021 · Consortium author · <a href="https://scholar.google.com/scholar?cites=4779602569618155826" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">381</a> and <a href="https://scholar.google.com/scholar?cites=10654746401281222222" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">16</a> citations · <a href="https://doi.org/10.1038/s42003-020-01127-5" target="_blank" rel="noopener">Paper (Commun. Biol.)</a> · <a href="https://doi.org/10.1371/journal.pone.0252263" target="_blank" rel="noopener">Paper (PLOS ONE)</a></p>
               <p>As a master's student on the Chalmers iGEM 2018 team, I was one of three members in charge of our lab's interlab contribution: growing the test strains, calibrating OD and fluorescence on the plate reader, and counting colonies.</p>
-              <p class="pub-links"><a href="https://doi.org/10.1038/s42003-020-01127-5" target="_blank" rel="noopener">Paper (Commun. Biol.)</a> · <a href="https://www.altmetric.com/details/90482252" target="_blank" rel="noopener" title="See the attention summary on Altmetric">2 news and blogs</a> · <a href="https://www.altmetric.com/details/90482252" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">41 social</a></p>
-              <p class="pub-links"><a href="https://doi.org/10.1371/journal.pone.0252263" target="_blank" rel="noopener">Paper (PLOS ONE)</a> · <a href="https://www.altmetric.com/details/107250276" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">10 social</a></p>
-              <p class="pub-links">Press coverage: <a href="https://phys.org/news/2020-10-probe-bacteria-liquid-samples.html" target="_blank" rel="noopener" title="Phys.org · Oct 2020">Phys.org (Oct 2020)</a> · <a href="https://blog.igem.org/blog/2020/10/14/the-igem-2018-interlab-study-1400-igemers-250-teams" target="_blank" rel="noopener" title="The iGEM 2018 Interlab Study: 1,400 iGEMers, 250 teams (iGEM Foundation Blog · Oct 2020)">iGEM Blog (Oct 2020)</a></p>
             </li>
             <li class="pub" id="work-thesis">
               <h4>PhD thesis</h4>
-              <p class="pub-meta">University of Cambridge 2024 · open access</p>
+              <p class="pub-meta">University of Cambridge 2024 · open access · <a href="https://doi.org/10.17863/CAM.114621" target="_blank" rel="noopener">Full thesis (open access)</a> · <a href="https://github.com/franciscozorrilla/thesis" target="_blank" rel="noopener">GitHub</a></p>
               <p>Omics-driven and constraint-based modelling of microbial community metabolism.</p>
-              <p class="pub-links"><a href="https://doi.org/10.17863/CAM.114621" target="_blank" rel="noopener">Full thesis (open access)</a> · <a href="https://github.com/franciscozorrilla/thesis" target="_blank" rel="noopener">GitHub</a></p>
             </li>
           </ul>
+          </details>
         </section>
 
         <!-- METAGEM -->
@@ -1347,19 +1347,24 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
               <p class="app-desc">Zhao et al. (Tianjin Institute of Industrial Biotechnology, CAS) used metaGEM to recover 164 genomes from a microbial community they scaled up from shake flasks to an industrial plant treating phenolic resin wastewater.</p>
               <p class="app-area">Industrial wastewater · biotech</p>
             </li>
-            <li class="app">
-              <div class="app-meta">2022 · F1000Research</div>
-              <h4 class="app-title"><a href="https://doi.org/10.12688/f1000research.51494.2" target="_blank" rel="noopener">NEON soil metagenomes pipeline</a></h4>
-              <p class="app-desc">Werbin et al. (Boston University) moved the main workflow of their public tutorial for the National Ecological Observatory Network's soil metagenomes to metaGEM, citing its support for computing clusters, and thanked the metaGEM developers for help troubleshooting.</p>
-              <p class="app-area">Soil · large-scale ecology</p>
-            </li>
-            <li class="app">
-              <div class="app-meta">2022 · Environmental Microbiome</div>
-              <h4 class="app-title"><a href="https://doi.org/10.1186/s40793-022-00438-w" target="_blank" rel="noopener">Movile Cave: chemoautotrophic ecosystem</a></h4>
-              <p class="app-desc">Chiciudean et al. (Babeș-Bolyai University, Romania) followed metaGEM's modelling steps (CarveMe, MEMOTE, SMETANA) on their own genomes from a sulfidic cave, to map competition and cooperation in an ecosystem that runs without sunlight. I helped with their community simulations.</p>
-              <p class="app-area">Extreme environments · ecology</p>
-            </li>
           </ul>
+          <details class="more">
+            <summary>Show 2 more</summary>
+            <ul class="apps">
+              <li class="app">
+                <div class="app-meta">2022 · F1000Research</div>
+                <h4 class="app-title"><a href="https://doi.org/10.12688/f1000research.51494.2" target="_blank" rel="noopener">NEON soil metagenomes pipeline</a></h4>
+                <p class="app-desc">Werbin et al. (Boston University) moved the main workflow of their public tutorial for the National Ecological Observatory Network's soil metagenomes to metaGEM, citing its support for computing clusters, and thanked the metaGEM developers for help troubleshooting.</p>
+                <p class="app-area">Soil · large-scale ecology</p>
+              </li>
+              <li class="app">
+                <div class="app-meta">2022 · Environmental Microbiome</div>
+                <h4 class="app-title"><a href="https://doi.org/10.1186/s40793-022-00438-w" target="_blank" rel="noopener">Movile Cave: chemoautotrophic ecosystem</a></h4>
+                <p class="app-desc">Chiciudean et al. (Babeș-Bolyai University, Romania) followed metaGEM's modelling steps (CarveMe, MEMOTE, SMETANA) on their own genomes from a sulfidic cave, to map competition and cooperation in an ecosystem that runs without sunlight. I helped with their community simulations.</p>
+                <p class="app-area">Extreme environments · ecology</p>
+              </li>
+            </ul>
+          </details>
           <p class="fine">Selected from the 150+ works that cite metaGEM. See the full list on <a href="https://scholar.google.com/scholar?cites=14787921785416134649" target="_blank" rel="noopener">Google Scholar</a>.</p>
         </section>
 
@@ -1380,8 +1385,9 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             <ul>
               <li><strong>Planning:</strong> designed the 4-year computational roadmap and its modules for the flagship (2024 to 2028; ETH Zürich, EPFL, UZH, UNIL and CHUV) and pitched it to the PIs.</li>
               <li><strong>Leadership:</strong> coordinated the flagship with a PhD co-lead from EPFL on behalf of the work-package leaders. I organised its launch workshop (Bern, March 2025), recruited the co-leads of the four modules, ran about 20 coordination meetings and the progress reports, and co-led two modules until September 2026, with 50+ working sessions. I am co-first author on both module manuscripts (in preparation).</li>
+              <li><strong>Module 4, structure-based metabolic models (with EPFL):</strong> chose ProstT5 and Foldseek over AlphaFold so annotation scales to microbiome gene sets; built the GPU annotation pipeline (Snakemake, Slurm) with custom enzyme and transporter databases; designed the comparison against sequence search (MMseqs2, DIAMOND) and experimental growth phenotypes.</li>
+              <li><strong>Module 3, machine learning for community assembly:</strong> designed and ran the validation of a neural network that predicts gut community membership from gene content, with co-occurrence, gene-content and phylogenetic baselines, fold-aware statistics, and an audit of the public training metadata that cleaned the training set.</li>
               <li><strong>Mentoring:</strong> mentored three PhD students and supervised a master's thesis (2025).</li>
-              <li><strong>Methods:</strong> protein language models and structure search (ProstT5, Foldseek) for gene annotation, combined with genome-scale metabolic modelling, pangenomics and machine learning, to find which microbes feed each other as a basis for designing synthetic communities for soil, plant, gut, marine and bee microbiomes.</li>
               <li><strong>Tools:</strong> since spring 2026 I have used Claude Code daily to prototype tools and extend analyses, and I check its output before relying on it.</li>
             </ul>
           </div>
@@ -1389,7 +1395,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             <h4>PhD researcher</h4>
             <p class="xp-meta">Patil Lab, MRC Toxicology Unit, University of Cambridge · October 2020 to August 2024</p>
             <ul>
-              <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes.</li>
+              <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes. Six releases (2021 to 2023); I still answer users' GitHub issues.</li>
               <li><strong><a href="#work-soil">Soil cross-feeding</a> (Nature Microbiology 2026, co-first author):</strong> co-designed the genome sequencing and modelling, and did most of the genomic analysis and metabolic modelling of 62 strains, compared with the Kost lab's growth measurements.</li>
               <li><strong>Collaborations:</strong> metabolic modelling for <a href="#work-cheese">cheese flavour with Chr. Hansen</a> (Nat. Commun. 2023); auxotrophy analysis for <a href="#work-drug">drug tolerance</a> (Nat. Microbiol. 2022); metabolic models and metabolomics for <a href="#work-cdiff">C. difficile resistance</a> (bioRxiv 2024); all metagenome assemblies and genome bins for a <a href="#work-plastic">plastic-enzyme survey</a> (mBio 2021); advice on metabolic modelling for <a href="#work-entero">gut Enterobacteriaceae</a> (Nat. Microbiol. 2025).</li>
             </ul>
@@ -1397,14 +1403,17 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
           <div class="xp">
             <h4>Computational Biologist</h4>
             <p class="xp-meta">Patil Lab, EMBL Heidelberg · August 2019 to July 2020</p>
+            <ul>
+              <li>Started developing <a href="#metagem">metaGEM</a>, which became my PhD project.</li>
+            </ul>
           </div>
 
           <h3>Education</h3>
           <dl class="edu">
             <dt>2020 to 2024</dt>
-            <dd><strong>PhD, Biology</strong> · University of Cambridge<span class="role-meta">MRC Toxicology Unit, Patil Lab</span></dd>
+            <dd><strong>PhD, Biology</strong> · University of Cambridge<span class="role-meta">MRC Toxicology Unit, Patil Lab</span><span class="role-meta">Thesis: <a href="https://doi.org/10.17863/CAM.114621" target="_blank" rel="noopener">Omics-driven and constraint-based modelling of microbial community metabolism</a></span></dd>
             <dt>2017 to 2019</dt>
-            <dd><strong>MSc, Biotechnology</strong> · Chalmers University of Technology<span class="role-meta">iGEM 2018, Chalmers-Gothenburg team: gold medal, and nominee for Best Model in the graduate section for <a href="https://github.com/franciscozorrilla/Chalmers-iGEM2018" target="_blank" rel="noopener">COM-dFBA</a>, the team's community dynamic flux balance analysis framework, which I led</span></dd>
+            <dd><strong>MSc, Biotechnology</strong> · Chalmers University of Technology<span class="role-meta">iGEM 2018, Chalmers-Gothenburg team: gold medal, and nominee for Best Model in the graduate section for <a href="https://github.com/franciscozorrilla/Chalmers-iGEM2018" target="_blank" rel="noopener">COM-dFBA</a>, the team's community dynamic flux balance analysis framework, which I led</span><span class="role-meta">Elected treasurer of the Society for Biological Engineering students at Chalmers; managed events and budgets</span></dd>
             <dt>2013 to 2017</dt>
             <dd><strong>BSc, Biological Systems Engineering</strong> · UC Davis<span class="role-meta">Senior design project (team of three): <a href="https://www.researchgate.net/publication/335970481_CO24U_Low_Cost_Carbon_Uptake_Remote_Sensing_System" target="_blank" rel="noopener">a low-cost Arduino system for remote sensing of plant CO₂ uptake</a>; I did the Arduino coding and wiring</span></dd>
           </dl>
@@ -1520,7 +1529,8 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             </tbody>
           </table>
 
-          <h3>Open-source teaching materials</h3>
+          <details class="more">
+            <summary>Course materials (6)</summary>
           <p class="sec-intro">Materials from these courses are public.</p>
           <ul class="teach">
             <li>
@@ -1554,6 +1564,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
               <p class="desc">Walkthrough from metagenomes to community metabolic models.</p>
             </li>
           </ul>
+          </details>
         </section>
 
         <!-- NOW -->
@@ -1573,7 +1584,9 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
           <ul class="plain-list">
             <li><strong>Open-source sustainability:</strong> what keeps scientific software tools alive in the wild, and what kills them.</li>
             <li><strong>Low-cost lab hardware:</strong> cheap sensors and open code for phenotyping bacteria, yeast and fungi outside a big lab. It started with <a href="https://www.researchgate.net/publication/335970481_CO24U_Low_Cost_Carbon_Uptake_Remote_Sensing_System" target="_blank" rel="noopener">a low-cost Arduino sensor for plant CO₂ uptake</a> (my team's senior design project at UC Davis; I did the coding and wiring) and continued with a home setup for growing gourmet mushrooms.</li>
+            <li><strong>Music:</strong> amateur multi-instrumentalist.</li>
             <li><strong>Long-distance running:</strong> half-marathons and trail routes around Zürich.</li>
+            <li><strong>International background:</strong> I have lived in 11 countries across the Americas, Europe and Asia.</li>
           </ul>
         </section>
 
@@ -1675,6 +1688,8 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
     function fzGoToPub(el) {
       var pub = el && el.closest ? el.closest('.pub') : null;
       if (!pub) return false;
+      var fold = pub.closest('details');
+      if (fold && !fold.open) fold.open = true;
       var top = pub.getBoundingClientRect().top + window.scrollY - fzNavHeight() - 16;
       window.scrollTo({ top: top, behavior: 'smooth' });
       pub.classList.add('flash');
