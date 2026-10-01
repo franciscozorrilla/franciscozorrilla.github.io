@@ -260,7 +260,7 @@
       background: var(--panel);
     }
     .profile h1 { font-size: 1.75rem; letter-spacing: -0.01em; margin-top: 18px; }
-    .profile .role { font-size: 1.0625rem; color: var(--muted); margin: 4px 0 14px; }
+    .profile .role { font-size: 1.0625rem; color: var(--muted); margin: 4px 0 0; }
     .lede { margin-bottom: 14px; }
     .avail { font-size: 0.9375rem; font-weight: 500; margin-bottom: 16px; }
     .actions { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -268,10 +268,15 @@
     .profile .actions { flex-direction: column; align-items: stretch; max-width: 320px; }
     .profile .actions .btn { justify-content: center; text-align: center; }
     @media (max-width: 640px) { .profile .actions { max-width: none; } .otw .actions { flex-direction: column; align-items: stretch; } .otw .actions .btn { justify-content: center; text-align: center; } }
-    .profile-extras { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .profile-extras { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
     .side-h { font-size: 1rem; font-weight: 600; margin: 0 0 12px; }
     .side-h + .contact-rows { margin-top: -4px; }
     .profile-extras .side-h ~ .side-h { margin-top: 28px; }
+    .pedigree { font-size: 0.875rem; line-height: 1.4; color: var(--muted); margin: 4px 0 14px; }
+    .side-links { font-size: 0.875rem; line-height: 1.7; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+    .about-intro { margin-bottom: 20px; }
+    .cases > .card-detail { grid-column: 1 / -1; margin-top: 0; }
+    details.zfold { margin-top: 18px; }
 
     /* Key numbers */
     .kn {
@@ -381,6 +386,7 @@
       /* Contact details are always in the side panel here, so no separate contact section or menu item */
       .nav a[href="#contact"], .footer-links a[href="#contact"], #contact { display: none; }
       .mobile-only { display: none !important; }
+      .headshot { width: 104px; height: 104px; }
     }
     @media (min-width: 1180px) {
       .layout { grid-template-columns: 300px minmax(0, 760px); column-gap: 56px; }
@@ -388,7 +394,8 @@
     @media (max-width: 999px) {
       /* Let the menu's contact link bring its heading to the top, instead of stopping near Now */
       #contact { min-height: calc(100vh - var(--nav-h) - 24px); }
-      .profile-extras { display: none; }
+      .profile-extras { margin-top: 0; padding-top: 18px; padding-bottom: 24px; }
+      .profile-extras .kn-cap, .profile-extras .side-contact { display: none; }
       .profile-top {
         display: grid;
         grid-template-columns: 88px minmax(0, 1fr);
@@ -405,6 +412,7 @@
       .sec { padding: 32px; }
     }
     @media (max-width: 640px) {
+      .nav a[href="#talks"], .nav a[href="#now"] { display: none; }
       .topbar-inner { padding: 0 12px 0 16px; gap: 12px; }
       .brand { display: none; }
       .nav { margin-left: 0; flex: 1; gap: 18px; padding-right: 8px; }
@@ -658,11 +666,11 @@
 
     /* ============ METAGEM ============ */
     .mg-lead { font-size: 1.0625rem; margin-bottom: 14px; }
-    .mg-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .mg-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
     .mg-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px 32px; }
     @container sheet (min-width: 700px) {
       .mg-layout { grid-template-columns: minmax(0, 1fr) 270px; align-items: start; }
-      .mg-panel { margin-top: 32px; }
+      .mg-panel { margin-top: 4px; }
     }
     .stages { padding-left: 24px; margin: 0 0 14px; font-variant-numeric: tabular-nums; }
     .stages li { margin-bottom: 2px; }
@@ -681,6 +689,7 @@
       max-width: 100%;
     }
     .mg-note { font-size: 0.9375rem; color: var(--muted); }
+    @media (max-width: 640px) { .code-block { white-space: pre-wrap; overflow-wrap: anywhere; } }
     .mg-panel {
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -880,13 +889,13 @@
           <div class="profile-id">
             <h1>Francisco Zorrilla</h1>
             <p class="role">Computational biologist</p>
+            <p class="pedigree">Postdoc ETH Zürich · PhD Cambridge · EMBL Heidelberg</p>
           </div>
           <p class="lede">I build open-source modelling tools for microbial communities and apply them to real questions in food, health and the environment.</p>
           <p class="avail">Available from <time datetime="2026-12-01">December 2026</time> · Zürich, Switzerland</p>
           <div class="actions">
             <a href="mailto:franciscozorrilla94@gmail.com" class="btn btn-primary" data-goatcounter-click="email-click">Email me</a>
             <a href="/assets/cv.pdf" class="btn" download="Francisco-Zorrilla-CV.pdf" data-goatcounter-click="cv-download">Download CV (PDF)</a>
-            <a href="https://www.linkedin.com/in/fzorrilla94/" class="btn" data-goatcounter-click="contact-linkedin" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
 
@@ -901,12 +910,12 @@
             <li>
               <span class="kn-val">4</span>
               <span class="kn-label">Papers in Nature journals</span>
-              <span class="kn-cap"><a href="#work-cheese">Nat. Commun. 2023</a> · Nat. Microbiol. <a href="#work-drug">2022</a>, <a href="#work-entero">2025</a>, <a href="#work-soil">2026</a></span>
+              <span class="kn-cap">1 co-first · 1 second · 2 third author</span>
             </li>
             <li>
               <span class="kn-val"><a href="https://anaconda.org/bioconda/metagem" target="_blank" rel="noopener">2,600+</a></span>
               <span class="kn-label"><a href="#metagem">metaGEM</a> downloads</span>
-              <span class="kn-cap">Bioconda, Feb 2023 to Sept 2026 · <a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">274 GitHub stars</a> · <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">#2 of 467 Snakemake workflows</a></span>
+              <span class="kn-cap">Bioconda, Feb 2023 to Sept 2026</span>
             </li>
             <li>
               <span class="kn-val">6</span>
@@ -915,15 +924,7 @@
             </li>
           </ul>
 
-          <h2 class="side-h">Get in touch</h2>
-          <ul class="contact-rows">
-            <li><span class="lbl">Email</span><a href="mailto:franciscozorrilla94@gmail.com">franciscozorrilla94@gmail.com</a></li>
-            <li><span class="lbl">LinkedIn</span><a href="https://www.linkedin.com/in/fzorrilla94/" target="_blank" rel="noopener">fzorrilla94</a></li>
-            <li><span class="lbl">GitHub</span><a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">franciscozorrilla</a></li>
-            <li><span class="lbl">Google Scholar</span><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Francisco Zorrilla</a></li>
-            <li><span class="lbl">Bluesky</span><a href="https://bsky.app/profile/metagenomez.bsky.social" target="_blank" rel="noopener">@metagenomez</a></li>
-            <li><span class="lbl">X</span><a href="https://x.com/metagenomez" target="_blank" rel="noopener">@metagenomez</a></li>
-          </ul>
+          <p class="side-contact side-links"><a href="mailto:franciscozorrilla94@gmail.com">franciscozorrilla94@gmail.com</a><br><a href="https://www.linkedin.com/in/fzorrilla94/" target="_blank" rel="noopener" data-goatcounter-click="contact-linkedin">LinkedIn</a> · <a href="https://github.com/franciscozorrilla" target="_blank" rel="noopener">GitHub</a> · <a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://bsky.app/profile/metagenomez.bsky.social" target="_blank" rel="noopener">Bluesky</a> · <a href="https://x.com/metagenomez" target="_blank" rel="noopener">X</a></p>
         </div>
       </aside>
 
@@ -936,12 +937,16 @@
             <h2>About</h2>
           </div>
 
+          <div class="prose about-intro">
+            <p>I have worked in metagenomics and metabolic modelling for 7+ years, turning genomes and metagenomes into predictions of what each microbe in a community consumes and produces, together with wet-lab partners in academia and industry. At ETH Zürich I co-led a multi-institution NCCR Microbiomes flagship project and mentored three PhD students, and I have taught these methods in <a href="#talks">five courses</a>.</p>
+          </div>
+
           <div class="otw" id="looking">
             <div class="otw-head">
               <h3>Looking for my next role</h3>
             </div>
             <dl class="otw-rows">
-              <dt>Roles</dt><dd>Senior, Lead or Principal positions in computational biology, bioinformatics or scientific data</dd>
+              <dt>Roles</dt><dd>Senior or Lead positions in computational biology, bioinformatics or scientific data</dd>
               <dt>Sectors</dt><dd>Biotech, pharma, food or agtech</dd>
               <dt>Location</dt><dd>Zürich area preferred, open to roles anywhere in Switzerland</dd>
               <dt>Start</dt><dd>From December 2026, flexible on the exact date</dd>
@@ -950,23 +955,16 @@
               <dt>Skills</dt><dd>Metagenomics and microbial genome analysis · genome-scale metabolic modelling · reproducible pipelines (Snakemake, Conda, Slurm) · Python and R · protein language models and structure search (ProstT5, Foldseek)</dd>
             </dl>
             <div class="otw-body">
-              <p><strong>What I bring:</strong> an open-source workflow I built and support (<a href="#metagem">metaGEM</a>); metabolic models built with wet-lab partners and checked against their measurements (co-first author, <a href="#work-soil">Nature Microbiology 2026</a>, with the Kost lab) or used alongside their experiments (<a href="#work-cheese">Nature Communications 2023</a>, with Chr. Hansen); and teaching <a href="#talks">five courses</a>.</p>
               <h4>How I could help an R&amp;D team</h4>
               <ul>
-                <li>Predict from genomes which nutrients the strains in a collection cannot make, and check those predictions against growth data, including where they fail (<a href="#work-soil">Nature Microbiology 2026</a>).</li>
+                <li>Predict from genomes which nutrients the strains in a collection cannot make and which partners could supply them, and check those predictions against growth data, including where they fail (<a href="#work-soil">Nature Microbiology 2026</a>).</li>
                 <li>Model how the strains in a starter culture or consortium feed each other, alongside fermentation and omics data (<a href="#work-cheese">Nature Communications 2023, with Chr. Hansen</a>).</li>
                 <li>Build a draft genome-scale metabolic model of a production organism from its genome (<a href="#work-hansenula">Hansenula protocol, 2022</a>).</li>
-                <li>Annotate genes that sequence similarity misses, using protein language models and structure search (ProstT5, Foldseek), and feed the results into metabolic models.</li>
+                <li>Annotate genes that sequence similarity misses, using protein language models and structure search (ProstT5, Foldseek), and feed the results into metabolic models (<a href="#cv">ETH Zürich, with EPFL</a>).</li>
                 <li>Build reproducible analysis pipelines that other groups install and run on their own data (<a href="#metagem">metaGEM</a>).</li>
-                <li>Turn a broad research goal into a plan with clear modules, bring the right people in to lead them, and keep them on track (<a href="#cv">NCCR Microbiomes flagship</a>, six labs).</li>
+                <li>Turn a broad research goal into a plan with clear modules, bring the right people in to lead them, and keep them on track (<a href="#cv">ETH Zürich</a>).</li>
               </ul>
             </div>
-          </div>
-
-          <h3>Overview</h3>
-          <div class="prose">
-            <p>I have worked in metagenomics and metabolic modelling for 7+ years, and since 2024 also with protein language models and structure search for gene annotation. I joined the <a href="https://www.mrc-tox.cam.ac.uk/research/research-groups/patil-group" target="_blank" rel="noopener">Patil Lab</a> at EMBL Heidelberg in 2019 and moved with the group to the MRC Toxicology Unit, University of Cambridge, where I did my PhD. From 2024 to 2026 I was a postdoc in the <a href="https://sunagawalab.ethz.ch/" target="_blank" rel="noopener">Sunagawa Lab</a> at ETH Zürich, where I was co-lead of the NCCR Microbiomes Work Package 5 flagship project (details in the <a href="#cv">CV</a>). My work turns raw metagenomic data into predictions of what each microbe in a community eats and makes, and I check those predictions against experimental data from partner labs: the Kost lab (Osnabrück) on soil isolates, Joy Scaria's lab on <em>C. difficile</em> bioreactors, and Chr. Hansen on cheese starter cultures.</p>
-            <p>Code, models and data from metaGEM, the soil and cheese papers and my PhD thesis are public on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22%20OR%20metadata.creators.person_or_org.name%3A%22Zorrilla%2C%20Francisco%22&amp;l=list&amp;p=1&amp;s=20&amp;sort=mostdownloaded" target="_blank" rel="noopener">Zenodo</a>.</p>
           </div>
         </section>
 
@@ -975,39 +973,14 @@
           <div class="sec-head">
             <div class="sec-title">
               <h2>Work</h2>
-              <span class="sec-meta">12 publications</span>
+              <span class="sec-meta">13 publications</span>
             </div>
           </div>
-          <p class="sec-intro">8 journal papers, 1 book chapter, 2 preprints and my PhD thesis. Tap a card to see the problem, the approach, my contribution and links. Citations from Google Scholar, news and social counts from Altmetric, as of Sept 2026.</p>
+          <p class="sec-intro">8 journal papers, 1 book chapter, 3 preprints and my PhD thesis. Open a card to see the problem, the approach and my part in it. Code, models and data from metaGEM, the soil and cheese papers and my thesis are public on GitHub and <a href="https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Francisco%20Zorrilla%22%20OR%20metadata.creators.person_or_org.name%3A%22Zorrilla%2C%20Francisco%22&amp;l=list&amp;p=1&amp;s=20&amp;sort=mostdownloaded" target="_blank" rel="noopener">Zenodo</a>. Citations from Google Scholar, Sept 2026.</p>
 
-          <div class="map-panel" id="mapPanel">
-            <h3>Browse by collaborator</h3>
-            <div class="map-grid">
-              <div class="network-wrap" id="networkWrap" aria-hidden="true">
-                <svg id="networkSvg" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet"></svg>
-                <div class="network-tooltip" id="networkTooltip"></div>
-              </div>
-              <div class="map-side">
-                <p class="network-caption">Collaboration map: 12 publications and 13 key co-authors. Tap or hover a dot for details; tap a paper to open its summary.</p>
-                <div class="network-legend" aria-label="Graph legend">
-                  <span class="legend-item"><span class="legend-dot legend-dot--ring"></span> Co-author</span>
-                  <span class="legend-item"><span class="legend-dot legend-dot--paper"></span> Paper</span>
-                  <span class="legend-item"><span class="legend-dot legend-dot--industry"></span> Industry collab</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="cases-head">
-            <h3>Highlights</h3>
-            <div class="seg" role="group" aria-label="Sort case studies">
-              <span>Sort:</span>
-              <div class="seg-group">
-                <button type="button" class="sort-btn active" data-sort="default" aria-pressed="true">Curated</button>
-                <button type="button" class="sort-btn" data-sort="newest" aria-pressed="false">Newest</button>
-                <button type="button" class="sort-btn" data-sort="citations" aria-pressed="false">Citations</button>
-              </div>
-            </div>
+            <h3>Selected papers</h3>
           </div>
 
           <div class="cases" id="cardsContainer">
@@ -1019,19 +992,15 @@
                 <p class="card-meta"><span class="card-year">2021</span> · <span class="card-venue">Nucleic Acids Research</span></p>
                 <p class="card-role">First author</p>
                 <p class="card-desc">Open-source Snakemake workflow that turns raw metagenomes into community-level metabolic models.</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=14787921785416134649" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">151 citations</a> · <a href="https://www.altmetric.com/details/114636859" target="_blank" rel="noopener" title="See the attention summary on Altmetric">2 news and blogs</a> · <a href="https://www.altmetric.com/details/114636859" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">76 social</a></p>
+                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=14787921785416134649" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">151 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
                 <div class="card-expanded-inner">
                   <h4>Problem</h4>
                   <p>Going from metagenomes to community metabolic models meant chaining a dozen separate tools by hand, and models built from reference genomes miss the strain-level differences in a real sample.</p>
-                  <h4>Approach</h4>
-                  <p>I designed and released metaGEM, a Snakemake workflow that runs quality control, assembly, binning, bin refinement, taxonomy, metabolic model reconstruction and community simulation in one workflow, on a single machine or a Slurm cluster.</p>
                   <h4>My contribution</h4>
-                  <p>First author and lead developer. The paper credits me with co-conceiving the project, developing the pipeline with Filip Buric, running all the analyses and co-writing the paper. I wrote the documentation, maintain the Bioconda package, published six releases (v1.0.0 to v1.0.5, 2021 to 2023) and still answer users' GitHub issues.</p>
-                  <h4>Tools</h4>
-                  <p>Snakemake, Python, CarveMe, SMETANA, MEGAHIT, CONCOCT, MaxBin2, MetaBAT2, metaWRAP, GTDB-Tk, MEMOTE, Slurm HPC</p>
+                  <p>First author and lead developer. The paper credits me with co-conceiving the project, developing the pipeline with Filip Buric, running all the analyses and co-writing the paper. I wrote the documentation and maintain the Bioconda package. Its users, releases and setup are in the <a href="#metagem">metaGEM section</a>.</p>
                   <h4>Links</h4>
                   <ul class="link-list">
                     <li><a href="https://doi.org/10.1093/nar/gkab815" target="_blank" rel="noopener">Paper (NAR)</a></li>
@@ -1050,7 +1019,7 @@
                 <p class="card-meta"><span class="card-year">2026</span> · <span class="card-venue">Nat. Microbiol.</span></p>
                 <p class="card-role">Co-first author</p>
                 <p class="card-desc">Up to half the bacteria in soil communities could not grow without added amino acids, vitamins or nucleobases.</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=16744509530812329764" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">13 citations</a> · <a href="https://www.altmetric.com/details/203153442" target="_blank" rel="noopener" title="See the attention summary on Altmetric">6 news and blogs</a> · <a href="https://www.altmetric.com/details/203153442" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">97 social</a></p>
+                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=16744509530812329764" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">13 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
@@ -1085,7 +1054,7 @@
                 <p class="card-meta"><span class="card-year">2023</span> · <span class="card-venue">Nat. Commun.</span></p>
                 <p class="card-role">Second author</p>
                 <p class="card-desc">How the strains in a commercial Cheddar starter culture interact to shape growth and flavour, with Chr. Hansen (now part of Novonesis).</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=9078274881637545377,3843023838535819954" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">126 citations</a> · <a href="https://www.altmetric.com/details/157691147" target="_blank" rel="noopener" title="See the attention summary on Altmetric">21 news and blogs</a> · <a href="https://www.altmetric.com/details/157691147" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">83 social</a></p>
+                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=9078274881637545377,3843023838535819954" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">126 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
@@ -1123,7 +1092,6 @@
                 <p class="card-meta"><span class="card-year">2024</span> · <span class="card-venue">bioRxiv</span></p>
                 <p class="card-role">Third author</p>
                 <p class="card-desc">A 14-strain gut community grown in a bioreactor shows which microbial interactions and metabolic pathways help keep C. difficile out.</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=16968180343551707914" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">1 citation</a> · preprint · <a href="https://www.altmetric.com/details/166822231" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">3 social</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
@@ -1151,7 +1119,7 @@
                 <p class="card-meta"><span class="card-year">2022</span> · <span class="card-venue">Methods Mol. Biol.</span></p>
                 <p class="card-role">First author</p>
                 <p class="card-desc">Step-by-step protocol for building a genome-scale metabolic model from related species' models, with the industrial yeast Hansenula polymorpha as the worked example.</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=9081739403093102628,15694732224122764535" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">8 citations</a> · <a href="https://www.altmetric.com/details/144929021/chapter/130682679" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">4 social</a></p>
+                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=9081739403093102628,15694732224122764535" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">8 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
@@ -1181,7 +1149,7 @@
                 <p class="card-meta"><span class="card-year">2021</span> · <span class="card-venue">mBio</span></p>
                 <p class="card-role">Fourth author</p>
                 <p class="card-desc">Search of global ocean and soil metagenomes for plastic-degrading enzymes: over 30,000 candidates, whose abundance correlates with plastic pollution.</p>
-                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=11770978146327375642,4784420652623121584,9785807979620973806" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">161 citations</a> · <a href="https://www.altmetric.com/details/115785443" target="_blank" rel="noopener" title="See the attention summary on Altmetric">90 news and blogs</a> · <a href="https://www.altmetric.com/details/115785443" target="_blank" rel="noopener" title="People mentioning it on X and Bluesky (Altmetric)">168 social</a></p>
+                <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=11770978146327375642,4784420652623121584,9785807979620973806" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">161 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
@@ -1219,7 +1187,7 @@
           </div>
 
           <details class="more other-research" id="otherResearch">
-            <summary>Other research (5 papers)</summary>
+            <summary>Other research (6 papers)</summary>
                     <ul class="pubs">
             <li class="pub" id="work-drug">
               <h4>Drug tolerance via cross-feeding</h4>
@@ -1236,6 +1204,11 @@
               <p class="pub-meta">bioRxiv 2024 · Co-author · <a href="https://scholar.google.com/scholar?cites=11472448746820764255" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">15 citations</a> · <a href="https://www.biorxiv.org/content/10.1101/2024.09.24.614797v1" target="_blank" rel="noopener">bioRxiv preprint</a></p>
               <p>As a community contribution, I submitted a genome-scale model from one of our lab's published studies to BioModels as a test case.</p>
             </li>
+            <li class="pub" id="work-carveme-gut">
+              <h4>CarveMe-GutMicrobes</h4>
+              <p class="pub-meta">bioRxiv 2026 · Co-author · <a href="https://www.biorxiv.org/content/10.64898/2026.06.26.734454v1" target="_blank" rel="noopener">bioRxiv preprint</a></p>
+              <p>Automated metabolic model reconstruction for gut bacteria and archaea, from the Patil lab. My contribution was small.</p>
+            </li>
             <li class="pub" id="work-igem"><span id="work-od"></span>
               <h4>iGEM interlab measurement studies</h4>
               <p class="pub-meta">Commun. Biol. 2020 and PLOS ONE 2021 · Consortium author · <a href="https://scholar.google.com/scholar?cites=4779602569618155826" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">381</a> and <a href="https://scholar.google.com/scholar?cites=10654746401281222222" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">16</a> citations · <a href="https://doi.org/10.1038/s42003-020-01127-5" target="_blank" rel="noopener">Paper (Commun. Biol.)</a> · <a href="https://doi.org/10.1371/journal.pone.0252263" target="_blank" rel="noopener">Paper (PLOS ONE)</a></p>
@@ -1247,6 +1220,26 @@
               <p>Omics-driven and constraint-based modelling of microbial community metabolism.</p>
             </li>
           </ul>
+          </details>
+
+          <details class="more" id="collabMap">
+            <summary>Browse by collaborator</summary>
+            <div class="map-panel" id="mapPanel">
+              <div class="map-grid">
+                <div class="network-wrap" id="networkWrap" aria-hidden="true">
+                  <svg id="networkSvg" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet"></svg>
+                  <div class="network-tooltip" id="networkTooltip"></div>
+                </div>
+                <div class="map-side">
+                  <p class="network-caption">13 key co-authors and the papers we share. Tap or hover a dot for details; tap a paper to open its summary.</p>
+                  <div class="network-legend" aria-label="Graph legend">
+                    <span class="legend-item"><span class="legend-dot legend-dot--ring"></span> Co-author</span>
+                    <span class="legend-item"><span class="legend-dot legend-dot--paper"></span> Paper</span>
+                    <span class="legend-item"><span class="legend-dot legend-dot--industry"></span> Industry collab</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </details>
         </section>
 
@@ -1267,61 +1260,48 @@
 
           <div class="mg-layout">
             <div class="mg-prose">
-              <h3>What it does</h3>
-              <p>metaGEM is an end-to-end Snakemake workflow that turns raw metagenomic reads into community-level metabolic predictions.</p>
-              <p><strong>Pipeline stages:</strong></p>
-              <ol class="stages">
-                <li>QC (fastp)</li>
-                <li>Assembly (MEGAHIT)</li>
-                <li>Binning (CONCOCT, MaxBin2, MetaBAT2)</li>
-                <li>Bin refinement and reassembly (metaWRAP)</li>
-                <li>Taxonomy (GTDB-Tk)</li>
-                <li>Metabolic reconstruction (CarveMe)</li>
-                <li>Model QC (MEMOTE)</li>
-                <li>Community simulation (SMETANA)</li>
-              </ol>
-              <p><strong>Why this matters for an industry team:</strong> people outside my group install metaGEM from Bioconda and run it on their own data, and I have supported them since 2021, through six releases and replies to 88 of the 90 GitHub issues other users opened.</p>
-
-              <h3>Install</h3>
-              <pre class="code-block">git clone https://github.com/franciscozorrilla/metaGEM.git
-cd metaGEM/workflow
-mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
-              <p class="mg-note">Linux (clusters or workstations). metaWRAP, the modelling tools (CarveMe, MEMOTE, SMETANA) and the reference databases need a few more steps: see the <a href="https://github.com/franciscozorrilla/metaGEM/tree/master/config" target="_blank" rel="noopener">setup guide</a>.</p>
-              <p>Worked example: <a href="https://github.com/franciscozorrilla/unseenbio_metaGEM" target="_blank" rel="noopener">metaGEM on Unseen Bio gut samples</a></p>
+              <p>Other groups install metaGEM from Bioconda and run it on their own data. I have supported them since 2021, with six releases and replies to 88 of the 90 GitHub issues other users opened.</p>
+              <p>The pipeline runs quality control (fastp), assembly (MEGAHIT), binning (CONCOCT, MaxBin2, MetaBAT2), bin refinement and reassembly (metaWRAP), taxonomy (GTDB-Tk), metabolic reconstruction (CarveMe), model QC (MEMOTE) and community simulation (SMETANA), on a workstation or a Slurm cluster.</p>
             </div>
 
-            <aside class="mg-panel" aria-label="metaGEM highlights">
-              <h3>Highlights</h3>
+            <aside class="mg-panel" aria-label="metaGEM in numbers">
+              <h3>In numbers</h3>
               <ul class="kv">
                 <li><span class="k"><a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">GitHub stars</a></span><span class="v">274</span></li>
-                <li><span class="k">GitHub forks</span><span class="v">48</span></li>
                 <li><span class="k"><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">Rank by GitHub stars among 467 standardized Snakemake workflows (#8 of all 6,289 workflows, Sept 2026)</a></span><span class="v">#2</span></li>
-                <li><span class="k"><a href="https://scholar.google.com/scholar?cites=14787921785416134649" target="_blank" rel="noopener">Citations on Google Scholar</a></span><span class="v">151</span></li>
                 <li><span class="k"><a href="https://anaconda.org/bioconda/metagem" target="_blank" rel="noopener">Bioconda downloads</a><span class="cap">metaGEM 1.0.5, Feb 2023 to Sept 2026</span></span><span class="v">2,600+</span></li>
-                <li><span class="k"><a href="https://github.com/franciscozorrilla/metaGEM/issues" target="_blank" rel="noopener">GitHub issues and discussions opened by users</a><span class="cap">since 2021</span></span><span class="v">100+</span></li>
               </ul>
 
-              <h3>metaGEM datasets on Zenodo</h3>
-              <table class="ztable">
-                <thead>
-                  <tr><th scope="col">Dataset</th><th scope="col">Views</th><th scope="col">Downloads</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td><a href="https://zenodo.org/records/3534949" target="_blank" rel="noopener">Toy dataset (Gut v1)</a></td><td>723</td><td>1,424</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/5593224" target="_blank" rel="noopener">Human gut</a></td><td>381</td><td>738</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/5593111" target="_blank" rel="noopener">Lab culture</a></td><td>318</td><td>646</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/5597227" target="_blank" rel="noopener">TARA Oceans (part 1 of 2)</a></td><td>281</td><td>558</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/5596948" target="_blank" rel="noopener">Plant-associated soil</a></td><td>241</td><td>462</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/5596972" target="_blank" rel="noopener">Bulk soil</a></td><td>232</td><td>436</td></tr>
-                  <tr><td><a href="https://zenodo.org/records/7414438" target="_blank" rel="noopener">Paleofeces re-analysis</a></td><td>813</td><td>415</td></tr>
-                </tbody>
-              </table>
-              <p class="zfoot">7 datasets · 2,989 views · 4,679 downloads (unique, Sept 2026)</p>
+              <details class="more zfold">
+                <summary>Datasets on Zenodo (7)</summary>
+                <table class="ztable">
+                  <thead>
+                    <tr><th scope="col">Dataset</th><th scope="col">Views</th><th scope="col">Downloads</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><a href="https://zenodo.org/records/3534949" target="_blank" rel="noopener">Toy dataset (Gut v1)</a></td><td>723</td><td>1,424</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/5593224" target="_blank" rel="noopener">Human gut</a></td><td>381</td><td>738</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/5593111" target="_blank" rel="noopener">Lab culture</a></td><td>318</td><td>646</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/5597227" target="_blank" rel="noopener">TARA Oceans (part 1 of 2)</a></td><td>281</td><td>558</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/5596948" target="_blank" rel="noopener">Plant-associated soil</a></td><td>241</td><td>462</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/5596972" target="_blank" rel="noopener">Bulk soil</a></td><td>232</td><td>436</td></tr>
+                    <tr><td><a href="https://zenodo.org/records/7414438" target="_blank" rel="noopener">Paleofeces re-analysis</a></td><td>813</td><td>415</td></tr>
+                  </tbody>
+                </table>
+                <p class="zfoot">2,989 views · 4,679 downloads (unique, Sept 2026)</p>
+              </details>
             </aside>
           </div>
 
+          <h3>Install</h3>
+          <pre class="code-block">git clone https://github.com/franciscozorrilla/metaGEM.git
+cd metaGEM/workflow
+mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
+          <p class="mg-note">Linux (clusters or workstations). metaWRAP, the modelling tools (CarveMe, MEMOTE, SMETANA) and the reference databases need a few more steps: see the <a href="https://github.com/franciscozorrilla/metaGEM/tree/master/config" target="_blank" rel="noopener">setup guide</a>.</p>
+          <p>Worked example: <a href="https://github.com/franciscozorrilla/unseenbio_metaGEM" target="_blank" rel="noopener">metaGEM on Unseen Bio gut samples</a></p>
+
           <h3>Applications in the wild</h3>
-          <p class="sec-intro">Published studies in which other groups used metaGEM, or followed its modelling steps, on their own data. Each one has been checked against the paper's methods section.</p>
+          <p class="sec-intro">Published studies in which other groups used metaGEM, or followed its modelling steps, on their own data.</p>
           <ul class="apps">
             <li class="app">
               <div class="app-meta">2026 · Nature Communications</div>
@@ -1381,21 +1361,20 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
           <h3>Experience</h3>
           <div class="xp">
             <h4>Postdoctoral Researcher · Co-lead, NCCR Microbiomes Work Package 5 Flagship Project</h4>
-            <p class="xp-meta">ETH Zürich · October 2024 to September 2026</p>
+            <p class="xp-meta">Sunagawa Lab, ETH Zürich · October 2024 to September 2026</p>
             <ul>
               <li><strong>Planning:</strong> designed the 4-year computational roadmap and its modules for the flagship (2024 to 2028; ETH Zürich, EPFL, UZH, UNIL and CHUV) and pitched it to the PIs.</li>
               <li><strong>Leadership:</strong> coordinated the flagship with a PhD co-lead from EPFL on behalf of the work-package leaders. I organised its launch workshop (Bern, March 2025), recruited the co-leads of the four modules, ran about 20 coordination meetings and the progress reports, and co-led two modules until September 2026, with 50+ working sessions. I am co-first author on both module manuscripts (in preparation).</li>
               <li><strong>Module 4, structure-based metabolic models (with EPFL):</strong> chose ProstT5 and Foldseek over AlphaFold so annotation scales to microbiome gene sets; built the GPU annotation pipeline (Snakemake, Slurm) with custom enzyme and transporter databases; designed the comparison against sequence search (MMseqs2, DIAMOND) and experimental growth phenotypes.</li>
-              <li><strong>Module 3, machine learning for community assembly:</strong> designed and ran the validation of a neural network that predicts gut community membership from gene content, with co-occurrence, gene-content and phylogenetic baselines, fold-aware statistics, and an audit of the public training metadata that cleaned the training set.</li>
+              <li><strong>Module 3, machine learning for community assembly (with UZH):</strong> worked with members of the von Mering lab on a neural network that predicts gut community membership from gene content; designed and ran its validation, with co-occurrence, gene-content and phylogenetic baselines and an audit of the public training metadata that cleaned the training set.</li>
               <li><strong>Mentoring:</strong> mentored three PhD students and supervised a master's thesis (2025).</li>
-              <li><strong>Tools:</strong> since spring 2026 I have used Claude Code daily to prototype tools and extend analyses, and I check its output before relying on it.</li>
             </ul>
           </div>
           <div class="xp">
             <h4>PhD researcher</h4>
             <p class="xp-meta">Patil Lab, MRC Toxicology Unit, University of Cambridge · October 2020 to August 2024</p>
             <ul>
-              <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes. Six releases (2021 to 2023); I still answer users' GitHub issues.</li>
+              <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes. Cited 150+ times, and other groups have used it in their own published studies. Six releases (2021 to 2023) and replies to 88 of the 90 GitHub issues other users opened.</li>
               <li><strong><a href="#work-soil">Soil cross-feeding</a> (Nature Microbiology 2026, co-first author):</strong> co-designed the genome sequencing and modelling, and did most of the genomic analysis and metabolic modelling of 62 strains, compared with the Kost lab's growth measurements.</li>
               <li><strong>Collaborations:</strong> metabolic modelling for <a href="#work-cheese">cheese flavour with Chr. Hansen</a> (Nat. Commun. 2023); auxotrophy analysis for <a href="#work-drug">drug tolerance</a> (Nat. Microbiol. 2022); metabolic models and metabolomics for <a href="#work-cdiff">C. difficile resistance</a> (bioRxiv 2024); all metagenome assemblies and genome bins for a <a href="#work-plastic">plastic-enzyme survey</a> (mBio 2021); advice on metabolic modelling for <a href="#work-entero">gut Enterobacteriaceae</a> (Nat. Microbiol. 2025).</li>
             </ul>
@@ -1484,50 +1463,58 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
                 <td class="c-venue">Part III Systems Biology (master's level), Cambridge</td>
                 <td class="c-role">instructor</td>
               </tr>
-              <tr>
-                <td class="c-date">2022 · Oct</td>
-                <td class="c-title"><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd22-01/" target="_blank" rel="noopener">Metabolic modelling of community interactions</a></td>
-                <td class="c-venue">EMBO Practical Course (online)</td>
-                <td class="c-role">instructor</td>
-              </tr>
-              <tr>
-                <td class="c-date">2022 · Oct</td>
-                <td class="c-title"><a href="https://www.embl.org/about/info/course-and-conference-office/events/eae22-01/" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
-                <td class="c-venue">EMBO Workshop: Molecular mechanisms in evolution and ecology, Heidelberg</td>
-                <td class="c-role">poster and flash talk</td>
-              </tr>
-              <tr>
-                <td class="c-date">2022 · Sep</td>
-                <td class="c-title"><a href="https://www.aiche.org/imes/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2022/conference-on-constraint-based-reconstruction-and-analysis-technical-program" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
-                <td class="c-venue">8th COBRA Conference, Galway</td>
-                <td class="c-role">selected talk</td>
-              </tr>
-              <tr>
-                <td class="c-date">2022 · Jun</td>
-                <td class="c-title"><a href="https://s2m2.bio.di.uminho.pt/last_editions/2022/index.html" target="_blank" rel="noopener">Applications of genome scale metabolic models</a></td>
-                <td class="c-venue">S2M2 Summer School in Metabolic Modelling, Braga (online)</td>
-                <td class="c-role">invited talk</td>
-              </tr>
-              <tr>
-                <td class="c-date">2022 · Feb</td>
-                <td class="c-title"><a href="https://www.ebi.ac.uk/training/materials/symbnet-materials/" target="_blank" rel="noopener">From metagenomics to metabolic interactions</a></td>
-                <td class="c-venue">SymbNET 2022 Course, EMBL-EBI (online)</td>
-                <td class="c-role">instructor</td>
-              </tr>
-              <tr>
-                <td class="c-date">2021 · Mar</td>
-                <td class="c-title"><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2021" target="_blank" rel="noopener">metaGEM: reconstruction of genome scale metabolic models directly from metagenomes</a></td>
-                <td class="c-venue">7th COBRA Conference (online)</td>
-                <td class="c-role">poster</td>
-              </tr>
-              <tr>
-                <td class="c-date">2018 · Oct</td>
-                <td class="c-title"><a href="https://2018.igem.org/Team:Chalmers-Gothenburg" target="_blank" rel="noopener">iGEM 2018 · Gold medal, Best Model nominee (graduate section)</a></td>
-                <td class="c-venue">iGEM Giant Jamboree, Boston</td>
-                <td class="c-role">team member</td>
-              </tr>
             </tbody>
           </table>
+
+          <details class="more" id="earlierTalks">
+            <summary>Earlier talks and courses (7, 2018 to 2022)</summary>
+            <table class="talks">
+              <tbody>
+                <tr>
+                  <td class="c-date">2022 · Oct</td>
+                  <td class="c-title"><a href="https://www.embl.org/about/info/course-and-conference-office/events/mcd22-01/" target="_blank" rel="noopener">Metabolic modelling of community interactions</a></td>
+                  <td class="c-venue">EMBO Practical Course (online)</td>
+                  <td class="c-role">instructor</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2022 · Oct</td>
+                  <td class="c-title"><a href="https://www.embl.org/about/info/course-and-conference-office/events/eae22-01/" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
+                  <td class="c-venue">EMBO Workshop: Molecular mechanisms in evolution and ecology, Heidelberg</td>
+                  <td class="c-role">poster and flash talk</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2022 · Sep</td>
+                  <td class="c-title"><a href="https://www.aiche.org/imes/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2022/conference-on-constraint-based-reconstruction-and-analysis-technical-program" target="_blank" rel="noopener">Metagenomics-driven metabolic modeling for microbial ecology</a></td>
+                  <td class="c-venue">8th COBRA Conference, Galway</td>
+                  <td class="c-role">selected talk</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2022 · Jun</td>
+                  <td class="c-title"><a href="https://s2m2.bio.di.uminho.pt/last_editions/2022/index.html" target="_blank" rel="noopener">Applications of genome scale metabolic models</a></td>
+                  <td class="c-venue">S2M2 Summer School in Metabolic Modelling, Braga (online)</td>
+                  <td class="c-role">invited talk</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2022 · Feb</td>
+                  <td class="c-title"><a href="https://www.ebi.ac.uk/training/materials/symbnet-materials/" target="_blank" rel="noopener">From metagenomics to metabolic interactions</a></td>
+                  <td class="c-venue">SymbNET 2022 Course, EMBL-EBI (online)</td>
+                  <td class="c-role">instructor</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2021 · Mar</td>
+                  <td class="c-title"><a href="https://www.aiche.org/sbe/conferences/conference-on-constraint-based-reconstruction-and-analysis-cobra/2021" target="_blank" rel="noopener">metaGEM: reconstruction of genome scale metabolic models directly from metagenomes</a></td>
+                  <td class="c-venue">7th COBRA Conference (online)</td>
+                  <td class="c-role">poster</td>
+                </tr>
+                <tr>
+                  <td class="c-date">2018 · Oct</td>
+                  <td class="c-title"><a href="https://2018.igem.org/Team:Chalmers-Gothenburg" target="_blank" rel="noopener">iGEM 2018 · Gold medal, Best Model nominee (graduate section)</a></td>
+                  <td class="c-venue">iGEM Giant Jamboree, Boston</td>
+                  <td class="c-role">team member</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
 
           <details class="more">
             <summary>Course materials (6)</summary>
@@ -1577,16 +1564,14 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
           </div>
           <ul class="plain-list">
             <li><strong>Manuscripts from ETH:</strong> two papers from my postdoc, on which I am co-first author, are heading to preprint. My co-leads on those modules are taking them forward, and I stay involved.</li>
-            <li><strong>Looking for my next role</strong> from December 2026. <a href="#looking">Details →</a></li>
           </ul>
 
           <h3>Side interests</h3>
           <ul class="plain-list">
             <li><strong>Open-source sustainability:</strong> what keeps scientific software tools alive in the wild, and what kills them.</li>
-            <li><strong>Low-cost lab hardware:</strong> cheap sensors and open code for phenotyping bacteria, yeast and fungi outside a big lab. It started with <a href="https://www.researchgate.net/publication/335970481_CO24U_Low_Cost_Carbon_Uptake_Remote_Sensing_System" target="_blank" rel="noopener">a low-cost Arduino sensor for plant CO₂ uptake</a> (my team's senior design project at UC Davis; I did the coding and wiring) and continued with a home setup for growing gourmet mushrooms.</li>
+            <li><strong>Low-cost lab hardware:</strong> cheap sensors and open code for phenotyping bacteria, yeast and fungi outside a big lab, from <a href="https://www.researchgate.net/publication/335970481_CO24U_Low_Cost_Carbon_Uptake_Remote_Sensing_System" target="_blank" rel="noopener">an Arduino CO₂ sensor</a> at UC Davis to a home setup for growing gourmet mushrooms.</li>
             <li><strong>Music:</strong> amateur multi-instrumentalist.</li>
             <li><strong>Long-distance running:</strong> half-marathons and trail routes around Zürich.</li>
-            <li><strong>International background:</strong> I have lived in 11 countries across the Americas, Europe and Asia.</li>
           </ul>
         </section>
 
@@ -1617,29 +1602,6 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             <dt>Location</dt>
             <dd>Zürich, Switzerland</dd>
           </dl>
-            <h3>Key numbers</h3>
-            <ul class="kn">
-            <li>
-              <span class="kn-val"><a href="https://scholar.google.com/citations?user=byUq0i4AAAAJ&amp;hl=en" target="_blank" rel="noopener">1,100+</a></span>
-              <span class="kn-label">Citations</span>
-              <span class="kn-cap">Google Scholar, Sept 2026 · h-index 9</span>
-            </li>
-            <li>
-              <span class="kn-val">4</span>
-              <span class="kn-label">Papers in Nature journals</span>
-              <span class="kn-cap"><a href="#work-cheese">Nat. Commun. 2023</a> · Nat. Microbiol. <a href="#work-drug">2022</a>, <a href="#work-entero">2025</a>, <a href="#work-soil">2026</a></span>
-            </li>
-            <li>
-              <span class="kn-val"><a href="https://anaconda.org/bioconda/metagem" target="_blank" rel="noopener">2,600+</a></span>
-              <span class="kn-label"><a href="#metagem">metaGEM</a> downloads</span>
-              <span class="kn-cap">Bioconda, Feb 2023 to Sept 2026 · <a href="https://github.com/franciscozorrilla/metaGEM" target="_blank" rel="noopener">274 GitHub stars</a> · <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows_by_stars.html" target="_blank" rel="noopener">#2 of 467 Snakemake workflows</a></span>
-            </li>
-            <li>
-              <span class="kn-val">6</span>
-              <span class="kn-label">Labs coordinated</span>
-              <span class="kn-cap"><a href="#cv">NCCR Microbiomes flagship</a> · 5 institutions</span>
-            </li>
-          </ul>
           </div>
         </section>
 
@@ -1657,7 +1619,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
       <a href="#now">now</a>
       <a href="#contact">contact</a>
     </nav>
-    <p>Static HTML · privacy-friendly analytics via <a href="https://www.goatcounter.com" target="_blank" rel="nofollow noopener">GoatCounter</a> (no cookies, no personal data) · Last updated September 2026</p>
+    <p>Static HTML · privacy-friendly analytics via <a href="https://www.goatcounter.com" target="_blank" rel="nofollow noopener">GoatCounter</a> (no cookies, no personal data) · Last updated October 2026</p>
   </footer>
 
   <!-- Scripts -->
@@ -1879,6 +1841,14 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
         detailHeader.appendChild(descEl);
         detailContent.innerHTML = expanded.innerHTML;
         wrapDetailBlocks(detailContent);
+        var grid = document.getElementById('cardsContainer');
+        if (grid) {
+          var list = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+          var cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+          var idx = list.indexOf(card);
+          var rowEnd = list[Math.min(list.length - 1, idx - (idx % cols) + cols - 1)];
+          if (rowEnd && rowEnd.nextElementSibling !== detail) rowEnd.after(detail);
+        }
         detail.hidden = false;
         if (activeCard && activeCard !== card) {
           activeCard.classList.remove('card-active');
@@ -1964,6 +1934,8 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
       /* If D3 did not load (offline, CDN blocked), hide the whole panel instead of showing an empty box. */
       if (typeof d3 === 'undefined') {
         if (panel) panel.style.display = 'none';
+        var cmap = document.getElementById('collabMap');
+        if (cmap) cmap.style.display = 'none';
         return;
       }
       var svgEl = document.getElementById('networkSvg');
@@ -2113,7 +2085,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
 
       function clampNodes() {
         nodes.forEach(function (n) {
-          var r = n.type === 'person' ? 26 + n.papers * 1.4 : 8;
+          var r = n.type === 'person' ? 26 + n.papers * 1.4 : 5 + Math.sqrt(n.cit || 0) * 0.5;
           // keep co-author name labels inside the box, not just the rings
           var rx = n.type === 'person' ? Math.max(r, n.id.length * 3.9 + 4) : r;
           n.x = Math.max(rx, Math.min(W - rx, n.x));
