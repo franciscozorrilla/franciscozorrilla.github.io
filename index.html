@@ -958,7 +958,7 @@
               <ul>
                 <li>Predict from genomes which nutrients the strains in a collection cannot make and which partners could supply them, and check those predictions against growth data, including where they fail (<a href="#work-soil">Nature Microbiology 2026</a>).</li>
                 <li>Model how the strains in a starter culture or consortium feed each other, alongside fermentation and omics data (<a href="#work-cheese">Nature Communications 2023, with Chr. Hansen</a>).</li>
-                <li>Build a draft genome-scale metabolic model of a production organism from its genome (<a href="#work-hansenula">Hansenula protocol, 2022</a>).</li>
+                <li>Build a draft genome-scale metabolic model of a production organism from its genome (<a href="#work-hansenula"><em>Hansenula</em> protocol, 2022</a>).</li>
                 <li>Annotate genes that sequence similarity misses, using protein language models and structure search (ProstT5, Foldseek), and feed the results into metabolic models (<a href="#cv">ETH Zürich, with EPFL</a>).</li>
                 <li>Build reproducible analysis pipelines that other groups install and run on their own data (<a href="#metagem">metaGEM</a>).</li>
                 <li>Turn a broad research goal into a plan with clear modules, bring the right people in to lead them, and keep them on track (<a href="#cv">ETH Zürich</a>).</li>
@@ -997,7 +997,7 @@
               <div class="card-expanded">
                 <div class="card-expanded-inner">
                   <h4>Problem</h4>
-                  <p>Going from metagenomes to community metabolic models meant chaining a dozen separate tools by hand, and models built from reference genomes miss the strain-level differences in a real sample.</p>
+                  <p>Community metabolic models were usually built by matching 16S profiles or recovered genomes to reference genomes and reusing the references' models, which misses the strains actually present in a sample. metaGEM builds sample-specific models directly from the genomes assembled from each metagenome.</p>
                   <h4>My contribution</h4>
                   <p>First author and lead developer. I co-conceived and developed the project, ran all the analyses and co-wrote the paper. I wrote the documentation and maintain the Bioconda package. Its users, releases and setup are in the <a href="#metagem">metaGEM section</a>.</p>
                   <h4>Links</h4>
@@ -1059,9 +1059,9 @@
               <div class="card-expanded">
                 <div class="card-expanded-inner">
                   <h4>Problem</h4>
-                  <p>Cheddar starter cultures mix Streptococcus thermophilus with several Lactococcus strains. How these strains interact during ripening, and how that shapes flavour, was largely unknown beyond pairwise tests in simplified lab media.</p>
+                  <p>Cheddar starter cultures mix <em>Streptococcus thermophilus</em> with several <em>Lactococcus</em> strains. How these strains interact during ripening, and how that shapes flavour, was largely unknown beyond pairwise tests in simplified lab media.</p>
                   <h4>Approach</h4>
-                  <p>The team, led by first author Chrats Melkonian (Chr. Hansen and Wageningen University), made Cheddar with the full commercial starter culture and with single strains left out, and followed it through a year of ripening; shorter milk fermentations left out single Lactococcus strains. They combined genome sequencing, genome-scale metabolic models, metatranscriptomics and metabolite measurements. S. thermophilus breaks down milk protein, which relieves nitrogen limitation for Lactococcus, and a Lactococcus cremoris strain keeps the off-flavour compounds diacetyl and acetoin in check.</p>
+                  <p>The team, led by first author Chrats Melkonian (Chr. Hansen and Wageningen University), made Cheddar with the full commercial starter culture and with single strains left out, and followed it through a year of ripening; shorter milk fermentations left out single <em>Lactococcus</em> strains. They combined genome sequencing, genome-scale metabolic models, metatranscriptomics and metabolite measurements. <em>S. thermophilus</em> breaks down milk protein, which relieves nitrogen limitation for <em>Lactococcus</em>, and a <em>Lactococcus cremoris</em> strain keeps the off-flavour compounds diacetyl and acetoin in check.</p>
                   <h4>My contribution</h4>
                   <p>Second author. I carried out most of the published metabolic modelling, together with first author Chrats Melkonian: genome-scale metabolic models of the starter strains built with metaGEM's modelling module (CarveMe, SMETANA), and the community simulations. This built on earlier modelling by Daniel Machado. I also helped write the paper. The cheese-making experiments were run at Chr. Hansen.</p>
                   <h4>What I used</h4>
@@ -1087,20 +1087,20 @@
             <!-- 4. C. difficile -->
             <article class="card" id="work-cdiff" data-citations="1">
               <div class="card-summary" role="button" tabindex="0" aria-expanded="false" aria-controls="cardDetail">
-                <h3 class="card-title">C. difficile invasion resistance</h3>
+                <h3 class="card-title"><em>C. difficile</em> invasion resistance</h3>
                 <p class="card-meta"><span class="card-year">2024</span> · <span class="card-venue">bioRxiv</span></p>
                 <p class="card-role">Third author</p>
-                <p class="card-desc">A 14-strain gut community grown in a bioreactor shows which microbial interactions and metabolic pathways help keep C. difficile out.</p>
+                <p class="card-desc">A 14-strain gut community grown in a bioreactor shows which microbial interactions and metabolic pathways help keep <em>C. difficile</em> out.</p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
                 <div class="card-expanded-inner">
                   <h4>Problem</h4>
-                  <p>Recurrent C. difficile infection responds to faecal transplant, but the active ingredients of "colonisation resistance" are unclear. Which metabolic interactions actually keep the pathogen out?</p>
+                  <p>Recurrent <em>C. difficile</em> infection responds to faecal transplant, but the active ingredients of "colonisation resistance" are unclear. Which metabolic interactions actually keep the pathogen out?</p>
                   <h4>Approach</h4>
-                  <p>Joy Scaria's lab (Oklahoma State and South Dakota State universities) challenged a 14-strain gut community, and communities grown from stool samples, with antibiotics and then C. difficile in a continuous-flow bioreactor; the Patil lab in Cambridge carried out the modelling. Population models and genome-scale metabolic models pointed to interactions between E. coli and Bacteroides/Phocaeicola, and metabolomics pointed to fructooligosaccharide use, vitamin B3 synthesis and competition for the amino acids C. difficile ferments. Patient metagenomes supported these signals.</p>
+                  <p>Joy Scaria's lab (Oklahoma State and South Dakota State universities) challenged a 14-strain gut community, and communities grown from stool samples, with antibiotics and then <em>C. difficile</em> in a continuous-flow bioreactor; the Patil lab in Cambridge carried out the modelling. Population models and genome-scale metabolic models pointed to interactions between <em>E. coli</em> and <em>Bacteroides/Phocaeicola</em>, and metabolomics pointed to fructooligosaccharide use, vitamin B3 synthesis and competition for the amino acids <em>C. difficile</em> ferments. Patient metagenomes supported these signals.</p>
                   <h4>My contribution</h4>
-                  <p>Third author. With Arianna Basile I annotated the genomes and built and simulated genome-scale metabolic models of the community members and C. difficile (CarveMe, SMETANA). I analysed the metabolomics data comparing communities that suppressed C. difficile with those that did not, checked the genomes for the genes behind those differences, and helped analyse the patient metagenomes.</p>
+                  <p>Third author. With Arianna Basile I annotated the genomes and built and simulated genome-scale metabolic models of the community members and <em>C. difficile</em> (CarveMe, SMETANA). I analysed the metabolomics data comparing communities that suppressed <em>C. difficile</em> with those that did not, checked the genomes for the genes behind those differences, and helped analyse the patient metagenomes.</p>
                   <h4>What I used</h4>
                   <p>CarveMe, KEMET, SMETANA, ReFramed, R</p>
                   <h4>Links</h4>
@@ -1114,17 +1114,17 @@
             <!-- 6. Hansenula -->
             <article class="card" id="work-hansenula" data-citations="8">
               <div class="card-summary" role="button" tabindex="0" aria-expanded="false" aria-controls="cardDetail">
-                <h3 class="card-title">Hansenula polymorpha GEM</h3>
+                <h3 class="card-title"><em>Hansenula polymorpha</em> GEM</h3>
                 <p class="card-meta"><span class="card-year">2022</span> · <span class="card-venue">Methods Mol. Biol.</span></p>
                 <p class="card-role">First author</p>
-                <p class="card-desc">Step-by-step protocol for building a genome-scale metabolic model from related species' models, with the industrial yeast Hansenula polymorpha as the worked example.</p>
+                <p class="card-desc">Step-by-step protocol for building a genome-scale metabolic model from related species' models, with the industrial yeast <em>Hansenula polymorpha</em> as the worked example.</p>
                 <p class="card-metrics"><a href="https://scholar.google.com/scholar?cites=9081739403093102628,15694732224122764535" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">8 citations</a></p>
                 <span class="card-hint" aria-hidden="true"></span>
               </div>
               <div class="card-expanded">
                 <div class="card-expanded-inner">
                   <h4>Problem</h4>
-                  <p>Building and curating a genome-scale metabolic model is slow and tedious, and Hansenula polymorpha (Ogataea polymorpha), an industrially relevant methylotrophic yeast, had no published high-quality model.</p>
+                  <p>Building and curating a genome-scale metabolic model is slow and tedious, and <em>Hansenula polymorpha</em> (<em>Ogataea polymorpha</em>), an industrially relevant methylotrophic yeast, had no published high-quality model.</p>
                   <h4>Approach</h4>
                   <p>A step-by-step protocol chapter that builds the model from the models of related yeasts with the RAVEN toolbox (MATLAB), and releases the result as hanpo-GEM.</p>
                   <h4>My contribution</h4>
@@ -1206,7 +1206,7 @@
             <li class="pub" id="work-carveme-gut">
               <h4>CarveMe-GutMicrobes</h4>
               <p class="pub-meta">bioRxiv 2026 · Co-author · <a href="https://www.biorxiv.org/content/10.64898/2026.06.26.734454v1" target="_blank" rel="noopener">bioRxiv preprint</a></p>
-              <p>Automated metabolic model reconstruction for gut bacteria and archaea, from the Patil lab. I contributed to the original idea for the project, which Arianna Basile carried out, and helped visualise one figure.</p>
+              <p>Automated metabolic model reconstruction for gut bacteria and archaea, from the Patil lab. I contributed to the original idea for the project, which Arianna Basile carried out, and helped with visualisation.</p>
             </li>
             <li class="pub" id="work-igem"><span id="work-od"></span>
               <h4>iGEM interlab measurement studies</h4>
@@ -1375,7 +1375,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             <ul>
               <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes. Cited 150+ times and used by other groups in their own studies; six releases (2021 to 2023) and replies to 88 of the 90 GitHub issues users opened.</li>
               <li><strong><a href="#work-soil">Soil cross-feeding</a> (Nature Microbiology 2026, co-first author):</strong> co-designed the genome sequencing and modelling, and carried out most of the genomic analysis and metabolic modelling of 62 strains, compared with the Kost lab's growth measurements.</li>
-              <li><strong>Collaborations:</strong> metabolic modelling for <a href="#work-cheese">cheese flavour with Chr. Hansen</a> (Nat. Commun. 2023); auxotrophy analysis for <a href="#work-drug">drug tolerance</a> (Nat. Microbiol. 2022); metabolic models and metabolomics for <a href="#work-cdiff">C. difficile resistance</a> (bioRxiv 2024); all metagenome assemblies and genome bins for a <a href="#work-plastic">plastic-enzyme survey</a> (mBio 2021).</li>
+              <li><strong>Collaborations:</strong> metabolic modelling for <a href="#work-cheese">cheese flavour with Chr. Hansen</a> (Nat. Commun. 2023); auxotrophy analysis for <a href="#work-drug">drug tolerance</a> (Nat. Microbiol. 2022); metabolic models and metabolomics for <a href="#work-cdiff"><em>C. difficile</em> resistance</a> (bioRxiv 2024); all metagenome assemblies and genome bins for a <a href="#work-plastic">plastic-enzyme survey</a> (mBio 2021).</li>
             </ul>
           </div>
           <div class="xp">
@@ -1832,7 +1832,8 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
         metaEl.className = 'meta-row';
         metaEl.textContent = meta;
         var titleEl = document.createElement('h3');
-        titleEl.textContent = textOf(card, '.card-title');
+        var titleSrc = card.querySelector('.card-title');
+        titleEl.innerHTML = titleSrc ? titleSrc.innerHTML : '';
         var descEl = document.createElement('p');
         descEl.className = 'detail-desc';
         descEl.innerHTML = desc ? desc.innerHTML : '';
