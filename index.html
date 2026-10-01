@@ -1028,7 +1028,7 @@
                   <h4>Approach</h4>
                   <p>The Kost lab isolated 6,931 bacteria from 27 soil communities in Germany and tested which could grow without added nutrients. We sequenced 62 strains and built metabolic models for them to see whether their genomes predict these dependencies. The lab then grew auxotrophs with strains from the same soil, in pairs and small groups, and the models predicted which neighbours could supply the missing nutrients.</p>
                   <h4>My contribution</h4>
-                  <p>Co-first author, shared with Ghada Yousif. I co-designed the genome sequencing and modelling and did most of the genomic analysis and metabolic modelling: sequence analysis with metaGEM, genome-scale models of the 62 sequenced strains and their comparison with the Kost lab's growth tests, the insertion-sequence and gene-loss analysis, pangenomics, the phylogenetic regression and the community simulations. I also co-wrote the first draft. The auxotrophy screen was the Kost lab's experimental work. The models missed most auxotrophies, and the genome analysis linked many missed cases to insertion sequences and gene loss in pathway genes, which became a result of the paper. The code repository maps every figure and table to the code and data that produce it.</p>
+                  <p>Co-first author, shared with Ghada Yousif. I co-designed the genome sequencing and modelling and carried out most of the genomic analysis and metabolic modelling: sequence analysis with metaGEM, genome-scale models of the 62 sequenced strains and their comparison with the Kost lab's growth tests, the insertion-sequence and gene-loss analysis, pangenomics, the phylogenetic regression and the community simulations. I also co-wrote the first draft. The auxotrophy screen was the Kost lab's experimental work. The models missed most auxotrophies, and the genome analysis linked many missed cases to insertion sequences and gene loss in pathway genes, which became a result of the paper. The code repository maps every figure and table to the code and data that produce it.</p>
                   <h4>What I used</h4>
                   <p>metaGEM, CarveMe, SMETANA, ReFramed, Pangenomics, R (phyloglm), Python</p>
                   <h4>Press coverage</h4>
@@ -1063,7 +1063,7 @@
                   <h4>Approach</h4>
                   <p>The team, led by first author Chrats Melkonian (Chr. Hansen and Wageningen University), made Cheddar with the full commercial starter culture and with single strains left out, and followed it through a year of ripening; shorter milk fermentations left out single Lactococcus strains. They combined genome sequencing, genome-scale metabolic models, metatranscriptomics and metabolite measurements. S. thermophilus breaks down milk protein, which relieves nitrogen limitation for Lactococcus, and a Lactococcus cremoris strain keeps the off-flavour compounds diacetyl and acetoin in check.</p>
                   <h4>My contribution</h4>
-                  <p>Second author. I did most of the published metabolic modelling, together with first author Chrats Melkonian: genome-scale metabolic models of the starter strains built with metaGEM's modelling module (CarveMe, SMETANA), and the community simulations. This built on earlier modelling by Daniel Machado. I also helped write the paper. The cheese-making experiments were run at Chr. Hansen.</p>
+                  <p>Second author. I carried out most of the published metabolic modelling, together with first author Chrats Melkonian: genome-scale metabolic models of the starter strains built with metaGEM's modelling module (CarveMe, SMETANA), and the community simulations. This built on earlier modelling by Daniel Machado. I also helped write the paper. The cheese-making experiments were run at Chr. Hansen.</p>
                   <h4>What I used</h4>
                   <p>metaGEM, CarveMe, SMETANA, ReFramed, COBRApy, Python</p>
                   <h4>Press coverage</h4>
@@ -1098,7 +1098,7 @@
                   <h4>Problem</h4>
                   <p>Recurrent C. difficile infection responds to faecal transplant, but the active ingredients of "colonisation resistance" are unclear. Which metabolic interactions actually keep the pathogen out?</p>
                   <h4>Approach</h4>
-                  <p>Joy Scaria's lab (Oklahoma State and South Dakota State universities) challenged a 14-strain gut community, and communities grown from stool samples, with antibiotics and then C. difficile in a continuous-flow bioreactor; the Patil lab in Cambridge did the modelling. Population models and genome-scale metabolic models pointed to interactions between E. coli and Bacteroides/Phocaeicola, and metabolomics pointed to fructooligosaccharide use, vitamin B3 synthesis and competition for the amino acids C. difficile ferments. Patient metagenomes supported these signals.</p>
+                  <p>Joy Scaria's lab (Oklahoma State and South Dakota State universities) challenged a 14-strain gut community, and communities grown from stool samples, with antibiotics and then C. difficile in a continuous-flow bioreactor; the Patil lab in Cambridge carried out the modelling. Population models and genome-scale metabolic models pointed to interactions between E. coli and Bacteroides/Phocaeicola, and metabolomics pointed to fructooligosaccharide use, vitamin B3 synthesis and competition for the amino acids C. difficile ferments. Patient metagenomes supported these signals.</p>
                   <h4>My contribution</h4>
                   <p>Third author. With Arianna Basile I annotated the genomes and built and simulated genome-scale metabolic models of the community members and C. difficile (CarveMe, SMETANA). I analysed the metabolomics data comparing communities that suppressed C. difficile with those that did not, checked the genomes for the genes behind those differences, and helped analyse the patient metagenomes.</p>
                   <h4>What I used</h4>
@@ -1191,7 +1191,7 @@
             <li class="pub" id="work-drug">
               <h4>Drug tolerance via cross-feeding</h4>
               <p class="pub-meta">Nat. Microbiol. 2022 · Third author of 19 · <a href="https://scholar.google.com/scholar?cites=5691438272753806031" target="_blank" rel="noopener" title="See the citing papers on Google Scholar">144 citations</a> · <a href="https://doi.org/10.1038/s41564-022-01072-5" target="_blank" rel="noopener">Paper (Nat. Microbiol.)</a></p>
-              <p>I did the analysis that opens the paper: how common amino-acid auxotrophs are across more than 12,000 Earth Microbiome Project communities, and whether auxotrophs grow better under drugs.</p>
+              <p>I carried out the analysis that opens the paper: how common amino-acid auxotrophs are across more than 12,000 Earth Microbiome Project communities, and whether auxotrophs grow better under drugs.</p>
             </li>
             <li class="pub" id="work-entero">
               <h4>Enterobacteriaceae gut dynamics</h4>
@@ -1374,7 +1374,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
             <p class="xp-meta">Patil Lab, MRC Toxicology Unit, University of Cambridge · October 2020 to August 2024</p>
             <ul>
               <li><strong>Open-source software:</strong> built and released <a href="#metagem">metaGEM</a> (Nucleic Acids Research 2021, first author), a Snakemake workflow packaged on Bioconda, and ran it on HPC clusters to reconstruct 14,000+ genome-scale metabolic models from 483 metagenomes. Cited 150+ times and used by other groups in their own studies; six releases (2021 to 2023) and replies to 88 of the 90 GitHub issues users opened.</li>
-              <li><strong><a href="#work-soil">Soil cross-feeding</a> (Nature Microbiology 2026, co-first author):</strong> co-designed the genome sequencing and modelling, and did most of the genomic analysis and metabolic modelling of 62 strains, compared with the Kost lab's growth measurements.</li>
+              <li><strong><a href="#work-soil">Soil cross-feeding</a> (Nature Microbiology 2026, co-first author):</strong> co-designed the genome sequencing and modelling, and carried out most of the genomic analysis and metabolic modelling of 62 strains, compared with the Kost lab's growth measurements.</li>
               <li><strong>Collaborations:</strong> metabolic modelling for <a href="#work-cheese">cheese flavour with Chr. Hansen</a> (Nat. Commun. 2023); auxotrophy analysis for <a href="#work-drug">drug tolerance</a> (Nat. Microbiol. 2022); metabolic models and metabolomics for <a href="#work-cdiff">C. difficile resistance</a> (bioRxiv 2024); all metagenome assemblies and genome bins for a <a href="#work-plastic">plastic-enzyme survey</a> (mBio 2021).</li>
             </ul>
           </div>
