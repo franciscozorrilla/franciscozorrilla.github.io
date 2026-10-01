@@ -661,7 +661,6 @@
     details.more[open] > summary::before { content: '\2212 '; }
     details.more > .apps, details.more > .teach { margin-top: 8px; }
     details.other-research { margin-top: 28px; }
-    details.other-research > summary { font-size: 1.05rem; }
     details.other-research > .pubs { margin-top: 8px; }
 
     /* ============ METAGEM ============ */
@@ -1366,7 +1365,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
               <li><strong>Planning:</strong> designed the 4-year computational roadmap and its modules for the flagship (2024 to 2028; ETH Zürich, EPFL, UZH, UNIL and CHUV) and pitched it to the PIs.</li>
               <li><strong>Leadership:</strong> coordinated the flagship with a PhD co-lead from EPFL on behalf of the work-package leaders. I co-organised its launch workshop (Bern, March 2025), recruited the co-leads of the four modules, ran about 20 coordination meetings and the progress reports, and co-led two modules until September 2026, with 50+ working sessions. I am co-first author on both module manuscripts (in preparation).</li>
               <li><strong>Module 4, structure-based metabolic models (with EPFL):</strong> the module adds protein-structure predictions to genome-scale metabolic model reconstruction and benchmarks the result against existing methods and experimental data. I chose ProstT5 and Foldseek over AlphaFold so annotation scales to microbiome gene sets, scripted and deployed GPU-enabled annotation on ETH's Euler cluster (Snakemake, Slurm) with custom enzyme and transporter databases, and designed the comparison against sequence search (MMseqs2, DIAMOND) and experimental growth phenotypes.</li>
-              <li><strong>Module 3, machine learning for community assembly (with UZH):</strong> the module trains a neural network on a large collection of gut microbiome samples to predict which species belong in a given community; it learns from co-occurrence during training but needs only gene annotations at inference. I worked with members of the von Mering lab and designed and ran its validation, with co-occurrence, gene-content and phylogenetic baselines and an audit of the public training metadata that cleaned the training set.</li>
+              <li><strong>Module 3, machine learning for community assembly (with UZH):</strong> the module trains a neural network on a large collection of gut microbiome samples to predict which species belong in a given community; it learns from co-occurrence during training but needs only gene annotations at inference. Working with a Sunagawa lab colleague, who built the model, and members of the von Mering lab, I designed and ran its validation, with co-occurrence, gene-content and phylogenetic baselines and an audit of the public training metadata that cleaned the training set.</li>
               <li><strong>Mentoring:</strong> mentored three PhD students and supervised a master's thesis (2025).</li>
             </ul>
           </div>
