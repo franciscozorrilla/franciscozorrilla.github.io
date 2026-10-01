@@ -999,7 +999,7 @@
                   <h4>Problem</h4>
                   <p>Going from metagenomes to community metabolic models meant chaining a dozen separate tools by hand, and models built from reference genomes miss the strain-level differences in a real sample.</p>
                   <h4>My contribution</h4>
-                  <p>First author and lead developer. The paper credits me with co-conceiving the project, developing the pipeline with Filip Buric, running all the analyses and co-writing the paper. I wrote the documentation and maintain the Bioconda package. Its users, releases and setup are in the <a href="#metagem">metaGEM section</a>.</p>
+                  <p>First author and lead developer. I co-conceived and developed the project, ran all the analyses and co-wrote the paper. I wrote the documentation and maintain the Bioconda package. Its users, releases and setup are in the <a href="#metagem">metaGEM section</a>.</p>
                   <h4>Links</h4>
                   <ul class="link-list">
                     <li><a href="https://doi.org/10.1093/nar/gkab815" target="_blank" rel="noopener">Paper (NAR)</a></li>
@@ -1206,7 +1206,7 @@
             <li class="pub" id="work-carveme-gut">
               <h4>CarveMe-GutMicrobes</h4>
               <p class="pub-meta">bioRxiv 2026 · Co-author · <a href="https://www.biorxiv.org/content/10.64898/2026.06.26.734454v1" target="_blank" rel="noopener">bioRxiv preprint</a></p>
-              <p>Automated metabolic model reconstruction for gut bacteria and archaea, from the Patil lab. My contribution was small.</p>
+              <p>Automated metabolic model reconstruction for gut bacteria and archaea, from the Patil lab. I contributed to the original idea for the project, which Arianna Basile carried out, and helped visualise one figure.</p>
             </li>
             <li class="pub" id="work-igem"><span id="work-od"></span>
               <h4>iGEM interlab measurement studies</h4>
@@ -2017,7 +2017,7 @@ mamba env create -n metagem -f envs/metaGEM_env.yml</pre>
           agtech:    cssVar('--graph-agtech',    '#25876F'),
           methods:   cssVar('--graph-methods',   '#818C9E')
         };
-        return map[group] || cssVar('--accent', '#1D5FD1');
+        return group === 'industry' ? map.industry : map.tools;
       }
       function personColor() { return cssVar('--map-person', '#3D4B5F'); }
       function linkColor()   { return cssVar('--map-link',   '#A3ACBA'); }
