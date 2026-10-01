@@ -670,7 +670,7 @@
     .mg-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px 32px; }
     @container sheet (min-width: 700px) {
       .mg-layout { grid-template-columns: minmax(0, 1fr) 270px; align-items: start; }
-      .mg-panel { margin-top: 4px; }
+      .mg-layout .mg-panel { margin-top: 0; }
     }
     .stages { padding-left: 24px; margin: 0 0 14px; font-variant-numeric: tabular-nums; }
     .stages li { margin-bottom: 2px; }
@@ -1252,14 +1252,14 @@
             </div>
           </div>
           <p class="mg-lead">Builds genome-scale metabolic models directly from metagenomes.</p>
-          <div class="mg-actions">
-            <a href="https://github.com/franciscozorrilla/metaGEM" class="btn btn-primary" target="_blank" rel="noopener">GitHub →</a>
-            <a href="https://doi.org/10.1093/nar/gkab815" class="btn" target="_blank" rel="noopener">Paper (NAR)</a>
-            <a href="https://github.com/franciscozorrilla/metaGEM/wiki" class="btn" target="_blank" rel="noopener">Documentation</a>
-          </div>
 
           <div class="mg-layout">
             <div class="mg-prose">
+              <div class="mg-actions">
+                <a href="https://github.com/franciscozorrilla/metaGEM" class="btn btn-primary" target="_blank" rel="noopener">GitHub →</a>
+                <a href="https://doi.org/10.1093/nar/gkab815" class="btn" target="_blank" rel="noopener">Paper (NAR)</a>
+                <a href="https://github.com/franciscozorrilla/metaGEM/wiki" class="btn" target="_blank" rel="noopener">Documentation</a>
+              </div>
               <p>Other groups install metaGEM from Bioconda and run it on their own data. I have supported them since 2021, with six releases and replies to 88 of the 90 GitHub issues other users opened.</p>
               <p>The pipeline runs quality control (fastp), assembly (MEGAHIT), binning (CONCOCT, MaxBin2, MetaBAT2), bin refinement and reassembly (metaWRAP), taxonomy (GTDB-Tk), metabolic reconstruction (CarveMe), model QC (MEMOTE) and community simulation (SMETANA), on a workstation or a Slurm cluster.</p>
             </div>
